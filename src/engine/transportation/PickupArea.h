@@ -13,8 +13,9 @@
  * 23/11/2019: File creation (NG)
  */
 #include <INode.h>
+#include <IFacilityTile.h>
 
-class PickupArea : public INode
+class PickupArea : public INode, IFacilityTile
 {
 public:
 	PickupArea();

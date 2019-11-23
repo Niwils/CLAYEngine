@@ -13,8 +13,9 @@
  */
 
 #include <IProcessStep.h>
+#include <IFacilityTile.h>
 
-class ItemFactory : public IProcessStep
+class ItemFactory : public IProcessStep, IFacilityTile
 {
 public:
 	ItemFactory();

@@ -13,8 +13,9 @@
  * 23/11/2019: File creation (NG)
  */
 #include <INode.h>
+#include <IFacilityTile.h>
 
-class StorageArea : public INode
+class StorageArea : public INode, IFacilityTile
 {
 public:
 	StorageArea();
