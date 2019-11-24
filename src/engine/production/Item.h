@@ -11,6 +11,7 @@
  * 23/11/2019: File creation (NG)
  */
 #include <IToken.h>
+#include <Sprite.h>
 
 class Item : public IToken
 {
@@ -19,5 +20,6 @@ public:
 	~Item();
 
 private:
+	Sprite *m_Sprite;
 	// TODO: manage assembly states
 };

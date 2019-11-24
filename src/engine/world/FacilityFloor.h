@@ -13,9 +13,10 @@
  * 23/11/2019: File creation (NG)
  */
 #include <IFacilityTile.h>
+#include <IEdge.h>
 #include <ContainerCarrier.h>
 
-class FacilityFloor : public IFacilityTile
+class FacilityFloor : public IFacilityTile, IEdge
 {
 public:
 	FacilityFloor();
@@ -24,7 +25,8 @@ public:
 	void setContainerCarrier(ContainerCarrier *_carrier);
 	ContainerCarrier *getContainerCarrier();
 
-private:
-	ContainerCarrier *m_Carrier;
 
+private:
+	// Currently, only one carrier is allowed on a tile.
+	ContainerCarrier *m_Carrier;
 };

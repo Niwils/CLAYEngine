@@ -28,8 +28,6 @@ public:
 	s_ItemVolume getVolumePerTurn();
 
 private:
-	s_ItemVolume m_Volume;
-
-	// TODO add list of available StorageArea
+	// TODO add list of available StorageArea with their respective requested volume per turn
 
 };

@@ -28,8 +28,6 @@ public:
 	s_ItemVolume getVolumePerTurn();
 
 private:
-	s_ItemVolume m_Volume;
-
 	// TODO add list of available PickupArea
 
 };

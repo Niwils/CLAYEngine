@@ -10,11 +10,15 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+#include <Sprite.h>
 
 class ITile
 {
 public:
 	ITile();
 	virtual ~ITile() = 0;
+
+protected:
+	Sprite *m_Sprite;
 
 };
