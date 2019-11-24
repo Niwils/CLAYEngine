@@ -13,6 +13,10 @@
 
 class INode
 {
+public:
 	INode();
 	virtual ~INode() = 0;
+
+protected:
+
 };

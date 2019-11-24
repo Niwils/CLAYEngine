@@ -22,6 +22,7 @@ public:
 	~ContainerCarrier();
 
 private:
+	Sprite *m_Sprite;
 	// TODO add list of ItemContainer
 	// TODO add max of ItemContainer
 };
