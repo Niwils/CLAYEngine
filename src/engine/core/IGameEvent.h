@@ -22,12 +22,22 @@
 class IGameEvent
 {
 public:
-	IGameEvent();
+	IGameEvent()
+	{
+
+	}
+
 	virtual ~IGameEvent() = 0;
 
-	void addSubscriber(IEventSubscriber *_subscriber);
+	void addSubscriber(IEventSubscriber *_subscriber)
+	{
+		m_Subscribers.addObject(_subscriber);
+	}
 
-	void removeSubscriber(IEventSubscriber *_subscriber);
+	void removeSubscriber(IEventSubscriber *_subscriber)
+	{
+		// TODO
+	}
 
 protected:
 	// Notification might endorse a more application-centric signaling to
