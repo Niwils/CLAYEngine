@@ -14,3 +14,5 @@
 #include <stdint.h>
 
 typedef uint8_t s_ItemVolume;
+
+typedef uint32_t s_ProcessUID;

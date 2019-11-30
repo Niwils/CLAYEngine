@@ -18,4 +18,7 @@ class IProcessStep : public INode
 public:
 	IProcessStep();
 	virtual ~IProcessStep() = 0;
+
+protected:
+
 };

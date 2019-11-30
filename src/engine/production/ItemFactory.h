@@ -14,6 +14,8 @@
 
 #include <IProcessStep.h>
 #include <IFacilityTile.h>
+#include <Item.h>
+#include <Types.h>
 
 class ItemFactory : public IProcessStep, IFacilityTile
 {
@@ -22,5 +24,6 @@ public:
 	~ItemFactory();
 
 private:
-
+	Item *m_ProcessingItem; /*< Item in process (e.g. a car body) */
+	s_ProcessUID m_CurrentProcess;
 };
