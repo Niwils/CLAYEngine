@@ -7,6 +7,8 @@
  * the game Core. Such events can be:
  * - New taxes, laws, economical crisis...
  * - New competitor model.
+ * A concrete object inheriting IGameEvent can be for example,
+ * an attribute of the economics engine.
  */
 
 /*
@@ -14,10 +16,29 @@
  * 24/11/2019: File creation (NG)
  */
 
+#include <IEventSubscriber.h>
+#include <ObjList.h>
+
 class IGameEvent
 {
 public:
 	IGameEvent();
-	virtual ~IGameEvent();
+	virtual ~IGameEvent() = 0;
 
+	void addSubscriber(IEventSubscriber *_subscriber);
+
+	void removeSubscriber(IEventSubscriber *_subscriber);
+
+protected:
+	// Notification might endorse a more application-centric signaling to
+	// IEventSubscriber objects.
+	virtual void notify() = 0;
+
+	ObjList<IEventSubscriber> *getSubscribers()
+	{
+		return &m_Subscribers;
+	}
+
+private:
+	ObjList<IEventSubscriber> m_Subscribers;
 };

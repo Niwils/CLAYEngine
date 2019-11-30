@@ -19,6 +19,8 @@ public:
 	Item();
 	~Item();
 
+	void upgradeItem()
+
 private:
 	Sprite *m_Sprite;
 	// TODO: manage assembly states
