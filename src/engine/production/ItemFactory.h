@@ -12,6 +12,9 @@
  * 23/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_PRODUCTION_ITEMFACTORY_H
+#define _ENGINE_PRODUCTION_ITEMFACTORY_H
+
 #include <IProcessStep.h>
 #include <IFacilityTile.h>
 #include <Item.h>
@@ -27,3 +30,5 @@ private:
 	Item *m_ProcessingItem; /*< Item in process (e.g. a car body) */
 	s_ProcessUID m_CurrentProcess;
 };
+
+#endif /* End _ENGINE_PRODUCTION_ITEMFACTORY_H */

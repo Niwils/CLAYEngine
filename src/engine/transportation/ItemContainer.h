@@ -21,6 +21,8 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+#ifndef _ENGINE_TRANSPORTATION_ITEMCONTAINER_H
+#define _ENGINE_TRANSPORTATION_ITEMCONTAINER_H
 
 class ItemContainer
 {
@@ -34,3 +36,5 @@ private:
 	// TODO add maximum number of Item
 	// TODO add current number of Item
 };
+
+#endif /* End _ENGINE_TRANSPORTATION_ITEMCONTAINER_H */

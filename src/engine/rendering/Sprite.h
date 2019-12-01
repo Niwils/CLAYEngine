@@ -12,6 +12,9 @@
  * 24/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_RENDERING_SPRITE_H
+#define _ENGINE_RENDERING_SPRITE_H
+
 class Sprite
 {
 public:
@@ -22,3 +25,5 @@ private:
 	// TODO add sprite when holder is inactive
 	// TODO add array of sprite (i.e. animation) when active
 };
+
+#endif /* End _ENGINE_RENDERING_SPRITE_H */

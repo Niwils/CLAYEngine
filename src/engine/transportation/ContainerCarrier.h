@@ -13,6 +13,10 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+
+#ifndef _ENGINE_TRANSPORTATION_CONTAINERCARRIER_H
+#define _ENGINE_TRANSPORTATION_CONTAINERCARRIER_H
+
 #include <IToken.h>
 
 class ContainerCarrier : public IToken
@@ -26,3 +30,5 @@ private:
 	// TODO add list of ItemContainer
 	// TODO add max of ItemContainer
 };
+
+#endif /* End _ENGINE_TRANSPORTATION_CONTAINERCARRIER_H */

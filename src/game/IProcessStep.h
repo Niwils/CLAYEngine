@@ -11,6 +11,9 @@
  * 23/11/2019: File creation (NG)
  */
 
+#ifndef _GAME_IPROCESSSTEP_H
+#define _GAME_IPROCESSSTEP_H
+
 #include <INode.h>
 
 class IProcessStep : public INode
@@ -22,3 +25,5 @@ public:
 protected:
 
 };
+
+#endif /* End _GAME_IPROCESSSTEP_H */

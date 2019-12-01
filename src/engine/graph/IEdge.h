@@ -12,6 +12,10 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+
+#ifndef _ENGINE_GRAPH_IEDGE_H
+#define _ENGINE_GRAPH_IEDGE_H
+
 #include <stdint.h>
 #include <IToken.h>
 
@@ -24,3 +28,5 @@ public:
 	uint8_t addToken(IToken *_token);
 	uint8_t getToken();
 };
+
+#endif /* _ENGINE_GRAPH_IEDGE_H */

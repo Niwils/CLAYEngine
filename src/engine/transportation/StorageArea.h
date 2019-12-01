@@ -12,6 +12,10 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+
+#ifndef _ENGINE_TRANSPORTATION_STORAGEAREA_H
+#define _ENGINE_TRANSPORTATION_STORAGEAREA_H
+
 #include <INode.h>
 #include <IFacilityTile.h>
 
@@ -26,3 +30,5 @@ private:
 	// TODO add max of ItemContainer
 	// TODO add pointer to the ItemFactoryInterface
 };
+
+#endif /* End _ENGINE_TRANSPORTATION_STORAGEAREA_H */

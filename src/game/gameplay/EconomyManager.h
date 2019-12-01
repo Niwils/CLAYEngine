@@ -13,7 +13,14 @@
  * 30/11/2019: File creation (NG)
  */
 
-class EconomyManager
+#ifndef _GAME_GAMEPLAY_ECONOMYMANAGER_H
+#define _GAME_GAMEPLAY_ECONOMYMANAGER_H
+
+#include <IGameEvent.h>
+#include <SocialEvent.h>
+#include <EconomicalEvent.h>
+
+class EconomyManager : public SocialEventSubscriber
 {
 public:
 	EconomyManager();
@@ -21,6 +28,27 @@ public:
 
 	void tickExec();
 
+	void post(eSocialEventType _type);
+
+	void registerToEconomicalEvent(EconomicalEventSubscriber *_subscriber, eSocialEventType _event);
+
 private:
- // TODO register EconomicalEvent attributes here.
+	EconomicalEvent m_cheaperLoans;
+	EconomicalEvent m_higherLoans;
+	EconomicalEvent m_lowerExportCurrency;
+	EconomicalEvent m_higherExportCurrency;
+	EconomicalEvent m_Crisis;
+
+	enum eEconomicalManagerState
+	{
+		eEconomicalManagerState_Init,
+		eEconomicalManagerState_Nominal,
+		eEconomicalManagerState_Speculation,
+		eEconomicalManagerState_Crash,
+		eEconomicalManagerState_GovernmentFund
+	};
+
+	eEconomicalManagerState m_State;
 };
+
+#endif /* End _GAME_GAMEPLAY_ECONOMYMANAGER_H */

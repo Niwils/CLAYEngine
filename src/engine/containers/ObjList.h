@@ -1,7 +1,7 @@
 /*
  * The <unnamed> factory builder project.
  *
- * \file src/engine/core/IGameEvent.h
+ * \file src/engine/containers/ObjList.h
  *
  * \brief A list container.
  */
@@ -11,6 +11,8 @@
  * 30/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_CONTAINERS_OBJLIST_H
+#define _ENGINE_CONTAINERS_OBJLIST_H
 
 template <class K> class ObjListCell
 {
@@ -96,3 +98,5 @@ template <class K> class ObjList
 
 	// TODO add remove and other useful functions
 };
+
+#endif /* End _ENGINE_CONTAINERS_OBJLIST_H */

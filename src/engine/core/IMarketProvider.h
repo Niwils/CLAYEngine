@@ -14,6 +14,8 @@
  * CHANGELOG:
  * 24/11/2019: File creation (NG)
  */
+#ifndef _ENGINE_CORE_IMARKETPROVIDER_H
+#define _ENGINE_CORE_IMARKETPROVIDER_H
 
 #include <IMarketPlace.h>
 
@@ -31,3 +33,6 @@ private:
 	// TODO add list of available StorageArea with their respective requested volume per turn
 
 };
+
+
+#endif /* End _ENGINE_CORE_IMARKETPROVIDER_H */

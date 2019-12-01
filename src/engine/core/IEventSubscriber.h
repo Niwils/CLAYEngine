@@ -12,6 +12,9 @@
  * 24/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_CORE_IEVENTSUBSCRIBER_H
+#define _ENGINE_CORE_IEVENTSUBSCRIBER_H
+
 class IEventSubscriber
 {
 public:
@@ -20,3 +23,5 @@ public:
 
 private:
 };
+
+#endif /* End _ENGINE_CORE_IEVENTSUBSCRIBER_H */
