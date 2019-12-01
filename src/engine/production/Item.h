@@ -10,6 +10,10 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+
+#ifndef _ENGINE_PRODUCTION_ITEM_H
+#define _ENGINE_PRODUCTION_ITEM_H
+
 #include <IToken.h>
 #include <Sprite.h>
 
@@ -25,3 +29,5 @@ private:
 	Sprite *m_Sprite;
 	// TODO: manage assembly states
 };
+
+#endif /* End _ENGINE_PRODUCTION_ITEM_H */

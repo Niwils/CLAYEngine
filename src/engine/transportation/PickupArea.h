@@ -12,6 +12,9 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+#ifndef _ENGINE_TRANSPORTATION_PICKUPAREA_H
+#define _ENGINE_TRANSPORTATION_PICKUPAREA_H
+
 #include <INode.h>
 #include <IFacilityTile.h>
 
@@ -25,3 +28,5 @@ private:
 	// TODO add list of ItemContainer
 	// TODO add max of ItemContainer
 };
+
+#endif /* End _ENGINE_TRANSPORTATION_PICKUPAREA_H */

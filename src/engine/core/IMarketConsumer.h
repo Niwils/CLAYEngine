@@ -15,6 +15,9 @@
  * 24/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_CORE_IMARKETCONSUMER_H
+#define _ENGINE_CORE_IMARKETCONSUMER_H
+
 #include <IMarketPlace.h>
 
 class IMarketConsumer : public IMarketPlace
@@ -31,3 +34,5 @@ private:
 	// TODO add list of available PickupArea
 
 };
+
+#endif /* End _ENGINE_CORE_IMARKETCONSUMER_H */

@@ -11,8 +11,13 @@
  * 24/11/2019: File creation (NG)
  */
 
+#ifndef _COMMON_TYPES_H
+#define _COMMON_TYPES_H
+
 #include <stdint.h>
 
 typedef uint8_t s_ItemVolume;
 
 typedef uint32_t s_ProcessUID;
+
+#endif /* End _COMMON_TYPES_H */

@@ -14,6 +14,9 @@
  * 24/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_CORE_IMARKETPLACE_H
+#define _ENGINE_CORE_IMARKETPLACE_H
+
 #include <Types.h>
 #include <IGameEvent.h>
 
@@ -31,3 +34,5 @@ private:
 	s_ItemVolume m_Volume;
 
 };
+
+#endif /* End _ENGINE_CORE_IMARKETPLACE_H */

@@ -10,6 +10,10 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+
+#ifndef _ENGINE_WORLD_ITILE_H
+#define _ENGINE_WORLD_ITILE_H
+
 #include <Sprite.h>
 
 class ITile
@@ -22,3 +26,5 @@ protected:
 	Sprite *m_Sprite;
 
 };
+
+#endif /* End _ENGINE_WORLD_ITILE_H */

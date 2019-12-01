@@ -11,6 +11,9 @@
  * 23/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_GRAPH_INODE_H
+#define _ENGINE_GRAPH_INODE_H
+
 class INode
 {
 public:
@@ -20,3 +23,5 @@ public:
 protected:
 
 };
+
+#endif /* End _ENGINE_GRAPH_INODE_H */

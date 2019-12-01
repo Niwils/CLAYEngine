@@ -12,6 +12,10 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+
+#ifndef _ENGINE_WORLD_FACILITYFLOOR_H
+#define _ENGINE_WORLD_FACILITYFLOOR_H
+
 #include <IFacilityTile.h>
 #include <IEdge.h>
 #include <ContainerCarrier.h>
@@ -30,3 +34,5 @@ private:
 	// Currently, only one carrier is allowed on a tile.
 	ContainerCarrier *m_Carrier;
 };
+
+#endif /* End _ENGINE_WORLD_FACILITYFLOOR_H */

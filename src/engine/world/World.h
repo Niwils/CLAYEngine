@@ -12,9 +12,14 @@
  * 23/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_WORLD_WORLD_H
+#define _ENGINE_WORLD_WORLD_H
+
 class World
 {
 public:
 	World();
 	~World();
 };
+
+#endif /* End _ENGINE_WORLD_WORLD_H */

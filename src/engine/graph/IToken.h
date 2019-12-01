@@ -12,6 +12,9 @@
  * 23/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_GRAPH_ITOKEN_H
+#define _ENGINE_GRAPH_ITOKEN_H
+
 class IToken
 {
 public:
@@ -20,3 +23,5 @@ public:
 
 
 };
+
+#endif /* End _ENGINE_GRAPH_ITOKEN_H */

@@ -16,6 +16,9 @@
  * 24/11/2019: File creation (NG)
  */
 
+#ifndef _ENGINE_CORE_IGAMEEVENT_H
+#define _ENGINE_CORE_IGAMEEVENT_H
+
 #include <IEventSubscriber.h>
 #include <ObjList.h>
 
@@ -52,3 +55,5 @@ protected:
 private:
 	ObjList<IEventSubscriber> m_Subscribers;
 };
+
+#endif /* End _ENGINE_CORE_IGAMEEVENT_H */

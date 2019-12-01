@@ -10,6 +10,9 @@
  * CHANGELOG:
  * 23/11/2019: File creation (NG)
  */
+#ifndef _ENGINE_WORLD_IFACILITYTILE_H
+#define _ENGINE_WORLD_IFACILITYTILE_H
+
 #include <ITile.h>
 #include <GeographyDefinitions.h>
 
@@ -28,3 +31,5 @@ protected:
 	IFacilityTile *m_NeighbourTiles[eGeographyDefinition_Max];
 
 };
+
+#endif /* End _ENGINE_WORLD_IFACILITYTILE_H */
