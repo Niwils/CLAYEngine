@@ -16,11 +16,12 @@
 #ifndef _GAME_GAMEPLAY_ECONOMYMANAGER_H
 #define _GAME_GAMEPLAY_ECONOMYMANAGER_H
 
+#include <Types.h>
 #include <IGameEvent.h>
 #include <SocialEvent.h>
 #include <EconomicalEvent.h>
 
-class EconomyManager : public SocialEventSubscriber
+class EconomyManager : public ISocialEventSubscriber
 {
 public:
 	EconomyManager();
@@ -30,7 +31,7 @@ public:
 
 	void post(eSocialEventType _type);
 
-	void registerToEconomicalEvent(EconomicalEventSubscriber *_subscriber, eSocialEventType _event);
+	void registerToEconomicalEvent(IEconomicalEventSubscriber *_subscriber, eSocialEventType _event);
 
 private:
 	EconomicalEvent m_cheaperLoans;
@@ -49,6 +50,8 @@ private:
 	};
 
 	eEconomicalManagerState m_State;
+
+	s_Transition m_fsmTransitionProviderStrike;
 };
 
 #endif /* End _GAME_GAMEPLAY_ECONOMYMANAGER_H */

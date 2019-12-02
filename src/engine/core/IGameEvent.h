@@ -39,7 +39,9 @@ public:
 
 	void removeSubscriber(IEventSubscriber *_subscriber)
 	{
-		// TODO
+		m_Subscribers.removeObject(_subscriber);
+
+		// TODO check if returns null. If nullptr, raise an assert?
 	}
 
 protected:

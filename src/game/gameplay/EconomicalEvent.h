@@ -27,13 +27,13 @@ enum eEconomicalEventType
 	eEconomicalEventType_Crisis
 };
 
-class EconomicalEventSubscriber : public IEventSubscriber
+class IEconomicalEventSubscriber : public IEventSubscriber
 {
 public:
-	EconomicalEventSubscriber(eEconomicalEventType _type);
-	~EconomicalEventSubscriber();
+	IEconomicalEventSubscriber();
+	virtual ~IEconomicalEventSubscriber() = 0;
 
-	void post(eEconomicalEventType _event);
+	virtual void post(eEconomicalEventType _event) = 0;
 
 protected:
 
@@ -47,8 +47,8 @@ public:
 
 	void notify();
 
-protected:
-
+private:
+	eEconomicalEventType m_EventType;
 };
 
 #endif /* End _GAME_GAMEPLAY_ECONOMICALEVENT_H */
