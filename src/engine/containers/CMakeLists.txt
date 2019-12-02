@@ -1,0 +1,1 @@
+add_library(containers ${CMAKE_CURRENT_LIST_DIR})
