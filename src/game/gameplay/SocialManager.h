@@ -20,7 +20,7 @@
 #include <SocialEvent.h>
 #include <EconomicalEvent.h>
 
-class SocialManager : public EconomicalEventSubscriber
+class SocialManager : public IEconomicalEventSubscriber
 {
 public:
 	SocialManager();

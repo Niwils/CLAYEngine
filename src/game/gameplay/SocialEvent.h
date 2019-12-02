@@ -25,13 +25,13 @@ enum eSocialEventType
 	eSocialEventType_NewLegalLimitForWorkingHours,
 };
 
-class SocialEventSubscriber : public IEventSubscriber
+class ISocialEventSubscriber : public IEventSubscriber
 {
 public:
-	SocialEventSubscriber(eSocialEventType _type);
-	~SocialEventSubscriber();
+	ISocialEventSubscriber();
+	virtual	~ISocialEventSubscriber() = 0;
 
-	void post(eSocialEventType _event);
+	virtual void post(eSocialEventType _event) = 0;
 
 protected:
 

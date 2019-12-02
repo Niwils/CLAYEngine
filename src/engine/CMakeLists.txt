@@ -1,0 +1,24 @@
+add_library(engine)
+target_include_directories(engine
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/core"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/graph"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/osal"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/osal/common"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/production"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/rendering"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/transportation"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/world"
+)
+
+target_sources(engine
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/osal/macosx/Thread.cpp"
+)
