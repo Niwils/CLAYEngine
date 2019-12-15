@@ -16,17 +16,46 @@
 #ifndef _ENGINE_GRAPH_IEDGE_H
 #define _ENGINE_GRAPH_IEDGE_H
 
-#include <stdint.h>
+#include <Types.h>
 #include <IToken.h>
+#include <IGraphElement.h>
+#include <ConveyorFifo.h>
 
-class IEdge
+class IEdge : public IGraphElement
 {
 public:
-	IEdge();
+
+	IEdge(s_EdgeFifoSize _size);
+
 	virtual ~IEdge() = 0;
 
-	uint8_t addToken(IToken *_token);
-	uint8_t getToken();
+	void setSource(IGraphElement *_source);
+
+	IGraphElement *getSource();
+
+	void setSink(IGraphElement *_source);
+
+	IGraphElement *getSink();
+
+	void stepFifo();
+
+	// TODO manage errors for queue()
+	void queue(IToken *_token);
+
+	// TODO manage errors for unqueue()?
+	IToken *unqueue();
+
+protected:
+	ConveyorFifo<IToken> *getFifo();
+
+private:
+
+	s_EdgeFifoSize m_FifoSize;
+	IGraphElement *m_Source;
+	IGraphElement *m_Sink;
+
+	ConveyorFifo<IToken> *m_Fifo;
+
 };
 
 #endif /* _ENGINE_GRAPH_IEDGE_H */
