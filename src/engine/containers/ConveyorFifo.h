@@ -86,6 +86,14 @@ public:
 		}
 	}
 
+	void clear()
+	{
+		for(s_EdgeFifoSize icpt; m_FifoSize > icpt; icpt++)
+		{
+			m_Fifo[icpt] = nullptr;
+		}
+	}
+
 private:
 	s_EdgeFifoSize m_FifoSize;
 

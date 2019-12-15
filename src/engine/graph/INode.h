@@ -13,15 +13,34 @@
 
 #ifndef _ENGINE_GRAPH_INODE_H
 #define _ENGINE_GRAPH_INODE_H
+#include <IToken.h>
+#include <ObjList.h>
+#include <IGraphElement.h>
 
-class INode
+class INode : public IGraphElement
 {
 public:
 	INode();
 	virtual ~INode() = 0;
 
-protected:
+	void setToken(IToken *_token);
 
+	IToken *getToken();
+
+	void setInput(IGraphElement *_input);
+
+	IGraphElement *getInput();
+
+	void addOutput(IGraphElement *_output);
+
+	ObjList<IGraphElement> *getOutputs();
+
+protected:
+	IToken *m_CarriedToken;
+
+	IGraphElement *m_Input;
+
+	ObjList<IGraphElement> *m_Outputs;
 };
 
 #endif /* End _ENGINE_GRAPH_INODE_H */
