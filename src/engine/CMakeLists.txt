@@ -1,6 +1,8 @@
 add_library(engine)
 target_include_directories(engine
 	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/containers"
+	PUBLIC
 	"${CMAKE_CURRENT_LIST_DIR}/core"
 	PUBLIC
 	"${CMAKE_CURRENT_LIST_DIR}/graph"
@@ -19,6 +21,8 @@ target_include_directories(engine
 )
 
 target_sources(engine
-	PUBLIC
-	"${CMAKE_CURRENT_LIST_DIR}/osal/macosx/Thread.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/osal/macosx/Thread.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/graph/IGraphElement.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/graph/IEdge.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/graph/INode.cpp"
 )
