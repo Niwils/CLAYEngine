@@ -68,11 +68,13 @@ public:
 
 	~ObjList()
 	{
-		ObjListCell<K> *l_cursor = m_Start;
-		ObjListCell<K> *l_cursor_next = m_Start->getNext();
+		ObjListCell<K> *l_cursor = nullptr;
+		ObjListCell<K> *l_cursor_next = nullptr;
+		l_cursor = m_Start;
 
 		while(nullptr != l_cursor)
 		{
+			l_cursor_next = m_Start->getNext();
 			delete l_cursor;
 			l_cursor = l_cursor_next;
 
@@ -81,6 +83,7 @@ public:
 				l_cursor_next = l_cursor_next->getNext();
 			}
 		}
+		m_Start = nullptr;
 		m_Cursor = nullptr;
 		m_End = nullptr;
 	}
@@ -211,6 +214,7 @@ public:
 
 		return l_obj;
 	}
+
 private:
 	ObjListCell<K> *m_Start;
 	ObjListCell<K> *m_Cursor;
