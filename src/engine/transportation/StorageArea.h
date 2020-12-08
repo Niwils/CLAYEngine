@@ -16,8 +16,11 @@
 #ifndef _ENGINE_TRANSPORTATION_STORAGEAREA_H
 #define _ENGINE_TRANSPORTATION_STORAGEAREA_H
 
+#include <Types.h>
 #include <INode.h>
 #include <IFacilityTile.h>
+#include <ObjList.h>
+#include <ItemContainer.h>
 
 class StorageArea : public INode, IFacilityTile
 {
@@ -25,8 +28,24 @@ public:
 	StorageArea();
 	~StorageArea();
 
+	void deliverContainer(ItemContainer *_container);
+
+	ItemContainer *loadEmptyContainer();
+
+	Item *pickRawMaterial(s_ItemTypeUUID _itemType);
+
+	bool checkAvailability(s_ItemTypeUUID _itemType);
+
+	bool checkAndPickItem(s_ItemTypeUUID _itemType);
+
+	void lockAccess();
+
+	void unlockAccess();
+
 private:
-	// TODO add list of ItemContainer
+	// TODO make a better computation-optimized container system.
+	ObjList<ItemContainer> *m_ActiveContainers;
+	ObjList<ItemContainer> *m_EmptyContainers;
 	// TODO add max of ItemContainer
 	// TODO add pointer to the ItemFactoryInterface
 };

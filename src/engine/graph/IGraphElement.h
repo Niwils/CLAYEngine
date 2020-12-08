@@ -13,6 +13,7 @@
 
 #ifndef _ENGINE_GRAPH_IGRAPHELEMENT_H
 #define _ENGINE_GRAPH_IGRAPHELEMENT_H
+#include <IToken.h>
 
 class IGraphElement
 {
@@ -20,6 +21,8 @@ public:
 	IGraphElement();
 
 	virtual ~IGraphElement() = 0;
+
+	virtual IToken *getToken() = 0;
 };
 
 #endif /* End _ENGINE_GRAPH_IGRAPHELEMENT_H */

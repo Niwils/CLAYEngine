@@ -25,4 +25,9 @@ target_sources(engine
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/graph/IGraphElement.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/graph/IEdge.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/graph/INode.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/Conveyor.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/Item.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/ItemProcessor.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/ProcessStep.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/Recipe.cpp"
 )
