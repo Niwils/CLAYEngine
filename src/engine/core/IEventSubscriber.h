@@ -19,7 +19,7 @@ class IEventSubscriber
 {
 public:
 	IEventSubscriber();
-	~IEventSubscriber();
+	virtual ~IEventSubscriber() = 0;
 
 private:
 };

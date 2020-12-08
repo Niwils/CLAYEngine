@@ -11,7 +11,7 @@
  * 02/12/2019: File creation (NG)
  */
 
-#include "BasicNodeEdgeNodeTest.h"
+#include "../BasicProductionTest/BasicProductionTest.h"
 
 BasicNodeEdgeNodeTest::BasicNodeEdgeNodeTest()
 : CxxTest::TestSuite()

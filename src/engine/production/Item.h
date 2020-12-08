@@ -16,18 +16,30 @@
 
 #include <IToken.h>
 #include <Sprite.h>
+#include <Types.h>
+#include <Recipe.h>
 
 class Item : public IToken
 {
 public:
-	Item();
+	Item(s_ItemTypeUUID _itemType, Recipe *_recipe);
 	~Item();
 
-	void upgradeItem()
+	void upgradeItem(s_ProcessUID _processuid);
+
+	s_ItemTypeUUID getItemType();
+
+	s_ProcessUID getRequiredCurrentProcess();
+
+	s_ItemTypeUUID getCurrentRawMaterial();
+
+	bool processCurrentDone(); // return if current recipe item list has reached the end
 
 private:
-	Sprite *m_Sprite;
+	// TODO implement Sprite *m_Sprite;
+	s_ItemTypeUUID m_ItemType;
 	// TODO: manage assembly states
+	RecipeFollower *m_Recipe;
 };
 
 #endif /* End _ENGINE_PRODUCTION_ITEM_H */

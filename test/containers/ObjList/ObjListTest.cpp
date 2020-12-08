@@ -34,16 +34,21 @@ void ObjListTest::testObjList()
 		m_ListUnderTest->addObject(&(l_testNb[icpt]));
 	}
 
-	uint16_t *l_it = m_ListUnderTest->iterate();
+	ObjListIterator<uint16_t> *l_it = new ObjListIterator<uint16_t>(m_ListUnderTest);
 
-	while(nullptr != l_it)
+	uint16_t *l_cursor = nullptr;
+	l_cursor = l_it->iterate();
+
+	while(nullptr != l_cursor)
 	{
-		*l_it = 0xFFFF - *l_it;
-		l_it = m_ListUnderTest->iterate();
+		*l_cursor = 0xFFFF - *l_cursor;
+		l_cursor = l_it->iterate();
 	}
 
 	TS_ASSERT_EQUALS(l_testNb[0], 0xFFFF);
 	TS_ASSERT_EQUALS(l_testNb[1], 0xFFFE);
 	TS_ASSERT_EQUALS(l_testNb[2], 0xFFFD);
+
+	delete l_it;
 
 }

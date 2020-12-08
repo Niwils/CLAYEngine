@@ -20,9 +20,18 @@ typedef uint32_t s_Tick;
 
 typedef uint16_t s_EdgeFifoSize;
 
-typedef uint8_t s_ItemVolume;
+typedef uint8_t s_ItemVolume; /*< Quantity of Items provided/consumed per (turn? day?) by an IMarketProvider/IMarketConsumer */
+
+typedef uint32_t s_ItemTypeUUID;
 
 typedef uint32_t s_ProcessUID;
+typedef uint16_t s_ProcessNo;
+typedef uint32_t s_RecipeUID;
+typedef uint8_t s_ItemQuantity; /*< Quantity of Items*/
+
+typedef uint8_t s_NumberofRounds; /*< Quantity of game round/game */
+typedef uint8_t s_ArrayQtyNumber; /*< Type for array sizes */
+
 
 typedef bool s_Transition;
 

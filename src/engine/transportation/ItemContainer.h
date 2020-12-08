@@ -24,17 +24,28 @@
 #ifndef _ENGINE_TRANSPORTATION_ITEMCONTAINER_H
 #define _ENGINE_TRANSPORTATION_ITEMCONTAINER_H
 
+#include <Item.h>
+
 class ItemContainer
 {
 public:
-	ItemContainer();
+	ItemContainer(s_ItemTypeUUID _itemType, s_ItemQuantity _max_qty);
 	~ItemContainer();
 
+	s_ItemTypeUUID getCarriedItemType();
+
+	void addItem(Item *_item);
+	Item *pickItem();
+
+	bool isEmpty();
+
+	bool isFull();
+
 private:
-	// TODO add list of carried Item
-	// TODO add type of supported Item
-	// TODO add maximum number of Item
-	// TODO add current number of Item
+	ObjList<Item> m_CarriedItems;
+	s_ItemTypeUUID m_CarriedItemType;
+	s_ItemQuantity m_MaxQty;
+	s_ItemQuantity m_CurrentQty;
 };
 
 #endif /* End _ENGINE_TRANSPORTATION_ITEMCONTAINER_H */

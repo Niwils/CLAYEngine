@@ -60,7 +60,6 @@ public:
 
 	ObjList()
 	: m_Start(nullptr)
-	, m_Cursor(nullptr)
 	, m_End(nullptr)
 	{
 
@@ -72,9 +71,12 @@ public:
 		ObjListCell<K> *l_cursor_next = nullptr;
 		l_cursor = m_Start;
 
+		m_Start = nullptr;
+		m_End = nullptr;
+
 		while(nullptr != l_cursor)
 		{
-			l_cursor_next = m_Start->getNext();
+			l_cursor_next = l_cursor->getNext();
 			delete l_cursor;
 			l_cursor = l_cursor_next;
 
@@ -83,9 +85,6 @@ public:
 				l_cursor_next = l_cursor_next->getNext();
 			}
 		}
-		m_Start = nullptr;
-		m_Cursor = nullptr;
-		m_End = nullptr;
 	}
 
 	void addObject(K *_obj)
@@ -100,7 +99,6 @@ public:
 			{
 				m_Start = l_cell;
 				m_End = l_cell;
-				m_Cursor = m_Start;
 			}
 			else
 			{
@@ -123,19 +121,6 @@ public:
 
 	}
 
-	K *iterate()
-	{
-		K *l_obj = nullptr;
-
-		if(nullptr != m_Cursor)
-		{
-			l_obj = m_Cursor->getObj();
-			m_Cursor = m_Cursor->getNext();
-		}
-
-		return l_obj;
-	}
-
 	K *removeFirst()
 	{
 		K *l_element = nullptr;
@@ -144,10 +129,6 @@ public:
 		{
 			ObjListCell<K> *l_cursor = m_Start;
 			l_element = l_cursor->getObj();
-			if(m_Start == m_Cursor)
-			{
-				m_Cursor = m_Start->getNext();
-			}
 
 			if(m_Start == m_End)
 			{
@@ -182,20 +163,10 @@ public:
 					{
 						m_End = l_cursor_prev;
 					}
-
-					if(m_Cursor == l_cursor)
-					{
-						m_Cursor = l_cursor_prev;
-					}
 				}
 				else
 				{
 					m_Start = l_cursor->getNext();
-
-					if(m_Cursor == l_cursor)
-					{
-						m_Cursor = m_Start; // if only one element, shall set to nullptr.
-					}
 
 					if(m_End == l_cursor)
 					{
@@ -215,10 +186,59 @@ public:
 		return l_obj;
 	}
 
+	ObjListCell<K> *getStart()
+	{
+		return m_Start;
+	}
+
 private:
 	ObjListCell<K> *m_Start;
-	ObjListCell<K> *m_Cursor;
 	ObjListCell<K> *m_End;
+};
+
+// Separation of  iterator from ObjList allows multiple list-readers at the same time.
+template <class K> class ObjListIterator
+{
+public:
+	ObjListIterator(ObjList<K> *_list)
+	: m_List(nullptr)
+	, m_Cursor(nullptr)
+	{
+		m_List = _list;
+
+		if(nullptr != m_List)
+		{
+			m_Cursor = m_List->getStart();
+		}
+	}
+
+	~ObjListIterator()
+	{
+		// Do nothing.
+	}
+
+	K *iterate()
+	{
+		K *l_obj = nullptr;
+
+		if(nullptr != m_Cursor)
+		{
+			l_obj = m_Cursor->getObj();
+			m_Cursor = m_Cursor->getNext();
+		}
+
+		return l_obj;
+	}
+
+	K *getCurrent()
+	{
+		return m_Cursor->getObj();
+	}
+
+private:
+	ObjList<K> *m_List;
+	ObjListCell<K> *m_Cursor;
+
 };
 
 #endif /* End _ENGINE_CONTAINERS_OBJLIST_H */

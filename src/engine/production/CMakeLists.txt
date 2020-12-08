@@ -1,0 +1,1 @@
+add_library(production ${CMAKE_CURRENT_LIST_DIR})
