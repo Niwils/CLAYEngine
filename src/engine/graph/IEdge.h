@@ -45,8 +45,12 @@ public:
 	// TODO manage errors for unqueue()?
 	IToken *unqueue();
 
+	IToken *getToken();
+
+    ConveyorFifo<IToken> *getFifo();
+
 protected:
-	ConveyorFifo<IToken> *getFifo();
+
 
 private:
 

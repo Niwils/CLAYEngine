@@ -75,3 +75,8 @@ ConveyorFifo<IToken> *IEdge::getFifo()
 {
 	return m_Fifo;
 }
+
+IToken *IEdge::getToken()
+{
+    return this->unqueue();
+}
