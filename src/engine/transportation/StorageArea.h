@@ -18,11 +18,11 @@
 
 #include <Types.h>
 #include <INode.h>
-#include <IFacilityTile.h>
+//#include <IFacilityTile.h>
 #include <ObjList.h>
 #include <ItemContainer.h>
 
-class StorageArea : public INode, IFacilityTile
+class StorageArea : public INode //, IFacilityTile
 {
 public:
 	StorageArea();
@@ -36,7 +36,7 @@ public:
 
 	bool checkAvailability(s_ItemTypeUUID _itemType);
 
-	bool checkAndPickItem(s_ItemTypeUUID _itemType);
+	bool checkAndPickItem(s_ItemTypeUUID _itemType, Item *_pickedItem);
 
 	void lockAccess();
 

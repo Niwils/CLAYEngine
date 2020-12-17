@@ -24,7 +24,8 @@ ItemContainer::ItemContainer(s_ItemTypeUUID _itemType, s_ItemQuantity _max_qty)
 
 ItemContainer::~ItemContainer()
 {
-
+    // TODO delete carried Items
+    delete m_CarriedItems;
 }
 
 s_ItemTypeUUID ItemContainer::getCarriedItemType()
@@ -32,21 +33,25 @@ s_ItemTypeUUID ItemContainer::getCarriedItemType()
 	return m_CarriedItemType;
 }
 
-void ItemContainer::addItem(Item *_item)
+bool ItemContainer::addItem(Item *_item)
 {
-	// TODO assert isFull() return false?
 	// TODO assert m_CarriedItems is not null
 	if(false == isFull())
 	{
 		m_CarriedItems->addObject(_item);
 		m_CurrentQty++;
+		return true;
 	}
-
+    else
+    {
+        return false;
+    }
 }
 Item *ItemContainer::pickItem()
 {
-	// TODO
-	return nullptr;
+	Item *l_item = m_CarriedItems->removeFirst();
+
+	return l_item;
 }
 
 bool ItemContainer::isEmpty()
