@@ -15,7 +15,7 @@
 
 StorageArea::StorageArea()
 : INode()
-, IFacilityTile()
+// , IFacilityTile()
 , m_ActiveContainers(nullptr)
 , m_EmptyContainers(nullptr)
 {

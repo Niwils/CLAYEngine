@@ -16,17 +16,22 @@
 #define _ENGINE_TRANSPORTATION_PICKUPAREA_H
 
 #include <INode.h>
-#include <IFacilityTile.h>
+#include <ItemContainer.h>
 
-class PickupArea : public INode, IFacilityTile
+class PickupArea : public INode
 {
 public:
-	PickupArea();
+	PickupArea(s_ItemContainerQty _maxQtyContainers);
 	~PickupArea();
 
+	bool addItemToContainer(Item *_item);
+
+	void runTick();
+
 private:
-	// TODO add list of ItemContainer
-	// TODO add max of ItemContainer
+	ObjList<ItemContainer> *mt_Containers;
+    s_ItemContainerQty m_nbContainersMax;
+    s_ItemContainerQty m_nbCurrentContainers;
 };
 
 #endif /* End _ENGINE_TRANSPORTATION_PICKUPAREA_H */
