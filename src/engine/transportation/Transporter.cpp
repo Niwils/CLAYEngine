@@ -13,8 +13,11 @@
 
 #include <Transporter.h>
 
-Transporter::Transporter(s_ItemContainerQty _nbMaxContainer)
-: m_nbMaxContainers(_nbMaxContainer)
+Transporter::Transporter(s_ItemContainerQty _nbMaxContainer, TransporterDefinition _definition)
+: IToken()
+, m_transporterRules(_definition)
+, m_remainingTicksCurrentState(0U)
+, m_nbMaxContainers(_nbMaxContainer)
 , m_CurrentNbContainers(0U)
 , m_State(eTransporterState_Idle)
 {
@@ -30,50 +33,75 @@ Transporter::~Transporter()
 
 bool Transporter::addItemContainer(ItemContainer *_container)
 {
-    if(m_nbMaxContainers > m_CurrentNbContainers)
-    {
-        mt_Containers->addObject(_container);
-        m_CurrentNbContainers++;
+    if(eTransporterState_Awaiting == m_State) {
+        if (m_nbMaxContainers > m_CurrentNbContainers) {
+            mt_Containers->addObject(_container);
+            m_CurrentNbContainers++;
 
-        m_State = eTransporterState_Loading;
-        return true;
+            m_remainingTicksCurrentState = 0u;
+            m_State = eTransporterState_Loading;
+            return true;
+        } else {
+            return false;
+        }
     }
-    else
-    {
-        return false;
-    }
+
+    return false;
 }
 
 ItemContainer *Transporter::getItemContainer(s_ItemTypeUUID _itemType)
 {
-    ItemContainer * l_return = nullptr;
+    ItemContainer *l_return = nullptr;
 
     ObjListIterator<ItemContainer> *l_iterator = new ObjListIterator<ItemContainer>(mt_Containers);
 
     ItemContainer *l_it = l_iterator->getCurrent();
 
-    int icpt = 0;
-    while((m_CurrentNbContainers > icpt) && (nullptr == l_return))
+
+    if(eTransporterState_Awaiting == m_State)
     {
-        if(_itemType == l_it->getCarriedItemType())
-        {
-            l_return = l_it;
-            mt_Containers->removeObject(l_it);
-            m_State = eTransporterState_Unloading;
-        }
-        else
-        {
-            l_it = l_iterator->iterate();
-            icpt++;
+
+        int icpt = 0;
+        while ((m_CurrentNbContainers > icpt) && (nullptr == l_return)) {
+            if (_itemType == l_it->getCarriedItemType()) {
+                l_return = l_it;
+                mt_Containers->removeObject(l_it);
+                m_remainingTicksCurrentState = 0U;
+                m_State = eTransporterState_Unloading;
+            } else {
+                l_it = l_iterator->iterate();
+                icpt++;
+            }
         }
     }
 
     return l_return;
 }
 
-bool Transporter::waitingForLoading()
+bool Transporter::moveToNextTile()
 {
-    return (eTransporterState_AwaitingToLoad == m_State);
+    bool l_ret = false;
+    if(eTransporterState_Awaiting == m_State)
+    {
+        m_remainingTicksCurrentState = 0U;
+        m_State = eTransporterState_Moving;
+        l_ret = true;
+    }
+    else if(eTransporterState_Moving == m_State)
+    {
+        if((m_transporterRules.m_nbTicksToCrossATile-1) == m_remainingTicksCurrentState)
+        {
+            m_remainingTicksCurrentState = 0U;
+            m_State = eTransporterState_Moving;
+            l_ret = true;
+        }
+        else
+        {
+            l_ret = false;
+        }
+    }
+
+    return l_ret;
 }
 
 bool Transporter::isLoading()
@@ -82,17 +110,12 @@ bool Transporter::isLoading()
 }
 bool Transporter::waitingToMove()
 {
-    return (eTransporterState_AwaitingToMove == m_State);
+    return (eTransporterState_Awaiting == m_State);
 }
 
 bool Transporter::isMoving()
 {
     return (eTransporterState_Moving == m_State);
-}
-
-bool Transporter::waitingToUnload()
-{
-    return (eTransporterState_Loading == m_State);
 }
 
 bool Transporter::isUnloading()
@@ -107,34 +130,44 @@ void Transporter::runTick()
     switch(m_State)
     {
         case eTransporterState_Idle:
-            m_State = eTransporterState_AwaitingToMove;
-            break;
-
-        case eTransporterState_AwaitingToMove:
-            m_State = eTransporterState_Moving; // TODO add animation management + movement mechanism
+            m_State = eTransporterState_Awaiting;
             break;
 
         case eTransporterState_Moving:
-            if(0U == m_CurrentNbContainers)
+            if(m_transporterRules.m_nbTicksToCrossATile > m_remainingTicksCurrentState)
             {
-                m_State = eTransporterState_AwaitingToLoad;
+                m_remainingTicksCurrentState++;
             }
             else
             {
-                m_State = eTransporterState_AwaitingToUnload;
+                m_State = eTransporterState_Awaiting;
             }
             break;
 
-        case eTransporterState_AwaitingToLoad:
+        case eTransporterState_Awaiting:
+            // Do nothing
             break;
 
         case eTransporterState_Loading:
-            break;
-
-        case eTransporterState_AwaitingToUnload:
+            if(m_transporterRules.m_nbTicksToLoad > m_remainingTicksCurrentState)
+            {
+                m_remainingTicksCurrentState++;
+            }
+            else
+            {
+                m_State = eTransporterState_Awaiting;
+            }
             break;
 
         case eTransporterState_Unloading:
+            if(m_transporterRules.m_nbTicksToUnload > m_remainingTicksCurrentState)
+            {
+                m_remainingTicksCurrentState++;
+            }
+            else
+            {
+                m_State = eTransporterState_Awaiting;
+            }
             break;
 
         default:
