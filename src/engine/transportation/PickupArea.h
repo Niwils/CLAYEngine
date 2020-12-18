@@ -17,6 +17,7 @@
 
 #include <INode.h>
 #include <ItemContainer.h>
+#include <Item.h>
 
 class PickupArea : public INode
 {

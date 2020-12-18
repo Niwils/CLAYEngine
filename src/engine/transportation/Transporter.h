@@ -16,25 +16,27 @@
 
 #include <IToken.h>
 #include <ItemContainer.h>
+#include <Transportation.h>
 
 class Transporter : IToken
 {
 public:
-    Transporter(s_ItemContainerQty _nbMaxContainer);
+    Transporter(s_ItemContainerQty _nbMaxContainer, TransporterDefinition _definition);
     ~Transporter();
 
     bool addItemContainer(ItemContainer *_container);
     ItemContainer *getItemContainer(s_ItemTypeUUID _itemType);
 
-    bool waitingForLoading();
+    bool moveToNextTile();
     bool isLoading();
     bool waitingToMove();
     bool isMoving();
-    bool waitingToUnload();
     bool isUnloading();
 
     void runTick();
 private:
+    TransporterDefinition m_transporterRules;
+    s_NumberofRounds m_remainingTicksCurrentState;
     s_ItemContainerQty m_nbMaxContainers;
     s_ItemContainerQty m_CurrentNbContainers;
 
@@ -43,11 +45,9 @@ private:
     enum eTransporterState
     {
         eTransporterState_Idle,
-        eTransporterState_AwaitingToLoad,
         eTransporterState_Loading,
-        eTransporterState_AwaitingToMove,
+        eTransporterState_Awaiting,
         eTransporterState_Moving,
-        eTransporterState_AwaitingToUnload,
         eTransporterState_Unloading
     };
 

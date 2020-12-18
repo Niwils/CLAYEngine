@@ -71,7 +71,7 @@ void PickupArea::runTick()
     {
         Transporter *l_carrier = dynamic_cast<Transporter *>(m_CarriedToken);
 
-        if((true == l_carrier->waitingForLoading()))
+        if((true == l_carrier->waitingToMove()))
         {
             ItemContainer *l_first = mt_Containers->removeFirst();
             l_carrier->addItemContainer(l_first);
