@@ -14,8 +14,8 @@ target_include_directories(engine
 #	"${CMAKE_CURRENT_LIST_DIR}/production"
 #	PUBLIC
 #	"${CMAKE_CURRENT_LIST_DIR}/rendering"
-#	PUBLIC
-#	"${CMAKE_CURRENT_LIST_DIR}/transportation"
+	PUBLIC
+	"${CMAKE_CURRENT_LIST_DIR}/transportation"
 #	PUBLIC
 #	"${CMAKE_CURRENT_LIST_DIR}/world"
 )
@@ -30,4 +30,9 @@ target_sources(engine
 #	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/ItemProcessor.cpp"
 #	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/ProcessStep.cpp"
 #	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/production/Recipe.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/transportation/ItemContainer.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/transportation/PickupArea.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/transportation/StorageArea.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/transportation/TransportationTile.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/transportation/Transporter.cpp"
 )
