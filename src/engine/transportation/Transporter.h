@@ -27,6 +27,9 @@ public:
 
     bool addItemContainer(ItemContainer *_container);
     ItemContainer *getItemContainer(s_ItemTypeUUID _itemType);
+    ItemContainer *getAnyItemContainer();
+    bool isFull();
+    bool isEmpty();
 
     bool moveToNextTile();
     bool isLoading();

@@ -22,6 +22,7 @@ public:
     TransportationTile(s_EdgeFifoSize _size);
     ~TransportationTile();
 
+    IToken *getToken();
 
 };
 

@@ -117,6 +117,41 @@ bool StorageArea::checkAndPickItem(s_ItemTypeUUID _itemType, Item *_pickedItem)
 	return l_ret;
 }
 
+IToken *StorageArea::getToken()
+{
+    IToken *l_ret = nullptr;
+    if(nullptr != m_CarriedToken)
+    {
+        Transporter *l_carrier = dynamic_cast<Transporter *>(m_CarriedToken);
+
+        if((true == l_carrier->waitingToMove()))
+        {
+            if(false == l_carrier->isEmpty()) // TODO add orders management: is leaving pickup area when not full allowed?
+            {
+                // TODO add list of accepted contents from ItemContainers
+                ItemContainer *l_first = l_carrier->getAnyItemContainer(); // TODO adapt that. However, any container is okay for the moment.
+
+                if (nullptr != l_first) {
+                    m_ActiveContainers->addObject(l_first);
+                }
+            }
+            else
+            {
+                l_ret = m_CarriedToken;
+                Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
+                m_CarriedToken = l_nextCarrier;
+
+                if(nullptr != l_nextCarrier)
+                {
+                    l_nextCarrier->moveToNextTile();
+                }
+            }
+        }
+    }
+
+    return l_ret;
+}
+
 void StorageArea::lockAccess()
 {
 	// TODO add mutex lock

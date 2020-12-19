@@ -78,6 +78,32 @@ ItemContainer *Transporter::getItemContainer(s_ItemTypeUUID _itemType)
     return l_return;
 }
 
+ItemContainer *Transporter::getAnyItemContainer()
+{
+    ItemContainer *l_return = nullptr;
+
+    if((eTransporterState_Awaiting == m_State)
+        && (false == isEmpty()))
+    {
+        l_return = mt_Containers->removeFirst();
+        m_CurrentNbContainers--;
+        m_remainingTicksCurrentState = 0U;
+        m_State = eTransporterState_Unloading;
+    }
+
+    return l_return;
+}
+
+bool Transporter::isFull()
+{
+    return ((m_nbMaxContainers-1) > m_CurrentNbContainers);
+}
+
+bool Transporter::isEmpty()
+{
+    return (0U == m_CurrentNbContainers);
+}
+
 bool Transporter::moveToNextTile()
 {
     bool l_ret = false;

@@ -21,6 +21,7 @@
 //#include <IFacilityTile.h>
 #include <ObjList.h>
 #include <ItemContainer.h>
+#include <Transporter.h>
 
 class StorageArea : public INode //, IFacilityTile
 {
@@ -41,6 +42,8 @@ public:
 	void lockAccess();
 
 	void unlockAccess();
+
+	IToken *getToken();
 
 private:
 	// TODO make a better computation-optimized container system.
