@@ -27,7 +27,7 @@ public:
 
 	bool addItemToContainer(Item *_item);
 
-	void runTick();
+	IToken *getToken();
 
 private:
 	ObjList<ItemContainer> *mt_Containers;

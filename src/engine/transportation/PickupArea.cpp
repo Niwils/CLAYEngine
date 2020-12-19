@@ -65,17 +65,36 @@ bool PickupArea::addItemToContainer(Item *_item)
     return false;
 }
 
-void PickupArea::runTick()
-{
+IToken *PickupArea::getToken() {
+
+    IToken *l_ret = nullptr;
     if(nullptr != m_CarriedToken)
     {
         Transporter *l_carrier = dynamic_cast<Transporter *>(m_CarriedToken);
 
         if((true == l_carrier->waitingToMove()))
         {
-            ItemContainer *l_first = mt_Containers->removeFirst();
-            l_carrier->addItemContainer(l_first);
-            l_carrier->runTick();
+            if(false == l_carrier->isFull()) // TODO add orders management: is leaving pickup area when not full allowed?
+            {
+                ItemContainer *l_first = mt_Containers->removeFirst();
+
+                if (nullptr != l_first) {
+                    l_carrier->addItemContainer(l_first);
+                }
+            }
+            else
+            {
+                l_ret = m_CarriedToken;
+                Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
+                m_CarriedToken = l_nextCarrier;
+
+                if(nullptr != l_nextCarrier)
+                {
+                    l_nextCarrier->moveToNextTile();
+                }
+            }
         }
     }
+
+    return l_ret;
 }
