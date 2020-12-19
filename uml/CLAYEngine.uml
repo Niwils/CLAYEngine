@@ -87,7 +87,6 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eP2TUzyVEeuz8oPP6nVdWQ" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_7N7zQDyVEeuz8oPP6nVdWQ" name="GameMap" visibility="public"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_HOJc0DyWEeuz8oPP6nVdWQ" name="Company" visibility="public"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_LGVPUDyWEeuz8oPP6nVdWQ" name="ProductModel" visibility="public"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_Sv8sEDyWEeuz8oPP6nVdWQ" name="companysToProductModels" memberEnd="_Sv9TIDyWEeuz8oPP6nVdWQ _Sv9TIzyWEeuz8oPP6nVdWQ" navigableOwnedEnd="_Sv9TIzyWEeuz8oPP6nVdWQ">
@@ -114,7 +113,6 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_Av-qEDyXEeuz8oPP6nVdWQ" name="ProductionLine" visibility="public">
     <generalization xmi:id="_Izh4QD0wEeuz8oPP6nVdWQ" general="_JnGw4DyZEeuz8oPP6nVdWQ"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_aFxNoDyXEeuz8oPP6nVdWQ" name="ItemsTransportation" visibility="public"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_gzBIwDyXEeuz8oPP6nVdWQ" name="companysToProductionLines" memberEnd="_gzBIwTyXEeuz8oPP6nVdWQ _gzBIxDyXEeuz8oPP6nVdWQ" navigableOwnedEnd="_gzBIxDyXEeuz8oPP6nVdWQ">
     <ownedEnd xmi:id="_gzBIwTyXEeuz8oPP6nVdWQ" name="companys" type="_HOJc0DyWEeuz8oPP6nVdWQ" association="_gzBIwDyXEeuz8oPP6nVdWQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gzBIwjyXEeuz8oPP6nVdWQ"/>
@@ -137,47 +135,17 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2aoU9jyYEeuz8oPP6nVdWQ" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_78TNwDyYEeuz8oPP6nVdWQ" name="productRecipesToProductionSteps" memberEnd="_78T00DyYEeuz8oPP6nVdWQ _78T00zyYEeuz8oPP6nVdWQ" navigableOwnedEnd="_78T00zyYEeuz8oPP6nVdWQ">
-    <ownedEnd xmi:id="_78T00DyYEeuz8oPP6nVdWQ" name="productRecipes" type="_ZhyMQDyWEeuz8oPP6nVdWQ" association="_78TNwDyYEeuz8oPP6nVdWQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_78T00TyYEeuz8oPP6nVdWQ"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_78T00jyYEeuz8oPP6nVdWQ" value="*"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_78T00zyYEeuz8oPP6nVdWQ" name="productionSteps" type="_lLrLEDyXEeuz8oPP6nVdWQ" aggregation="shared" association="_78TNwDyYEeuz8oPP6nVdWQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_78T01DyYEeuz8oPP6nVdWQ"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_78T01TyYEeuz8oPP6nVdWQ" value="*"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_JnGw4DyZEeuz8oPP6nVdWQ" name="IGraph" visibility="public" isAbstract="true"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_2ulsID0vEeuz8oPP6nVdWQ" name="IItemProcessor" visibility="public" isAbstract="true">
     <generalization xmi:id="_mbNu0D0wEeuz8oPP6nVdWQ" general="_kf6fwD0wEeuz8oPP6nVdWQ"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_8CjgID0vEeuz8oPP6nVdWQ" name="m_processInputs" memberEnd="_8CjgIT0vEeuz8oPP6nVdWQ _8CkHMT0vEeuz8oPP6nVdWQ" navigableOwnedEnd="_8CkHMT0vEeuz8oPP6nVdWQ">
-    <ownedEnd xmi:id="_8CjgIT0vEeuz8oPP6nVdWQ" name="iItemProcessors" type="_2ulsID0vEeuz8oPP6nVdWQ" association="_8CjgID0vEeuz8oPP6nVdWQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8CjgIj0vEeuz8oPP6nVdWQ"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8CkHMD0vEeuz8oPP6nVdWQ" value="*"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_8CkHMT0vEeuz8oPP6nVdWQ" name="componentTypes" type="_H9TW8DyYEeuz8oPP6nVdWQ" aggregation="shared" association="_8CjgID0vEeuz8oPP6nVdWQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8CkHMj0vEeuz8oPP6nVdWQ"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8CkHMz0vEeuz8oPP6nVdWQ" value="*"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_kf6fwD0wEeuz8oPP6nVdWQ" name="INode" visibility="public" isAbstract="true">
     <generalization xmi:id="_kRwNUD1DEeuz8oPP6nVdWQ" general="_fmUY8D1DEeuz8oPP6nVdWQ"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_AKv_YD1CEeuz8oPP6nVdWQ" name="ProductItem" visibility="public">
+  <packagedElement xmi:type="uml:Class" xmi:id="_AKv_YD1CEeuz8oPP6nVdWQ" name="Item" visibility="public">
     <generalization xmi:id="_HUkhwD1CEeuz8oPP6nVdWQ" general="_DwEgQD1CEeuz8oPP6nVdWQ"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_DwEgQD1CEeuz8oPP6nVdWQ" name="IToken" visibility="public" isAbstract="true"/>
-  <packagedElement xmi:type="uml:Association" xmi:id="_KnGCcD1CEeuz8oPP6nVdWQ" memberEnd="_KnGCcT1CEeuz8oPP6nVdWQ _KnH3oj1CEeuz8oPP6nVdWQ" navigableOwnedEnd="_KnH3oj1CEeuz8oPP6nVdWQ">
-    <ownedEnd xmi:id="_KnGCcT1CEeuz8oPP6nVdWQ" name="productItems" type="_AKv_YD1CEeuz8oPP6nVdWQ" association="_KnGCcD1CEeuz8oPP6nVdWQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KnH3oD1CEeuz8oPP6nVdWQ"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KnH3oT1CEeuz8oPP6nVdWQ" value="*"/>
-    </ownedEnd>
-    <ownedEnd xmi:id="_KnH3oj1CEeuz8oPP6nVdWQ" name="componentTypes" type="_H9TW8DyYEeuz8oPP6nVdWQ" association="_KnGCcD1CEeuz8oPP6nVdWQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KnH3oz1CEeuz8oPP6nVdWQ"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KnH3pD1CEeuz8oPP6nVdWQ" value="*"/>
-    </ownedEnd>
-  </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_OAfnMD1CEeuz8oPP6nVdWQ" memberEnd="_OAfnMT1CEeuz8oPP6nVdWQ _OAgOQj1CEeuz8oPP6nVdWQ" navigableOwnedEnd="_OAgOQj1CEeuz8oPP6nVdWQ">
     <ownedEnd xmi:id="_OAfnMT1CEeuz8oPP6nVdWQ" name="iItemProcessors" type="_2ulsID0vEeuz8oPP6nVdWQ" association="_OAfnMD1CEeuz8oPP6nVdWQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OAgOQD1CEeuz8oPP6nVdWQ"/>
@@ -253,6 +221,110 @@
     <ownedEnd xmi:id="_Pop00j1jEeuz8oPP6nVdWQ" name="iGraphElements" type="_fmUY8D1DEeuz8oPP6nVdWQ" aggregation="shared" association="_PopNwD1jEeuz8oPP6nVdWQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pop00z1jEeuz8oPP6nVdWQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pop01D1jEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_TsADkD1lEeuz8oPP6nVdWQ" name="ItemCarrier" visibility="public">
+    <ownedAttribute xmi:id="_noUBAD1lEeuz8oPP6nVdWQ" name="m_maxNbItems" visibility="private"/>
+    <ownedAttribute xmi:id="_vJxAQD1lEeuz8oPP6nVdWQ" name="m_currentNbItems" visibility="private"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_XecacD1lEeuz8oPP6nVdWQ" memberEnd="_XecacT1lEeuz8oPP6nVdWQ _XecadD1lEeuz8oPP6nVdWQ" navigableOwnedEnd="_XecadD1lEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_XecacT1lEeuz8oPP6nVdWQ" name="itemCarriers" type="_TsADkD1lEeuz8oPP6nVdWQ" association="_XecacD1lEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xecacj1lEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xecacz1lEeuz8oPP6nVdWQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_XecadD1lEeuz8oPP6nVdWQ" name="productItems" type="_AKv_YD1CEeuz8oPP6nVdWQ" aggregation="composite" association="_XecacD1lEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XecadT1lEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xecadj1lEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_dLutYD1lEeuz8oPP6nVdWQ" name="ItemCarrierTransporter" visibility="public">
+    <generalization xmi:id="_g3-VoD1lEeuz8oPP6nVdWQ" general="_DwEgQD1CEeuz8oPP6nVdWQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_fb71cD1lEeuz8oPP6nVdWQ" memberEnd="_fb8cgD1lEeuz8oPP6nVdWQ _fb8cgz1lEeuz8oPP6nVdWQ" navigableOwnedEnd="_fb8cgz1lEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_fb8cgD1lEeuz8oPP6nVdWQ" name="itemCarrierTransporters" type="_dLutYD1lEeuz8oPP6nVdWQ" association="_fb71cD1lEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fb8cgT1lEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fb8cgj1lEeuz8oPP6nVdWQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_fb8cgz1lEeuz8oPP6nVdWQ" name="itemCarriers" type="_TsADkD1lEeuz8oPP6nVdWQ" aggregation="composite" association="_fb71cD1lEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fb8chD1lEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fb8chT1lEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7I8vED1lEeuz8oPP6nVdWQ" name="StorageArea" visibility="public">
+    <generalization xmi:id="_gmZA8D1mEeuz8oPP6nVdWQ" general="_kf6fwD0wEeuz8oPP6nVdWQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_-za1sD1lEeuz8oPP6nVdWQ" name="A_storageAreas_itemCarriers" memberEnd="_-za1sT1lEeuz8oPP6nVdWQ _-zbcwT1lEeuz8oPP6nVdWQ" navigableOwnedEnd="_-zbcwT1lEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_-za1sT1lEeuz8oPP6nVdWQ" name="storageAreas" type="_7I8vED1lEeuz8oPP6nVdWQ" association="_-za1sD1lEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-za1sj1lEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-zbcwD1lEeuz8oPP6nVdWQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_-zbcwT1lEeuz8oPP6nVdWQ" name="itemCarriers" type="_TsADkD1lEeuz8oPP6nVdWQ" aggregation="composite" association="_-za1sD1lEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-zbcwj1lEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-zbcwz1lEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_MM6mYD1mEeuz8oPP6nVdWQ" name="provides ItemCarrier" client="_dLutYD1lEeuz8oPP6nVdWQ" supplier="_7I8vED1lEeuz8oPP6nVdWQ">
+    <ownedComment xmi:id="_al9IgD1mEeuz8oPP6nVdWQ" annotatedElement="_MM6mYD1mEeuz8oPP6nVdWQ">
+      <body>Provides one or more ItemCarrier objects to the ItemCarrierTransporter.</body>
+    </ownedComment>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_HuHDUD1nEeuz8oPP6nVdWQ" name="PickupArea" visibility="public">
+    <generalization xmi:id="_KpKfMD1nEeuz8oPP6nVdWQ" general="_kf6fwD0wEeuz8oPP6nVdWQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Md3XAD1nEeuz8oPP6nVdWQ" memberEnd="_Md3XAT1nEeuz8oPP6nVdWQ _Md3XBD1nEeuz8oPP6nVdWQ" navigableOwnedEnd="_Md3XBD1nEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_Md3XAT1nEeuz8oPP6nVdWQ" name="pickupAreas" type="_HuHDUD1nEeuz8oPP6nVdWQ" association="_Md3XAD1nEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Md3XAj1nEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Md3XAz1nEeuz8oPP6nVdWQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_Md3XBD1nEeuz8oPP6nVdWQ" name="itemCarriers" type="_TsADkD1lEeuz8oPP6nVdWQ" aggregation="composite" association="_Md3XAD1nEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Md3XBT1nEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Md3XBj1nEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_7VYu8D1tEeuz8oPP6nVdWQ" name="productRecipesToProductionSteps" memberEnd="_7VYu8T1tEeuz8oPP6nVdWQ _7VZWAj1tEeuz8oPP6nVdWQ" navigableOwnedEnd="_7VZWAj1tEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_7VYu8T1tEeuz8oPP6nVdWQ" name="productRecipes" type="_ZhyMQDyWEeuz8oPP6nVdWQ" association="_7VYu8D1tEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7VZWAD1tEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7VZWAT1tEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_7VZWAj1tEeuz8oPP6nVdWQ" name="productionSteps" type="_lLrLEDyXEeuz8oPP6nVdWQ" aggregation="shared" association="_7VYu8D1tEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7VZWAz1tEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7VZWBD1tEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_wc8McD1yEeuz8oPP6nVdWQ" name="GameMap" visibility="public"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_11tn8D1yEeuz8oPP6nVdWQ" memberEnd="_11tn8T1yEeuz8oPP6nVdWQ _11uPAT1yEeuz8oPP6nVdWQ" navigableOwnedEnd="_11uPAT1yEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_11tn8T1yEeuz8oPP6nVdWQ" name="playerHMIs" type="_YLocADxyEeuz8oPP6nVdWQ" association="_11tn8D1yEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_11tn8j1yEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_11uPAD1yEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_11uPAT1yEeuz8oPP6nVdWQ" name="gameMaps" type="_wc8McD1yEeuz8oPP6nVdWQ" association="_11tn8D1yEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_11uPAj1yEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_11uPAz1yEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_43FHMD1yEeuz8oPP6nVdWQ" memberEnd="_43FHMT1yEeuz8oPP6nVdWQ _43G8YD1yEeuz8oPP6nVdWQ" navigableOwnedEnd="_43G8YD1yEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_43FHMT1yEeuz8oPP6nVdWQ" name="gameModels" type="_tEAZEDxyEeuz8oPP6nVdWQ" association="_43FHMD1yEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_43GVUD1yEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_43GVUT1yEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_43G8YD1yEeuz8oPP6nVdWQ" name="gameMaps" type="_wc8McD1yEeuz8oPP6nVdWQ" association="_43FHMD1yEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_43G8YT1yEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_43G8Yj1yEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_6sfwsD1yEeuz8oPP6nVdWQ" name="update" client="_tEAZEDxyEeuz8oPP6nVdWQ" supplier="_wc8McD1yEeuz8oPP6nVdWQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_O7W_MD5OEeuz8oPP6nVdWQ" name="UpgradableItem" visibility="public">
+    <generalization xmi:id="_TfDM0D5OEeuz8oPP6nVdWQ" general="_AKv_YD1CEeuz8oPP6nVdWQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_YE93QEHsEeuz8oPP6nVdWQ" name="ProductPlatform" visibility="public"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_bDcakEHsEeuz8oPP6nVdWQ" name="productPlatformsToProductRecipes" memberEnd="_bDdBoEHsEeuz8oPP6nVdWQ _bDdBo0HsEeuz8oPP6nVdWQ" navigableOwnedEnd="_bDdBo0HsEeuz8oPP6nVdWQ">
+    <ownedEnd xmi:id="_bDdBoEHsEeuz8oPP6nVdWQ" name="productPlatforms" type="_YE93QEHsEeuz8oPP6nVdWQ" association="_bDcakEHsEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bDdBoUHsEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bDdBokHsEeuz8oPP6nVdWQ" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_bDdBo0HsEeuz8oPP6nVdWQ" name="productRecipes" type="_ZhyMQDyWEeuz8oPP6nVdWQ" aggregation="shared" association="_bDcakEHsEeuz8oPP6nVdWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bDdBpEHsEeuz8oPP6nVdWQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bDdBpUHsEeuz8oPP6nVdWQ" value="*"/>
     </ownedEnd>
   </packagedElement>
 </uml:Model>

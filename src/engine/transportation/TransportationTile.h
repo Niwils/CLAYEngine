@@ -16,7 +16,7 @@
 
 #include <IEdge.h>
 
-class TransportationTile : IEdge
+class TransportationTile : public IEdge
 {
 public:
     TransportationTile(s_EdgeFifoSize _size);

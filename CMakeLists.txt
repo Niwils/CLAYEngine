@@ -8,6 +8,7 @@ set(CMAKE_CXX_FLAGS "-std=c++0x")
 include_directories(src/engine/containers
 					src/engine/graph
 					src/engine/production
+					src/engine/transportation
 					src/common)
 
 add_executable(${PROJECT_NAME} src/game/FactoryBuilder.cpp)
@@ -19,7 +20,11 @@ if(BUILD_TESTS)
 	find_package(CxxTest)
 	if(CXXTEST_FOUND)
 		enable_testing()
-		include_directories(${CXXTEST_INCLUDE_DIR} src/engine/containers src/engine/graph src/common)
+		include_directories(${CXXTEST_INCLUDE_DIR}
+							src/engine/containers
+							src/engine/graph
+							src/engine/transportation
+							src/common)
 		include(test/CMakeLists.txt)
 	endif()
 endif()

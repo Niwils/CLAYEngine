@@ -6,4 +6,4 @@ CXXTEST_ADD_TEST(basicNodeEdgeNodeTest mainBasicNodeEdgeNodeTest.cpp
                     ${CMAKE_CURRENT_LIST_DIR}/BasicNodeEdgeNodeTest.h
                     ${CMAKE_CURRENT_LIST_DIR}/BasicNodeEdgeNodeTest.cpp
                 )
-target_link_libraries(basicNodeEdgeNodeTest engine)
+target_link_libraries(basicNodeEdgeNodeTest graph)
