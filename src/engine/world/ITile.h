@@ -25,6 +25,8 @@ public:
 protected:
 	Sprite *m_Sprite;
 
+	
+
 };
 
 #endif /* End _ENGINE_WORLD_ITILE_H */
