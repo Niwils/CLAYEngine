@@ -19,7 +19,7 @@
 class TransportationTile : public IEdge
 {
 public:
-    TransportationTile(s_EdgeFifoSize _size);
+    TransportationTile(s_GraphElementUUID _uuid, s_EdgeFifoSize _size);
     ~TransportationTile();
 
     IToken *getToken();

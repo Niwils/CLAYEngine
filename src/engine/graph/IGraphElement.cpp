@@ -13,7 +13,8 @@
 
 #include <IGraphElement.h>
 
-IGraphElement::IGraphElement()
+IGraphElement::IGraphElement(s_GraphElementUUID _uuid)
+: m_uuid(_uuid)
 {
 
 }

@@ -54,6 +54,31 @@ public:
 		m_Fifo[0] = nullptr;
 	}
 
+	K* getFirstElement()
+    {
+	    return m_Fifo[(m_FifoSize-1)];
+    }
+
+    K* getElementNo(s_EdgeFifoSize _elementNo)
+    {
+	    // TODO: assert _elementNo < m_FifoSize
+	    return m_Fifo[_elementNo];
+    }
+
+    bool moveToNextSlot(s_EdgeFifoSize _elementNo)
+    {
+        // TODO: assert _elementNo < m_FifoSize-1
+
+        if(nullptr == m_Fifo[_elementNo+1])
+        {
+            m_Fifo[_elementNo+1] = m_Fifo[_elementNo];
+            m_Fifo[_elementNo] = nullptr;
+            return true;
+        }
+
+        return false;
+    }
+
 	K* unqueue()
 	{
 		K *l_ret = nullptr;

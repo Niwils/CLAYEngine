@@ -20,7 +20,7 @@
 class INode : public IGraphElement
 {
 public:
-	INode();
+	INode(s_GraphElementUUID _uuid);
 	virtual ~INode() = 0;
 
 	void setToken(IToken *_token);

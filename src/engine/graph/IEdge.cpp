@@ -13,8 +13,8 @@
 
 #include <IEdge.h>
 
-IEdge::IEdge(s_EdgeFifoSize _size)
-: IGraphElement()
+IEdge::IEdge(s_GraphElementUUID _uuid, s_EdgeFifoSize _size)
+: IGraphElement(_uuid)
 , m_FifoSize(_size)
 , m_Source(nullptr)
 , m_Sink(nullptr)

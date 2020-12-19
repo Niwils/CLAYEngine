@@ -22,7 +22,7 @@
 class PickupArea : public INode
 {
 public:
-	PickupArea(s_ItemContainerQty _maxQtyContainers);
+	PickupArea(s_GraphElementUUID _uuid, s_ItemContainerQty _maxQtyContainers);
 	~PickupArea();
 
 	bool addItemToContainer(Item *_item);

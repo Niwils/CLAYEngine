@@ -14,8 +14,8 @@
 #include "TestableConcreteNode.h"
 
 
-TestableConcreteNode::TestableConcreteNode()
-: INode()
+TestableConcreteNode::TestableConcreteNode(s_GraphElementUUID _uuid)
+: INode(_uuid)
 {
 
 }

@@ -13,8 +13,8 @@
 
 #include <StorageArea.h>
 
-StorageArea::StorageArea()
-: INode()
+StorageArea::StorageArea(s_GraphElementUUID _uuid)
+: INode(_uuid)
 // , IFacilityTile()
 , m_ActiveContainers(nullptr)
 , m_EmptyContainers(nullptr)

@@ -8,4 +8,8 @@ target_sources(transportation
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/Transporter.cpp"
         )
 
-target_link_libraries(transportation graph)
+target_include_directories(transportation PUBLIC
+        "${CMAKE_CURRENT_LIST_DIR}/../containers/"
+        "${CMAKE_CURRENT_LIST_DIR}/../graph/"
+        "${CMAKE_CURRENT_LIST_DIR}/../production/")
+target_link_libraries(transportation graph production)
