@@ -118,7 +118,7 @@ void ItemProcessor::timeStep()
 
 		case eItemProcessorState_ReleaseItem:
 		{
-			IEdge *l_output = dynamic_cast<IEdge*>(m_Outputs);
+			IEdge *l_output = dynamic_cast<IEdge*>(m_Outputs->getFirst());
 
 			if(false == l_output->getFifo()->isFifoFull())
 			{

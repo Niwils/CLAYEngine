@@ -22,9 +22,9 @@ public:
 	~Recipe();
 
 	s_RecipeUID getRecipeID();
-	void addProcessStep(ProcessStep _processStep);
+	void addProcessStep(ProcessStep *_processStep);
 
-	ObjList<ProcessStep> getListOfProcesses();
+	ObjList<ProcessStep> *getListOfProcesses();
 
 private:
 	s_RecipeUID m_RecipeID;

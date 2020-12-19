@@ -30,7 +30,7 @@ s_RecipeUID Recipe::getRecipeID()
 	return m_RecipeID;
 }
 
-void Recipe::addProcessStep(ProcessStep _processStep)
+void Recipe::addProcessStep(ProcessStep *_processStep)
 {
 	m_ProcessList->addObject(_processStep);
 }
@@ -48,7 +48,8 @@ RecipeFollower::RecipeFollower(Recipe *_recipe)
 	// TODO assert _recipe is not null
 	m_Recipe = _recipe;
 	m_CurrentStep = new ObjListIterator<ProcessStep>(_recipe->getListOfProcesses());
-	m_CurrentRawMaterial = new ObjListIterator<ProcessStep>(m_CurrentStep->getCurrent()->getRawMaterialsList());
+	ObjList<s_ItemTypeUUID> *l_processStep = m_CurrentStep->getCurrent()->getRawMaterialsList();
+	m_CurrentRawMaterial = new ObjListIterator<s_ItemTypeUUID>(l_processStep);
 }
 
 RecipeFollower::~RecipeFollower()
@@ -77,14 +78,14 @@ ProcessStep *RecipeFollower::getCurrentStep()
 	return l_ret;
 }
 
-s_ItemTypeUUID getNextRawMaterial()
+s_ItemTypeUUID RecipeFollower::getNextRawMaterial()
 {
 	s_ItemTypeUUID l_ret = *(m_CurrentRawMaterial->iterate());
 
 	return l_ret;
 }
 
-s_ItemTypeUUID getCurrentRawMaterial()
+s_ItemTypeUUID RecipeFollower::getCurrentRawMaterial()
 {
 	s_ItemTypeUUID l_ret = *(m_CurrentRawMaterial->getCurrent());
 
