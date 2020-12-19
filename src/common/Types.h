@@ -20,6 +20,8 @@ typedef uint32_t s_Tick;
 
 typedef uint16_t s_EdgeFifoSize;
 
+typedef uint32_t s_GraphElementUUID;
+
 typedef uint8_t s_ItemVolume; /*< Quantity of Items provided/consumed per (turn? day?) by an IMarketProvider/IMarketConsumer */
 
 typedef uint32_t s_ItemTypeUUID;

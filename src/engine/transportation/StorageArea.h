@@ -26,7 +26,7 @@
 class StorageArea : public INode //, IFacilityTile
 {
 public:
-	StorageArea();
+	StorageArea(s_GraphElementUUID _uuid);
 	~StorageArea();
 
 	void deliverContainer(ItemContainer *_container);

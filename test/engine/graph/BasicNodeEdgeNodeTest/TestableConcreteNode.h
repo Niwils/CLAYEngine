@@ -19,7 +19,7 @@
 class TestableConcreteNode : public INode
 {
 public:
-	TestableConcreteNode();
+	TestableConcreteNode(s_GraphElementUUID _uuid);
 
 	~TestableConcreteNode();
 

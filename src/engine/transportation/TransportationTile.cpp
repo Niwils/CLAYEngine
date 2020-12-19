@@ -13,8 +13,8 @@
 #include <TransportationTile.h>
 #include <Transporter.h>
 
-TransportationTile::TransportationTile(s_EdgeFifoSize _size)
-: IEdge(_size)
+TransportationTile::TransportationTile(s_GraphElementUUID _uuid, s_EdgeFifoSize _size)
+: IEdge(_uuid, _size)
 {
 
 }

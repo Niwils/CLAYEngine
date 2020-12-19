@@ -19,7 +19,7 @@
 class TestableConcreteEdge : public IEdge
 {
 public:
-	TestableConcreteEdge(s_EdgeFifoSize _size);
+	TestableConcreteEdge(s_GraphElementUUID _uuid, s_EdgeFifoSize _size);
 	~TestableConcreteEdge();
 };
 

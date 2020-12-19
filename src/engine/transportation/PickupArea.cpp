@@ -16,8 +16,9 @@
 #include <PickupArea.h>
 #include <Transporter.h>
 
-PickupArea::PickupArea(s_ItemContainerQty _maxQtyContainers)
-: mt_Containers(nullptr)
+PickupArea::PickupArea(s_GraphElementUUID _uuid, s_ItemContainerQty _maxQtyContainers)
+: INode(_uuid)
+, mt_Containers(nullptr)
 , m_nbContainersMax(_maxQtyContainers)
 , m_nbCurrentContainers(0U)
 {

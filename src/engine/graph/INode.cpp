@@ -1,7 +1,7 @@
 #include <INode.h>
 
-INode::INode()
-: IGraphElement()
+INode::INode(s_GraphElementUUID _uuid)
+: IGraphElement(_uuid)
 , m_CarriedToken(nullptr)
 , m_Input(nullptr)
 , m_Outputs(nullptr)

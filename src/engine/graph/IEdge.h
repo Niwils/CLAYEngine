@@ -25,7 +25,7 @@ class IEdge : public IGraphElement
 {
 public:
 
-	IEdge(s_EdgeFifoSize _size);
+	IEdge(s_GraphElementUUID _uuid, s_EdgeFifoSize _size);
 
 	virtual ~IEdge() = 0;
 
@@ -50,9 +50,6 @@ public:
     ConveyorFifo<IToken> *getFifo();
 
 protected:
-
-
-private:
 
 	s_EdgeFifoSize m_FifoSize;
 	IGraphElement *m_Source;

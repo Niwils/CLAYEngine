@@ -4,7 +4,7 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/production)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/transportation)
 
 add_library(engine ${CMAKE_CURRENT_LIST_DIR})
-target_link_libraries(engine containers graph production transportation)
+target_link_libraries(engine graph production transportation)
 
 #add_library(engine)
 # target_include_directories(engine

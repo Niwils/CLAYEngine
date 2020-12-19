@@ -23,6 +23,7 @@ if(BUILD_TESTS)
 		include_directories(${CXXTEST_INCLUDE_DIR}
 							src/engine/containers
 							src/engine/graph
+							src/engine/production
 							src/engine/transportation
 							src/common)
 		include(test/CMakeLists.txt)
