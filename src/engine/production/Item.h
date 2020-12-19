@@ -15,7 +15,7 @@
 #define _ENGINE_PRODUCTION_ITEM_H
 
 #include <IToken.h>
-#include <Sprite.h>
+//#include <Sprite.h>
 #include <Types.h>
 #include <Recipe.h>
 
