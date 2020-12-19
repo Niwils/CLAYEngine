@@ -7,3 +7,5 @@ target_sources(transportation
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/TransportationTile.cpp"
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/Transporter.cpp"
         )
+
+target_link_libraries(transportation graph)

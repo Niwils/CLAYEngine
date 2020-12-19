@@ -18,7 +18,8 @@
 #include <ItemContainer.h>
 #include <Transportation.h>
 
-class Transporter : IToken
+
+class Transporter : public IToken
 {
 public:
     Transporter(s_ItemContainerQty _nbMaxContainer, TransporterDefinition _definition);
