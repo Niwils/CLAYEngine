@@ -23,6 +23,9 @@ IEdge::IEdge(s_GraphElementUUID _uuid, s_EdgeFifoSize _size)
 	m_Fifo = new ConveyorFifo<IToken>(m_FifoSize);
 }
 
+/**
+ * \brief The IEdge destructor.
+ */
 IEdge::~IEdge()
 {
 	m_Fifo->clear();

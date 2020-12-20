@@ -1,9 +1,9 @@
-/*
- * The <unnamed> factory builder project.
+/**
+ * The CLAYEngine project.
  *
- * \file /src/engine/transportation/Transporter.cpp
+ * @file /src/engine/transportation/Transporter.cpp
  *
- * \brief A transporter is an object representing a forklift, train... It carries one or more ItemContainer.
+ * @brief A transporter is an object representing a forklift, train... It carries one or more ItemContainer.
  */
 
 /*
@@ -207,7 +207,7 @@ void Transporter::runTick()
             break;
 
         default:
-            // Do nothing
+            // Do nothing // TODO assert?
             break;
     };
 }
