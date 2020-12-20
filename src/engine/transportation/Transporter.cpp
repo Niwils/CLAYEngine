@@ -3,7 +3,7 @@
  *
  * \file /src/engine/transportation/Transporter.cpp
  *
- * \brief A transporter is an object representing a forklift, train... It carries an ItemContainer.
+ * \brief A transporter is an object representing a forklift, train... It carries one or more ItemContainer.
  */
 
 /*
@@ -27,7 +27,17 @@ Transporter::Transporter(s_ItemContainerQty _nbMaxContainer, TransporterDefiniti
 
 Transporter::~Transporter()
 {
-    // TODO delete carried containers
+    ObjListIterator<ItemContainer> *l_it = new ObjListIterator<ItemContainer>(mt_Containers);
+
+    ItemContainer *l_container = l_it->iterate();
+    while(nullptr != l_container)
+    {
+        delete l_container;
+        l_container = l_it->iterate();
+    }
+
+    delete l_it;
+
     delete mt_Containers;
 }
 
@@ -96,7 +106,7 @@ ItemContainer *Transporter::getAnyItemContainer()
 
 bool Transporter::isFull()
 {
-    return ((m_nbMaxContainers-1) > m_CurrentNbContainers);
+    return (m_nbMaxContainers == m_CurrentNbContainers);
 }
 
 bool Transporter::isEmpty()

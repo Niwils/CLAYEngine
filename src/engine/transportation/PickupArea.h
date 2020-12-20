@@ -25,6 +25,7 @@ public:
 	PickupArea(s_GraphElementUUID _uuid, s_ItemContainerQty _maxQtyContainers);
 	~PickupArea();
 
+	void addContainer(ItemContainer *_container);
 	bool addItemToContainer(Item *_item);
 
 	IToken *getToken();

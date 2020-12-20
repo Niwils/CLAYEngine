@@ -66,6 +66,11 @@ bool PickupArea::addItemToContainer(Item *_item)
     return false;
 }
 
+void PickupArea::addContainer(ItemContainer *_container)
+{
+    mt_Containers->addObject(_container);
+}
+
 IToken *PickupArea::getToken() {
 
     IToken *l_ret = nullptr;
@@ -86,13 +91,31 @@ IToken *PickupArea::getToken() {
             else
             {
                 l_ret = m_CarriedToken;
-                Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
-                m_CarriedToken = l_nextCarrier;
-
-                if(nullptr != l_nextCarrier)
+                if(nullptr != m_Input)
                 {
-                    l_nextCarrier->moveToNextTile();
+                    Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
+                    m_CarriedToken = l_nextCarrier;
+                    if(nullptr != l_nextCarrier)
+                    {
+                        l_nextCarrier->moveToNextTile();
+                    }
                 }
+                else
+                {
+                    m_CarriedToken = nullptr;
+                }
+            }
+        }
+    }
+    else
+    {
+        if(nullptr != m_Input)
+        {
+            Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
+            m_CarriedToken = l_nextCarrier;
+            if(nullptr != l_nextCarrier)
+            {
+                l_nextCarrier->moveToNextTile();
             }
         }
     }

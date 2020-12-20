@@ -23,7 +23,7 @@ class Transporter : public IToken
 {
 public:
     Transporter(s_ItemContainerQty _nbMaxContainer, TransporterDefinition _definition);
-    ~Transporter();
+    virtual ~Transporter();
 
     bool addItemContainer(ItemContainer *_container);
     ItemContainer *getItemContainer(s_ItemTypeUUID _itemType);
