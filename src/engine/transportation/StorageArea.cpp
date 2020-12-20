@@ -14,9 +14,10 @@
  */
 
 #include <StorageArea.h>
+#include <TransportationTile.h>
 
 StorageArea::StorageArea(s_GraphElementUUID _uuid)
-: INode(_uuid)
+: ITransportationNode(_uuid)
 // , IFacilityTile()
 , m_ActiveContainers(nullptr)
 , m_EmptyContainers(nullptr)
@@ -119,14 +120,15 @@ bool StorageArea::checkAndPickItem(s_ItemTypeUUID _itemType, Item *_pickedItem)
 	return l_ret;
 }
 
-IToken *StorageArea::getToken()
+IToken *StorageArea::getToken(s_GraphElementUUID _caller_uuid)
 {
     IToken *l_ret = nullptr;
     if(nullptr != m_CarriedToken)
     {
         Transporter *l_carrier = dynamic_cast<Transporter *>(m_CarriedToken);
 
-        if((true == l_carrier->waitingToMove()))
+        if((l_carrier->getNextGraphElement() == _caller_uuid)
+           && (true == l_carrier->waitingToMove()))
         {
             if(false == l_carrier->isEmpty()) // TODO add orders management: is leaving pickup area when not full allowed?
             {
@@ -140,7 +142,9 @@ IToken *StorageArea::getToken()
             else
             {
                 l_ret = m_CarriedToken;
-                Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
+                TransportationTile *l_input = dynamic_cast<TransportationTile *>(m_Input);
+
+                Transporter *l_nextCarrier = dynamic_cast<Transporter *>(l_input->getToken(m_uuid));
                 m_CarriedToken = l_nextCarrier;
 
                 if(nullptr != l_nextCarrier)
@@ -153,7 +157,9 @@ IToken *StorageArea::getToken()
     else
     {
         l_ret = m_CarriedToken;
-        Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
+        TransportationTile *l_input = dynamic_cast<TransportationTile *>(m_Input);
+
+        Transporter *l_nextCarrier = dynamic_cast<Transporter *>(l_input->getToken(m_uuid));
         m_CarriedToken = l_nextCarrier;
 
         if(nullptr != l_nextCarrier)
