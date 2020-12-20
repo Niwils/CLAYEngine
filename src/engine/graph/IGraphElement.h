@@ -14,15 +14,19 @@
 #ifndef _ENGINE_GRAPH_IGRAPHELEMENT_H
 #define _ENGINE_GRAPH_IGRAPHELEMENT_H
 #include <IToken.h>
+#include <Types.h>
 
 class IGraphElement
 {
 public:
-	IGraphElement();
+	IGraphElement(s_GraphElementUUID _uuid);
 
 	virtual ~IGraphElement() = 0;
 
 	virtual IToken *getToken() = 0;
+
+private:
+    s_GraphElementUUID m_uuid;
 };
 
 #endif /* End _ENGINE_GRAPH_IGRAPHELEMENT_H */

@@ -16,9 +16,9 @@
 BasicNodeEdgeNodeTest::BasicNodeEdgeNodeTest()
 : CxxTest::TestSuite()
 {
-	m_Source = new TestableConcreteNode();
-	m_Edge = new TestableConcreteEdge(4U);
-	m_Sink = new TestableConcreteNode();
+	m_Source = new TestableConcreteNode(0U);
+	m_Edge = new TestableConcreteEdge(1U, 4U);
+	m_Sink = new TestableConcreteNode(2U);
 }
 
 BasicNodeEdgeNodeTest::~BasicNodeEdgeNodeTest()

@@ -232,7 +232,14 @@ public:
 
 	K *getCurrent()
 	{
-		return m_Cursor->getObj();
+	    K *l_ret = nullptr;
+
+	    if(nullptr != m_Cursor)
+	    {
+            return m_Cursor->getObj();
+        }
+
+	    return l_ret;
 	}
 
 private:

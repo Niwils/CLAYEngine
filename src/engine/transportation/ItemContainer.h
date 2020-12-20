@@ -1,9 +1,9 @@
-/*
+/**
  * The <unnamed> factory builder project.
  *
- * \file src/game/transportation/ItemContainer.h
+ * @file src/game/transportation/ItemContainer.h
  *
- * \brief An ItemContainer carries a limited set of Item objects. It can be awaiting a complete load
+ * @brief An ItemContainer carries a limited set of Item objects. It can be awaiting a complete load
  * or to be transported to a StorageArea.
  *
  * This is an element proper to transportation:
@@ -34,7 +34,7 @@ public:
 
 	s_ItemTypeUUID getCarriedItemType();
 
-	void addItem(Item *_item);
+	bool addItem(Item *_item);
 	Item *pickItem();
 
 	bool isEmpty();
@@ -42,7 +42,7 @@ public:
 	bool isFull();
 
 private:
-	ObjList<Item> m_CarriedItems;
+	ObjList<Item> *m_CarriedItems;
 	s_ItemTypeUUID m_CarriedItemType;
 	s_ItemQuantity m_MaxQty;
 	s_ItemQuantity m_CurrentQty;
