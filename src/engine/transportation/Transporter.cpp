@@ -15,11 +15,14 @@
 
 Transporter::Transporter(s_ItemContainerQty _nbMaxContainer, TransporterDefinition _definition)
 : IToken()
+, IGraphCourseSubscriber()
 , m_transporterRules(_definition)
 , m_remainingTicksCurrentState(0U)
 , m_nbMaxContainers(_nbMaxContainer)
 , m_CurrentNbContainers(0U)
 , m_State(eTransporterState_Idle)
+, m_graphCourse(nullptr)
+, m_currentGraphUUID(0U)
 {
  // TODO assert m_nbMaxContainers is not zero.
  mt_Containers = new ObjList<ItemContainer>();
@@ -120,6 +123,7 @@ bool Transporter::moveToNextTile()
     if(eTransporterState_Awaiting == m_State)
     {
         m_remainingTicksCurrentState = 0U;
+        m_graphIterator->iterate();
         m_State = eTransporterState_Moving;
         l_ret = true;
     }
@@ -210,4 +214,39 @@ void Transporter::runTick()
             // Do nothing // TODO assert?
             break;
     };
+}
+
+void Transporter::setGraphCourse(GraphCourse *_course)
+{
+    m_graphCourse = _course;
+
+    if(nullptr != m_graphCourse)
+    {
+        m_graphIterator = new ObjListIterator<s_GraphElementUUID>(m_graphCourse->getPath());
+
+        s_GraphElementUUID *l_uuid = m_graphIterator->iterate();
+
+        while (m_currentGraphUUID != *l_uuid) // Player is not allowed to change an IGraphElement if used by a token.
+        {
+            l_uuid = m_graphIterator->iterate();
+        }
+        // TODO what if current UUID is no longer part of the graph? Make a temporary graph?
+    }
+}
+
+s_GraphElementUUID Transporter::getNextGraphElement()
+{
+    s_GraphElementUUID *l_ret = 0U;
+
+    if(nullptr != m_graphIterator)
+    {
+        l_ret = m_graphIterator->getCurrent();
+    }
+
+    return *l_ret;
+}
+
+void Transporter::setCourseDirty()
+{
+	// TODO
 }

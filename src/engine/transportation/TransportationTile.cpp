@@ -12,6 +12,7 @@
  */
 #include <TransportationTile.h>
 #include <Transporter.h>
+#include <ITransportationNode.h>
 
 TransportationTile::TransportationTile(s_GraphElementUUID _uuid, s_EdgeFifoSize _size)
 : IEdge(_uuid, _size)
@@ -25,7 +26,8 @@ TransportationTile::~TransportationTile()
 }
 
 // Note: no need to secure if the FIFO has changed during the same game turn, as Transporters are updated by the scheduler.
-IToken *TransportationTile::getToken() {
+IToken *TransportationTile::getToken(s_GraphElementUUID _caller_uuid)
+{
     IToken *l_ret = nullptr;
     Transporter *l_transporter = dynamic_cast<Transporter *>(m_Fifo->getFirstElement());
 
@@ -74,12 +76,18 @@ IToken *TransportationTile::getToken() {
 
         if (true == l_fifoMove) // Object in FIFO position zero has moved to position one, position zero is now available
         {
-            Transporter *l_sourceTransporter = dynamic_cast<Transporter*>(m_Source->getToken()); // Let's ask the source if something is available...
+			ITransportationNode *l_src = dynamic_cast<ITransportationNode *>(m_Source);
 
-            if (nullptr != l_sourceTransporter) {
-                m_Fifo->queue(l_sourceTransporter);
-                l_sourceTransporter->moveToNextTile();
-            }
+			if(nullptr != l_src)
+			{
+				Transporter *l_sourceTransporter = dynamic_cast<Transporter*>(l_src->getToken(m_uuid)); // Let's ask the source if something is available...
+
+				if (nullptr != l_sourceTransporter) {
+					m_Fifo->queue(l_sourceTransporter);
+					l_sourceTransporter->moveToNextTile();
+				}
+			}
+
         }
     }
 

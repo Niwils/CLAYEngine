@@ -19,8 +19,8 @@ BasicConveyorAndCarrier::BasicConveyorAndCarrier()
 	m_Source = new PickupArea(0U, 1U);
 	m_Item = new Item(0U, nullptr);
 	m_ItemCase = new ItemContainer(0U, 1U);
-	m_Sink = new StorageArea(1U);
-	m_tile = new TransportationTile(2U, 2U);
+	m_Sink = new StorageArea(2U);
+	m_tile = new TransportationTile(1U, 2U);
 
 	m_carrier = new Transporter(1U, c_carrierDef);
 }
@@ -49,14 +49,30 @@ void BasicConveyorAndCarrier::testBasicConveyorAndCarrier()
 
     bool l_itemIsCarried = m_Source->addItemToContainer(m_Item);
 
+    ObjList<s_GraphElementUUID> *l_tokenPath = new ObjList<s_GraphElementUUID>();
+
+    for (int icpt = 0; 3U >= icpt; icpt++)
+	{
+    	s_GraphElementUUID *l_uuid = new s_GraphElementUUID(icpt);
+    	l_tokenPath->addObject(l_uuid);
+	}
+
+    GraphCourse *l_tokenCourse = new GraphCourse(0U, 3U);
+    l_tokenCourse->setPath(l_tokenPath);
+    l_tokenCourse->registerSubscriber(m_carrier);
+    m_carrier->setGraphCourse(l_tokenCourse);
+
 	TS_ASSERT_EQUALS(true, l_itemIsCarried);
 
 	Transporter *l_Token = nullptr;
 	for(int icpt = 0U; 10U > icpt; icpt++)
 	{
-        l_Token = dynamic_cast<Transporter *>(m_Sink->getToken());
+        l_Token = dynamic_cast<Transporter *>(m_Sink->getToken(3U));
         m_carrier->runTick();
     }
 
 	TS_ASSERT_EQUALS(true, l_Token->isEmpty())
+
+	delete l_tokenCourse;
+	delete l_tokenPath;
 }
