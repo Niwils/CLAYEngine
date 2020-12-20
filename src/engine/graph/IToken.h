@@ -19,7 +19,7 @@ class IToken
 {
 public:
 	IToken();
-	virtual ~IToken()= 0;
+	virtual ~IToken() = 0;
 
 
 };

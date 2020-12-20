@@ -14,8 +14,8 @@
 
 #include "TestableConcreteEdge.h"
 
-TestableConcreteEdge::TestableConcreteEdge(s_EdgeFifoSize _size)
-: IEdge(_size)
+TestableConcreteEdge::TestableConcreteEdge(s_GraphElementUUID _uuid, s_EdgeFifoSize _size)
+: IEdge(_uuid, _size)
 {
 
 }
