@@ -1,4 +1,4 @@
-* The <unnamed> factory builder project.
+/* The <unnamed> factory builder project.
 *
 * \file src/engine/graph/IToken.h
 *
@@ -11,3 +11,14 @@
  * 19/12/2020: File creation (NG)
  */
 
+#include <IToken.h>
+
+IToken::IToken()
+{
+
+}
+
+IToken::~IToken()
+{
+
+}

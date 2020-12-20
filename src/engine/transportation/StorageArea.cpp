@@ -148,6 +148,17 @@ IToken *StorageArea::getToken()
             }
         }
     }
+    else
+    {
+        l_ret = m_CarriedToken;
+        Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
+        m_CarriedToken = l_nextCarrier;
+
+        if(nullptr != l_nextCarrier)
+        {
+            l_nextCarrier->moveToNextTile();
+        }
+    }
 
     return l_ret;
 }
