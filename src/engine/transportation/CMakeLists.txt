@@ -8,6 +8,7 @@ target_sources(transportation
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/ITransportationNode.cpp"
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/PickupArea.cpp"
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/StorageArea.cpp"
+        PUBLIC "${CMAKE_CURRENT_LIST_DIR}/TransportationGraph.cpp"
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/TransportationTile.cpp"
         PUBLIC "${CMAKE_CURRENT_LIST_DIR}/Transporter.cpp"
         )

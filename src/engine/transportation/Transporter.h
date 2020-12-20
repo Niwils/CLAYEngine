@@ -111,7 +111,15 @@ public:
      */
     s_GraphElementUUID getNextGraphElement();
 
+	/**
+	 * @brief Set the followed path as dirty.
+	 */
     void setCourseDirty();
+
+    /**
+     * @brief Set the current graph element UUID
+     */
+     void setCurrentGraphElementID(s_GraphElementUUID _uuid);
 private:
     TransporterDefinition m_transporterRules; ///< The transporter game rules: i.e. number of turns per action.
     s_NumberofRounds m_remainingTicksCurrentState; ///< The current number of rounds occurred for the current action.

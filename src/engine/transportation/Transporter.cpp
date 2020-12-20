@@ -250,3 +250,8 @@ void Transporter::setCourseDirty()
 {
 	// TODO
 }
+
+void Transporter::setCurrentGraphElementID(s_GraphElementUUID _uuid)
+{
+	m_currentGraphUUID = _uuid;
+}
