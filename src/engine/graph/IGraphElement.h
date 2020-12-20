@@ -25,6 +25,8 @@ public:
 
 	virtual IToken *getToken() = 0;
 
+	s_GraphElementUUID getUUID();
+
 protected:
     s_GraphElementUUID m_uuid;
 };
