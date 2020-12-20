@@ -1,14 +1,16 @@
-/*
- * The <unnamed> factory builder project.
+/**
+ * The CLAYEngine project.
  *
- * \file /factory0/src/engine/transportation/StorageArea.cpp/StorageArea.cpp.h
+ * \file /src/engine/transportation/StorageArea.cpp/StorageArea.cpp.h
  *
- * \brief
+ * @brief A StorageArea object is a sink in the transportation graph.
+ *	It is connected to an ItemFactory interface. When this latter requires an Item, this object
+ *	unloads it from the ContainerCarrier and passes it to the interface.
  */
 
 /*
  * CHANGELOG:
- * 30 déc. 2019: File creation (niels)
+ * 30 déc. 2019: File creation (NG)
  */
 
 #include <StorageArea.h>

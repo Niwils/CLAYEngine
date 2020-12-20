@@ -1,9 +1,9 @@
-/*
+/**
  * The <unnamed> factory builder project.
  *
- * \file /src/engine/transportation/TransportationTile.cpp
+ * @file /src/engine/transportation/TransportationTile.cpp
  *
- * \brief Describe a tile where a Transporter object is allowed to pass by.
+ * @brief Describe a tile where a Transporter object is allowed to pass by.
  */
 
 /*

@@ -1,9 +1,9 @@
-/*
+/**
  * The <unnamed> factory builder project.
  *
- * \file src/game/transportation/ItemContainer.h
+ * @file src/game/transportation/ItemContainer.h
  *
- * \brief An ItemContainer carries a limited set of Item objects. It can be awaiting a complete load
+ * @brief An ItemContainer carries a limited set of Item objects. It can be awaiting a complete load
  * or to be transported to a StorageArea.
  *
  * This is an element proper to transportation:

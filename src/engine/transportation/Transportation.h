@@ -1,9 +1,9 @@
-/*
- * The <unnamed> factory builder project.
+/**
+ * The CLAYEngine project.
  *
- * \file /src/engine/transportation/Transporter.h
+ * @file /src/engine/transportation/Transporter.h
  *
- * \brief Defines the rules structures for transportation units.
+ * @brief Defines the rules structures for transportation units.
  */
 
 /*
@@ -19,6 +19,6 @@ typedef struct
     s_NumberofRounds m_nbTicksToLoad;
     s_NumberofRounds m_nbTicksToCrossATile;
     s_NumberofRounds m_nbTicksToUnload;
-} TransporterDefinition;
+} TransporterDefinition; ///< Defines the number of rounds required for each action the Transporter performs.
 
 #endif //FACTORYBUILDER_TRANSPORTATION_H
