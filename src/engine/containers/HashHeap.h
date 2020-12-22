@@ -128,7 +128,7 @@ public:
 					}
 					else
 					{
-						m_left = l_oldTopRightCell; // Should never happen. TODO assert here?
+						m_right = l_oldTopRightCell; // Should never happen. TODO assert here?
 					}
 				}
 
@@ -209,6 +209,21 @@ public:
 		}
 	}
 
+	K *getObj(J _hash)
+	{
+		if(m_hash == _hash)
+		{
+			return m_obj;
+		}
+		else
+		{
+			if(m_left->getHash() >= _hash)
+			{
+
+			}
+		}
+	}
+
 private:
 	J m_hash;
 	K *m_obj;
@@ -260,6 +275,21 @@ public:
 			}
 
 			l_newCell->sortCells();
+		}
+	}
+
+	K *getObj(J _hash)
+	{
+		if(m_top->getHash() == _hash)
+		{
+			return m_top;
+		}
+		else
+		{
+			if(m_top->getLeftCell()->getHash() >= _hash)
+			{
+
+			}
 		}
 	}
 
