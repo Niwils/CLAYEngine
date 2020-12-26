@@ -21,7 +21,7 @@ public:
 	HashHeapCell(J _hash, K *_obj)
 	: m_left(nullptr)
 	, m_right(nullptr)
-	, m_top(nullptr)
+	, m_depth(0U)
 	{
 		m_hash = _hash;
 		m_obj = _obj;
@@ -30,6 +30,131 @@ public:
 	~HashHeapCell()
 	{
 
+	}
+
+	s_HashHeapDepth addObj(J _hash, K *_obj)
+	{
+		s_HashHeapDepth l_left = 0U;
+		s_HashHeapDepth l_right = 0U;
+
+		if(m_hash < _hash)
+		{
+
+			if (nullptr != m_right)
+			{
+				l_right = m_right->addObj(_hash, _obj);
+
+				if(2 == l_right)
+				{
+					if(1 == m_right->getRightCell()->getDeltaDepth())
+					{
+						m_right = rotateLeft(m_right);
+					}
+					else if(-1 == m_right->getRightCell()->getDeltaDepth())
+					{
+						HashHeapCell<J, K> *l_secondDegreeRightSon = m_right->getRightCell();
+
+						l_secondDegreeRightSon = rotateRight(l_secondDegreeRightSon);
+
+						m_right->setRightCell(l_secondDegreeRightSon);
+
+						m_right = rotateLeft(m_right);
+					}
+				}
+				else if(-2 == l_right)
+				{
+					if(-1 == m_right->getLeftCell()->getDeltaDepth())
+					{
+						m_right = rotateRight(m_right);
+					}
+					else if(1 == m_right->getLeftCell()->getDeltaDepth())
+					{
+						HashHeapCell<J, K> *l_secondDegreeLeftSon = m_right->getLeftCell();
+
+						l_secondDegreeLeftSon = rotateLeft(l_secondDegreeLeftSon);
+
+						m_right->setLeftCell(l_secondDegreeLeftSon);
+
+						m_right = rotateRight(m_right);
+					}
+				}
+			}
+			else
+			{
+				m_right = new HashHeapCell<J, K>(_hash, _obj);
+				m_right->setDepth(m_depth+1);
+			}
+
+		}
+		else
+		{
+			if (nullptr != m_left)
+			{
+				l_left = m_left->addObj(_hash, _obj)+1;
+
+				if(2 == l_left)
+				{
+					if(1 == m_left->getRightCell()->getDeltaDepth())
+					{
+						m_left = rotateLeft(m_left);
+					}
+					else if(-1 == m_left->getRightCell()->getDeltaDepth())
+					{
+						HashHeapCell<J, K> *l_secondDegreeRightSon = m_left->getRightCell();
+
+						l_secondDegreeRightSon = rotateRight(l_secondDegreeRightSon);
+
+						m_left->setRightCell(l_secondDegreeRightSon);
+
+						m_left = rotateLeft(m_left);
+					}
+				}
+				else if(-2 == l_left)
+				{
+					if(-1 == m_left->getLeftCell()->getDeltaDepth())
+					{
+						m_left = rotateRight(m_left);
+					}
+					else if(1 == m_left->getLeftCell()->getDeltaDepth())
+					{
+						HashHeapCell<J, K> *l_secondDegreeLeftSon = m_left->getLeftCell();
+
+						l_secondDegreeLeftSon = rotateLeft(l_secondDegreeLeftSon);
+
+						m_left->setLeftCell(l_secondDegreeLeftSon);
+
+						m_left = rotateRight(m_left);
+					}
+				}
+			}
+			else
+			{
+				m_left = new HashHeapCell<J, K>(_hash, _obj);
+				m_left->setDepth(m_depth+1);
+			}
+		}
+
+		if(nullptr != m_left)
+		{
+			l_left = m_left->getDepth();
+		}
+		else
+		{
+			l_left = 0;
+		}
+
+		if(nullptr != m_right)
+		{
+			l_right = m_right->getDepth();
+		}
+		else
+		{
+			l_right = 0;
+		}
+
+		m_deltaDepth = (l_right - l_left - m_depth);
+
+		return m_deltaDepth;
 	}
 
 	K *getObj()
@@ -52,11 +177,6 @@ public:
 		return m_left;
 	}
 
-	void setTopCell(HashHeapCell<J, K> *_cell)
-	{
-		m_top = _cell;
-	}
-
 	void setLeftCell(HashHeapCell<J, K> *_cell)
 	{
 		m_left=_cell;
@@ -77,136 +197,52 @@ public:
 		return m_left->getHash();
 	}
 
-	s_HashHeapDepth getLeftDepth()
+	void setDeltaDepth(s_HashHeapDepth _depth)
 	{
+		m_deltaDepth = _depth;
+	}
+
+	s_HashHeapDepth getDeltaDepth()
+	{
+
+		return m_deltaDepth;
+	}
+
+	s_HashHeapDepth getDepth()
+	{
+		s_HashHeapDepth l_ret = 0U;
+
+		s_HashHeapDepth l_left = 0U;
+		s_HashHeapDepth l_right = 0U;
+
 		if (nullptr != m_left)
 		{
-			return (m_left->getLeftDepth() + 1);
+			l_left = m_left->getDepth();
 		}
 		else
 		{
-			return 1;
+			l_left = 0;
 		}
-	}
 
-	s_HashHeapDepth getRightDepth()
-	{
 		if (nullptr != m_right)
 		{
-			return (m_right->getLeftDepth() + 1);
+			l_right = m_right->getDepth();
 		}
 		else
 		{
-			return 1;
+			l_right = 0;
 		}
-	}
 
-	void sortCells()
-	{
-		HashHeapCell<J, K> *l_oldTopCell = m_top;
-		while(nullptr != l_oldTopCell)
+		if((0 < l_left) || (0 < l_right))
 		{
-			if(m_hash > m_top->getHash())
-			{
-				HashHeapCell<J, K> *l_oldTopLeftCell = m_top->getLeftCell();
-				HashHeapCell<J, K> *l_oldTopRightCell = m_top->getRightCell();
-				l_oldTopCell->setLeftCell(m_left);
-				l_oldTopCell->setRightCell(m_right);
-
-				if(l_oldTopLeftCell == this)
-				{
-					m_left = l_oldTopCell;
-					m_right = l_oldTopRightCell;
-				}
-				else
-				{
-					m_left = l_oldTopLeftCell;
-
-					if(l_oldTopRightCell == this)
-					{
-						m_right = l_oldTopCell;
-					}
-					else
-					{
-						m_right = l_oldTopRightCell; // Should never happen. TODO assert here?
-					}
-				}
-
-				m_top = l_oldTopCell->getTopCell();
-				l_oldTopCell->setTopCell(this);
-				l_oldTopCell = m_top;
-			}
-			else
-			{
-				l_oldTopCell = nullptr;
-			}
-		}
-	}
-
-	HashHeapCell *hasLeafAvailable(s_HashHeapDepth _remDepth, s_HashHeapDepth *_freeCellDepth)
-	{
-		if(0 < _remDepth)
-		{
-			if(nullptr == m_left)
-			{
-				*_freeCellDepth = 1U;
-				return this;
-			}
-			else
-			{
-				if(nullptr == m_right)
-				{
-					*_freeCellDepth = 1U;
-					return this;
-				}
-				else
-				{
-					s_HashHeapDepth l_leftDepth = 0U;
-					s_HashHeapDepth l_rightDepth = 0U;
-
-					HashHeapCell *l_leftCell = m_left->hasLeafAvailable(_remDepth-1, &l_leftDepth);
-					HashHeapCell *l_rightCell = m_right->hasLeafAvailable(_remDepth-1, &l_rightDepth);
-
-					if(nullptr != l_leftCell)
-					{
-						if(nullptr != l_rightCell)
-						{
-							if(l_leftDepth > l_rightDepth)
-							{
-								*_freeCellDepth = l_rightDepth+1;
-								return l_rightCell;
-							}
-							else
-							{
-								*_freeCellDepth = l_leftDepth+1;
-								return l_leftCell;
-							}
-						}
-						else
-						{
-							*_freeCellDepth = *_freeCellDepth + l_leftDepth;
-							return l_leftCell;
-						}
-					}
-					else
-					{
-						if(nullptr != l_rightCell)
-						{
-							*_freeCellDepth = *_freeCellDepth + l_rightDepth;
-							return l_rightDepth;
-						}
-						else
-						{
-							return nullptr;
-						}
-					}
-				}
-			}
+			l_ret = (l_right > l_left) ? l_right : l_left;
 		}
 		else
 		{
-			return nullptr;
+			l_ret = m_depth;
 		}
+
+		return l_ret;
 	}
 
 	K *getObj(J _hash)
@@ -224,18 +260,78 @@ public:
 		}
 	}
 
+	void setDepth(s_HashHeapDepth _depth)
+	{
+		m_depth = _depth;
+
+		if(nullptr != m_left)
+		{
+			m_left->setDepth(m_depth + 1);
+		}
+
+		if(nullptr != m_right)
+		{
+			m_right->setDepth(m_depth + 1);
+		}
+	}
+
+	s_HashHeapDepth getCellDepth()
+	{
+		return m_depth;
+	}
+
+	static HashHeapCell<J, K> *rotateLeft(HashHeapCell<J, K> *_cell)
+	{
+		HashHeapCell<J, K> *l_rightSon = _cell->getRightCell();
+		HashHeapCell<J, K> *l_rightSonLeftCell = l_rightSon->getLeftCell();
+		_cell->setRightCell(l_rightSonLeftCell);
+
+		l_rightSon->setLeftCell(_cell);
+
+		_cell->setDeltaDepth(0);
+		l_rightSon->setDeltaDepth(0);
+
+		s_HashHeapDepth l_prevDepth = _cell->getCellDepth();
+		_cell->setDepth(l_rightSon->getCellDepth());
+		l_rightSon->setDepth(l_prevDepth);
+
+		return l_rightSon;
+	}
+
+	static HashHeapCell<J, K> *rotateRight(HashHeapCell<J, K> *_cell)
+	{
+		HashHeapCell<J, K> *l_leftSon = _cell->getLeftCell();
+		HashHeapCell<J, K> *l_leftSonRightCll = l_leftSon->getRightCell();
+		_cell->setLeftCell(l_leftSonRightCll);
+
+		l_leftSon->setRightCell(_cell);
+
+		_cell->setDeltaDepth(0);
+		l_leftSon->setDeltaDepth(0);
+
+		s_HashHeapDepth l_prevDepth = _cell->getCellDepth();
+		_cell->setDepth(l_leftSon->getCellDepth());
+		l_leftSon->setDepth(l_prevDepth);
+
+		return l_leftSon;
+	}
+
 private:
 	J m_hash;
 	K *m_obj;
-	HashHeapCell *m_top;
 	HashHeapCell *m_left;
 	HashHeapCell *m_right;
+
+	s_HashHeapDepth m_depth;
+	s_HashHeapDepth m_deltaDepth;
 };
 
 template <typename J, typename K> class HashHeap
 {
 public:
 	HashHeap()
+	: m_top(nullptr)
+	, m_depth(0)
 	{
 	}
 
@@ -246,51 +342,95 @@ public:
 
 	void addObj(J _hash, K *_obj)
 	{
-		HashHeapCell<J, K> l_newCell = new HashHeap<J, K>(_hash, _obj);
+		HashHeapCell<J, K> *l_newCell = new HashHeapCell<J, K>(_hash, _obj);
 
+		HashHeapCell<J, K> *l_runner = m_top;
+		HashHeapCell<J, K> *l_topRunner = nullptr;
+
+		s_HashHeapDepth l_depth = 0U;
 		if(nullptr == m_top)
 		{
 			m_top = l_newCell;
-			m_depth++;
 		}
 		else
 		{
-			s_HashHeapDepth l_depth;
-			HashHeapCell<J,K> *l_cell = m_top->hasLeafAvailable(m_depth);
-			if(nullptr == l_cell)
-			{
-				m_depth++;
-				l_cell = m_top->hasLeafAvailable(m_depth);
-			}
+			s_HashHeapDepth  l_depth = m_top->addObj(_hash, _obj);
 
-			l_cell->setTopCell(l_newCell);
-
-			if(nullptr == l_cell->getLeftCell())
+			if(2 == l_depth)
 			{
-				l_cell->setLeftCell(l_newCell);
-			}
-			else
-			{
-				l_cell->setRightCell(l_newCell);
-			}
+				if(1 == m_top->getRightCell()->getDeltaDepth())
+				{
+					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateLeft(m_top);
+				}
+				else if(-1 == m_top->getRightCell()->getDeltaDepth())
+				{
+					HashHeapCell<J, K> *l_secondDegreeRightSon = m_top->getRightCell();
 
-			l_newCell->sortCells();
+					l_secondDegreeRightSon = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateRight(l_secondDegreeRightSon);
+
+					m_top->setRightCell(l_secondDegreeRightSon);
+
+					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateLeft(m_top);
+				}
+			}
+			else if(-2 == l_depth)
+			{
+				if(-1 == m_top->getLeftCell()->getDeltaDepth())
+				{
+					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateRight(m_top);
+				}
+				else if(1 == m_top->getLeftCell()->getDeltaDepth())
+				{
+					HashHeapCell<J, K> *l_secondDegreeLeftSon = m_top->getLeftCell();
+
+					l_secondDegreeLeftSon = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateLeft(l_secondDegreeLeftSon);
+
+					m_top->setLeftCell(l_secondDegreeLeftSon);
+
+					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateRight(m_top);
+				}
+			}
 		}
 	}
 
 	K *getObj(J _hash)
 	{
+		K *l_ret = nullptr;
+
 		if(m_top->getHash() == _hash)
 		{
 			return m_top;
 		}
 		else
 		{
-			if(m_top->getLeftCell()->getHash() >= _hash)
-			{
+			HashHeapCell<J, K> *l_runner = m_top;
 
+			while((nullptr != l_runner) && (nullptr == l_ret))
+			{
+				if(_hash == l_runner->getHash())
+				{
+					l_ret = l_runner;
+				}
+				else
+				{
+					if(l_runner->getHash() > _hash)
+					{
+						l_runner = l_runner->setLeftCell();
+					}
+					else
+					{
+						l_runner = l_runner->getRightCell();
+					}
+				}
 			}
 		}
+
+		return l_ret;
+	}
+
+	HashHeapCell<J, K> *getTop()
+	{
+		return m_top;
 	}
 
 

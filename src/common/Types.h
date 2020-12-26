@@ -20,7 +20,7 @@ typedef uint32_t s_Tick;
 
 typedef uint16_t s_EdgeFifoSize;
 
-typedef uint16_t s_HashHeapDepth;
+typedef int16_t s_HashHeapDepth;
 
 typedef uint32_t s_GraphElementUUID;
 
