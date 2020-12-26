@@ -415,7 +415,7 @@ public:
 				{
 					if(l_runner->getHash() > _hash)
 					{
-						l_runner = l_runner->setLeftCell();
+						l_runner = l_runner->getLeftCell();
 					}
 					else
 					{
