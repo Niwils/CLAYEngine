@@ -360,34 +360,34 @@ public:
 			{
 				if(1 == m_top->getRightCell()->getDeltaDepth())
 				{
-					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateLeft(m_top);
+					m_top = HashHeapCell<J, K>::rotateLeft(m_top);
 				}
 				else if(-1 == m_top->getRightCell()->getDeltaDepth())
 				{
 					HashHeapCell<J, K> *l_secondDegreeRightSon = m_top->getRightCell();
 
-					l_secondDegreeRightSon = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateRight(l_secondDegreeRightSon);
+					l_secondDegreeRightSon = HashHeapCell<J, K>::rotateRight(l_secondDegreeRightSon);
 
 					m_top->setRightCell(l_secondDegreeRightSon);
 
-					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateLeft(m_top);
+					m_top = HashHeapCell<J, K>::rotateLeft(m_top);
 				}
 			}
 			else if(-2 == l_depth)
 			{
 				if(-1 == m_top->getLeftCell()->getDeltaDepth())
 				{
-					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateRight(m_top);
+					m_top = HashHeapCell<J, K>::rotateRight(m_top);
 				}
 				else if(1 == m_top->getLeftCell()->getDeltaDepth())
 				{
 					HashHeapCell<J, K> *l_secondDegreeLeftSon = m_top->getLeftCell();
 
-					l_secondDegreeLeftSon = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateLeft(l_secondDegreeLeftSon);
+					l_secondDegreeLeftSon = HashHeapCell<J, K>::rotateLeft(l_secondDegreeLeftSon);
 
 					m_top->setLeftCell(l_secondDegreeLeftSon);
 
-					m_top = HashHeapCell<s_HashHeapDepth, s_HashHeapDepth *>::rotateRight(m_top);
+					m_top = HashHeapCell<J, K>::rotateRight(m_top);
 				}
 			}
 		}
@@ -421,6 +421,106 @@ public:
 					{
 						l_runner = l_runner->getRightCell();
 					}
+				}
+			}
+		}
+
+		return l_ret;
+	}
+
+	K *removeObj(J _hash)
+	{
+		K *l_ret = nullptr;
+
+		if(m_top->getHash() == _hash)
+		{
+			l_ret = m_top->getObj();
+			delete m_top;
+		}
+		else
+		{
+			HashHeapCell<J, K> *l_runner = m_top;
+			HashHeapCell<J, K> *l_runnerTop = m_top;
+			HashHeapCell<J, K> *l_found = nullptr;
+			bool isLeftSon = false;
+
+			while((nullptr != l_runner) && (nullptr == l_found))
+			{
+				if(_hash == l_runner->getHash())
+				{
+					l_found = l_runner;
+				}
+				else
+				{
+					l_runnerTop = l_runner;
+					if(l_runner->getHash() > _hash)
+					{
+						l_runner = l_runner->getLeftCell();
+						isLeftSon = true;
+					}
+					else
+					{
+						l_runner = l_runner->getRightCell();
+						isLeftSon = false;
+					}
+				}
+			}
+
+			if(nullptr != l_found)
+			{
+				if((nullptr == l_runner->getLeftCell())
+					&& (nullptr == l_runner->getRightCell())
+					)
+				{
+					l_ret = l_runner->getObj();
+
+					if(true == isLeftSon)
+					{
+						l_runnerTop->setLeftCell(nullptr);
+					}
+					else
+					{
+						l_runnerTop->setRightCell(nullptr);
+					}
+					delete l_runner;
+				}
+				else if(nullptr == l_runner->getLeftCell())
+				{
+					l_ret = l_runner->getObj();
+
+					if(true == isLeftSon)
+					{
+						l_runnerTop->setLeftCell(l_runner->getRightCell());
+					}
+					else
+					{
+						l_runnerTop->setRightCell(l_runner->getRightCell());
+					}
+
+					l_runner->getRightCell()->setDepth(l_runnerTop->getDepth()+1);
+
+					delete l_runner;
+				}
+				else if(nullptr == l_runner->getRightCell())
+				{
+					l_ret = l_runner->getObj();
+
+					if(true == isLeftSon)
+					{
+						l_runnerTop->setLeftCell(l_runner->getLeftCell());
+					}
+					else
+					{
+						l_runnerTop->setRightCell(l_runner->getLeftCell());
+					}
+
+					l_runner->getLeftCell()->setDepth(l_runnerTop->getDepth()+1);
+
+					delete l_runner;
+				}
+				else // Node has both leafs...
+				{
+
 				}
 			}
 		}

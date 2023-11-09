@@ -15,8 +15,8 @@
 
 IGraph::IGraph()
 {
-	m_nodes = new HashHeap<s_GraphElementUUID, INode *>();
-	m_edges = new HashHeap<s_GraphElementUUID, IEdge *>();
+	m_nodes = new HashHeap<s_GraphElementUUID, INode>();
+	m_edges = new HashHeap<s_GraphElementUUID, IEdge>();
 }
 
 IGraph::~IGraph()

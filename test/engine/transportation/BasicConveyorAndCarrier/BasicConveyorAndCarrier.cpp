@@ -61,6 +61,7 @@ void BasicConveyorAndCarrier::testBasicConveyorAndCarrier()
     l_tokenCourse->setPath(l_tokenPath);
     l_tokenCourse->registerSubscriber(m_carrier);
     m_carrier->setGraphCourse(l_tokenCourse);
+    m_carrier->setCurrentGraphElementID(0U);
 
 	TS_ASSERT_EQUALS(true, l_itemIsCarried);
 

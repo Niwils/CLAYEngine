@@ -29,8 +29,8 @@ public:
 	void addEdge(IEdge *_edge);
 
 protected:
-	HashHeap<s_GraphElementUUID, INode *> *m_nodes;
-	HashHeap<s_GraphElementUUID, IEdge *> *m_edges;
+	HashHeap<s_GraphElementUUID, INode> *m_nodes;
+	HashHeap<s_GraphElementUUID, IEdge> *m_edges;
 };
 
 #endif
