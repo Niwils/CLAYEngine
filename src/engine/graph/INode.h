@@ -15,6 +15,7 @@
 #define _ENGINE_GRAPH_INODE_H
 #include <IToken.h>
 #include <ObjList.h>
+#include <HashHeap.h>
 #include <IGraphElement.h>
 
 class INode : public IGraphElement
