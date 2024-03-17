@@ -14,26 +14,20 @@
 #ifndef _TEST_ENGINE_GRAPH_BASICNODEEDGENODETEST_H
 #define _TEST_ENGINE_GRAPH_BASICNODEEDGENODETEST_H
 
-#include "TestableConcreteNode.h"
-#include "TestableConcreteEdge.h"
+#include <HashHeap.h>
 #include <stdint.h>
 #include <cxxtest/TestSuite.h>
 
-class BasicNodeEdgeNodeTest : public CxxTest::TestSuite
+class BasicHashMapTest : public CxxTest::TestSuite
 {
 public:
-	BasicNodeEdgeNodeTest();
+	BasicHashMapTest();
 
-	~BasicNodeEdgeNodeTest();
+	~BasicHashMapTest();
 
-	void testBasicNodeEdgeNode();
-
-	void testTwoEdgesOneSinkNode();
+	void testBasicHashMapTest();
 private:
-	TestableConcreteNode *m_Source; ///< source node
-	TestableConcreteEdge *m_Edge; ///< principal edge
-	TestableConcreteEdge *m_SecondEdge; ///< secondary edge
-	TestableConcreteNode *m_Sink; ///< principal sink node
+	HashHeap<s_HashHeapDepth, s_HashHeapDepth *> *m_theHashMap;
 };
 
 #endif /* End _TEST_ENGINE_GRAPH_BASICNODEEDGENODETEST_H */
