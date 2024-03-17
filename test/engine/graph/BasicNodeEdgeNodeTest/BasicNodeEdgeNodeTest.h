@@ -27,10 +27,13 @@ public:
 	~BasicNodeEdgeNodeTest();
 
 	void testBasicNodeEdgeNode();
+
+	void testTwoEdgesOneSinkNode();
 private:
-	TestableConcreteNode *m_Source;
-	TestableConcreteEdge *m_Edge;
-	TestableConcreteNode *m_Sink;
+	TestableConcreteNode *m_Source; ///< source node
+	TestableConcreteEdge *m_Edge; ///< principal edge
+	TestableConcreteEdge *m_SecondEdge; ///< secondary edge
+	TestableConcreteNode *m_Sink; ///< principal sink node
 };
 
 #endif /* End _TEST_ENGINE_GRAPH_BASICNODEEDGENODETEST_H */
