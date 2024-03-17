@@ -17,13 +17,13 @@
 #define _ENGINE_TRANSPORTATION_STORAGEAREA_H
 
 #include <Types.h>
-#include <INode.h>
+#include <ITransportationNode.h>
 //#include <IFacilityTile.h>
 #include <ObjList.h>
 #include <ItemContainer.h>
 #include <Transporter.h>
 
-class StorageArea : public INode //, IFacilityTile
+class StorageArea : public ITransportationNode //, IFacilityTile
 {
 public:
     /**
@@ -49,9 +49,10 @@ public:
 
     /**
      * Request a Transporter. This function overrides the INode one, as it ensures the Transporter is ready to be released.
+     * @param _caller_uuid Caller UUID
      * @return A Transporter, if one is ready to be released. Nullptr otherwise.
      */
-	IToken *getToken();
+	IToken *getToken(s_GraphElementUUID _caller_uuid);
 
 private:
 	// TODO make a better computation-optimized container system.

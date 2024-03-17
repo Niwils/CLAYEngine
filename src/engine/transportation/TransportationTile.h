@@ -32,7 +32,7 @@ public:
      * Request a Transporter. This function overrides the IEdge one, as it ensures the Transporter is ready to be released.
      * @return
      */
-    IToken *getToken();
+    IToken *getToken(s_GraphElementUUID _caller_uuid);
 
 };
 
