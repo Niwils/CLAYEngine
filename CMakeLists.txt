@@ -5,6 +5,8 @@ option(BUILD_TESTS "-DBUILD_TESTS - Build test programs" OFF)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/tools/cmake/")
 set(CMAKE_CXX_FLAGS "-std=c++0x")
+set(CMAKE_BUILD_TYPE Debug)
+
 include_directories(src/engine/containers
 					src/engine/graph
 					src/engine/production
