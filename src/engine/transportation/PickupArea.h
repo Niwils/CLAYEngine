@@ -15,11 +15,11 @@
 #ifndef _ENGINE_TRANSPORTATION_PICKUPAREA_H
 #define _ENGINE_TRANSPORTATION_PICKUPAREA_H
 
-#include <INode.h>
+#include <ITransportationNode.h>
 #include <ItemContainer.h>
 #include <Item.h>
 
-class PickupArea : public INode
+class PickupArea : public ITransportationNode
 {
 public:
     /**
@@ -36,7 +36,7 @@ public:
      * Request a Transporter. This function overrides the INode one, as it ensures the Transporter is ready to be released.
      * @return A Transporter, if one is ready to be released. Nullptr otherwise.
      */
-	IToken *getToken();
+	IToken *getToken(s_GraphElementUUID _uuid);
 
 private:
 	ObjList<ItemContainer> *mt_Containers; ///< List of currently hold containers

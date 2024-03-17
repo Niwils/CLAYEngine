@@ -23,3 +23,8 @@ IGraphElement::~IGraphElement()
 {
 
 }
+
+s_GraphElementUUID IGraphElement::getUUID()
+{
+	return m_uuid;
+}
