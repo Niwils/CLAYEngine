@@ -11,9 +11,9 @@
  * 02/12/2019: File creation (NG)
  */
 
-#include "BasicConveyorAndCarrier.h"
+#include "BasicTransportationGraph.h"
 
-BasicConveyorAndCarrier::BasicConveyorAndCarrier()
+BasicTransportationGraph::BasicTransportationGraph()
 : CxxTest::TestSuite()
 {
 	m_Source = new PickupArea(0U, 1U);
@@ -25,7 +25,7 @@ BasicConveyorAndCarrier::BasicConveyorAndCarrier()
 	m_carrier = new Transporter(1U, c_carrierDef);
 }
 
-BasicConveyorAndCarrier::~BasicConveyorAndCarrier()
+BasicTransportationGraph::~BasicTransportationGraph()
 {
 	delete m_Source;
 	delete m_carrier;
@@ -36,7 +36,7 @@ BasicConveyorAndCarrier::~BasicConveyorAndCarrier()
 	delete m_tile;
 }
 
-void BasicConveyorAndCarrier::testBasicConveyorAndCarrier()
+void BasicTransportationGraph::testBasicTransportationGraph()
 {
 	m_Source->addOutput(m_tile);
 	m_tile->setSource(m_Source);

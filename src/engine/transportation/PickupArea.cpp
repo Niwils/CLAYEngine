@@ -15,9 +15,10 @@
 
 #include <PickupArea.h>
 #include <Transporter.h>
+#include <TransportationTile.h>
 
 PickupArea::PickupArea(s_GraphElementUUID _uuid, s_ItemContainerQty _maxQtyContainers)
-: INode(_uuid)
+: ITransportationNode(_uuid)
 , mt_Containers(nullptr)
 , m_nbContainersMax(_maxQtyContainers)
 , m_nbCurrentContainers(0U)
@@ -71,14 +72,15 @@ void PickupArea::addContainer(ItemContainer *_container)
     mt_Containers->addObject(_container);
 }
 
-IToken *PickupArea::getToken() {
+IToken *PickupArea::getToken(s_GraphElementUUID _uuid) {
 
     IToken *l_ret = nullptr;
     if(nullptr != m_CarriedToken)
     {
         Transporter *l_carrier = dynamic_cast<Transporter *>(m_CarriedToken);
 
-        if((true == l_carrier->waitingToMove()))
+        if((l_carrier->getNextGraphElement() == _uuid)
+        	&& (true == l_carrier->waitingToMove()))
         {
             if(false == l_carrier->isFull()) // TODO add orders management: is leaving pickup area when not full allowed?
             {
@@ -93,12 +95,17 @@ IToken *PickupArea::getToken() {
                 l_ret = m_CarriedToken;
                 if(nullptr != m_Input)
                 {
-                    Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
-                    m_CarriedToken = l_nextCarrier;
-                    if(nullptr != l_nextCarrier)
-                    {
-                        l_nextCarrier->moveToNextTile();
-                    }
+                	TransportationTile *l_input = dynamic_cast<TransportationTile *>(m_Input);
+
+                	if(nullptr != l_input)
+					{
+						Transporter *l_nextCarrier = dynamic_cast<Transporter *>(l_input->getToken(m_uuid));
+						m_CarriedToken = l_nextCarrier;
+						if (nullptr != l_nextCarrier)
+						{
+							l_nextCarrier->moveToNextTile();
+						}
+					}
                 }
                 else
                 {
@@ -109,15 +116,20 @@ IToken *PickupArea::getToken() {
     }
     else
     {
-        if(nullptr != m_Input)
-        {
-            Transporter *l_nextCarrier = dynamic_cast<Transporter *>(m_Input->getToken());
-            m_CarriedToken = l_nextCarrier;
-            if(nullptr != l_nextCarrier)
-            {
-                l_nextCarrier->moveToNextTile();
-            }
-        }
+		if(nullptr != m_Input)
+		{
+			TransportationTile *l_input = dynamic_cast<TransportationTile *>(m_Input);
+
+			if(nullptr != l_input)
+			{
+				Transporter *l_nextCarrier = dynamic_cast<Transporter *>(l_input->getToken(m_uuid));
+				m_CarriedToken = l_nextCarrier;
+				if (nullptr != l_nextCarrier)
+				{
+					l_nextCarrier->moveToNextTile();
+				}
+			}
+		}
     }
 
     return l_ret;

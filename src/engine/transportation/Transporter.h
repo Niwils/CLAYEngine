@@ -14,12 +14,14 @@
 #ifndef FACTORYBUILDER_TRANSPORTER_H
 #define FACTORYBUILDER_TRANSPORTER_H
 
+#include <GraphCourse.h>
 #include <IToken.h>
+#include <ITransportationNode.h>
 #include <ItemContainer.h>
 #include <Transportation.h>
 
 
-class Transporter : public IToken
+class Transporter : public IToken, public IGraphCourseSubscriber
 {
 public:
     /**
@@ -96,6 +98,28 @@ public:
      * @brief Perform actions occurring at a game turn.
      */
     void runTick();
+
+    /**
+     * @brief Sets the Graph course to follow
+     * @param _course Graph course to follow
+     */
+    void setGraphCourse(GraphCourse *_course);
+
+    /**
+     * @brief Return the next Graph Element to follow
+     * @return s_GraphElementUUID next graph element UUID
+     */
+    s_GraphElementUUID getNextGraphElement();
+
+	/**
+	 * @brief Set the followed path as dirty.
+	 */
+    void setCourseDirty();
+
+    /**
+     * @brief Set the current graph element UUID
+     */
+     void setCurrentGraphElementID(s_GraphElementUUID _uuid);
 private:
     TransporterDefinition m_transporterRules; ///< The transporter game rules: i.e. number of turns per action.
     s_NumberofRounds m_remainingTicksCurrentState; ///< The current number of rounds occurred for the current action.
@@ -114,6 +138,12 @@ private:
     };
 
     eTransporterState m_State; ///< Current state.
+
+    GraphCourse *m_graphCourse;  ///< Current graph course
+
+    ObjListIterator<s_GraphElementUUID> *m_graphIterator;
+
+    s_GraphElementUUID m_currentGraphUUID;
 };
 
 
