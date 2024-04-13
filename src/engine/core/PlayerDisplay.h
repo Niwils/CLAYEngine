@@ -14,29 +14,51 @@
 #ifndef _ENGINE_CORE_PLAYERDISPLAY_H
 #define _ENGINE_CORE_PLAYERDISPLAY_H
 
-#include <Company.h>
-#include <IDisplay.h>
+// #include <Company.h>
+// #include <IDisplay.h>
+#include <Types.h>
+#include <GeographyDefinitions.h>
+#include <OsalSys.h>
+#include <PlayerSettings.h>
+#include <IGameModel.h>
+#include <IGameController.h>
 
-class PlayerDisplay : public IDisplay
+class PlayerDisplay // : public IDisplay
 {
 public:
-	PlayerDisplay();
+	PlayerDisplay(IOsalSys *_pOsalSys, PlayerSettings *_pPlayerSettings);
 	~PlayerDisplay();
 
+	s_errorReturn createWindow();
+
+	void setModel(IGameModel *_model);
+
+	void setController(IGameController *_controller);
+
+	void moveCamera();
+	void rotateCamera(eGeographyDefinition _cameraOrientation);
 	void update();
-	void run();
+
 
 private:
 	void parseEvent();
 	void parseWindowEvent();
 	void changePlayerFOV();
 
+	IOsalSys *m_pOsalSys;
+	PlayerSettings *m_pPlayerSettings;
+
+	s_coord2d m_cameraCoords; // 2D coordinates of the tile at center location of the camera
+	eCameraOrientationDefinition m_cameraOrientation;
+
 	// Model: The player's company.
-	Company *m_playerCompany;
+	IGameModel *m_pPlayerCompany;
 
 	// Controller: The game controller.
-	// TODO
+	IGameController *m_pController;
 
 };
 
 #endif /* End _ENGINE_CORE_PLAYERDISPLAY_H */
+;
+

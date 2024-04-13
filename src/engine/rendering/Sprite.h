@@ -15,6 +15,8 @@
 #ifndef _ENGINE_RENDERING_SPRITE_H
 #define _ENGINE_RENDERING_SPRITE_H
 
+#include <Types.h>
+
 class Sprite
 {
 public:
@@ -22,6 +24,7 @@ public:
 	~Sprite();
 
 private:
+	s_pixelsPerTile m_pixelsPerTile; // Tiles are squares. Hence only one info is required.
 	// TODO add sprite when holder is inactive
 	// TODO add array of sprite (i.e. animation) when active
 };
