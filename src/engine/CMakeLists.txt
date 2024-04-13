@@ -1,10 +1,15 @@
-include_directories(${CMAKE_CURRENT_LIST_DIR}/containers)
+include_directories(
+	${CMAKE_CURRENT_LIST_DIR}/containers
+	${CMAKE_CURRENT_LIST_DIR}/world
+)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/core)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/graph)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/osal)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/production)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/transportation)
 
 add_library(engine ${CMAKE_CURRENT_LIST_DIR})
-target_link_libraries(engine graph production transportation)
+target_link_libraries(engine core osal graph production transportation)
 
 #add_library(engine)
 # target_include_directories(engine

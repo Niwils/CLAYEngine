@@ -16,6 +16,8 @@
 
 #include <stdint.h>
 
+typedef int8_t s_errorReturn;
+
 typedef uint32_t s_Tick;
 
 typedef uint16_t s_EdgeFifoSize;
@@ -37,7 +39,40 @@ typedef uint8_t s_ItemContainerQty; /*< Quantity of ItemContainer */
 typedef uint8_t s_NumberofRounds; /*< Quantity of game round/game */
 typedef uint8_t s_ArrayQtyNumber; /*< Type for array sizes */
 
+typedef uint16_t s_MapWidth;
+typedef uint16_t s_MapHeight;
+
+typedef uint16_t s_coord;
+
+typedef struct
+{
+	s_coord x;
+	s_coord y;
+} s_coord2d;
+
+typedef uint8_t s_zoomRatio;
+
+typedef uint16_t s_pixelsPerTile;
+
+typedef uint16_t s_pixelsPerMove; // Number of pixels the camera travels for each tick.
+
+typedef uint16_t s_framerate;
+
 
 typedef bool s_Transition;
+
+enum ePlayerSettingsDisplayResolution
+{
+	ePlayerSettingsDisplayResolution_None,
+	ePlayerSettingsDisplayResolution_640x480,
+	ePlayerSettingsDisplayResolution_1024x768
+};
+
+typedef uint32_t s_playerWindowWidth;
+typedef uint32_t s_playerWindowHeight;
+
+typedef bool s_isFullscreen;
+
+typedef float s_rotationCoeff;
 
 #endif /* End _COMMON_TYPES_H */

@@ -24,4 +24,14 @@ enum eGeographyDefinition : uint8_t
 	eGeographyDefinition_Max = 4
 };
 
+// Orientation indicates where the camera points to (top left of the Player display)
+enum eCameraOrientationDefinition : uint8_t
+{
+	eCameraOrientationDefinition_NorthWest = 0,
+	eCameraOrientationDefinition_NorthEast = 1,
+	eCameraOrientationDefinition_SouthWest = 2,
+	eCameraOrientationDefinition_SouthEast = 3,
+	eCameraOrientationDefinition_Max = 4
+};
+
 #endif /* End _COMMON_GEOGRAPHYDEFINITIONS_H */

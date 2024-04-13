@@ -22,6 +22,8 @@ public:
 	ITile();
 	virtual ~ITile() = 0;
 
+	Sprite *getSprite();
+
 protected:
 	Sprite *m_Sprite;
 
