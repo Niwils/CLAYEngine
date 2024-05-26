@@ -34,7 +34,7 @@ PickupArea::~PickupArea()
 
 bool PickupArea::addItemToContainer(Item *_item)
 {
-    s_ItemTypeUUID l_itemID = _item->getItemType();
+    s_gameElementUUID l_itemID = _item->getItemType();
 
     ObjListIterator<ItemContainer> *l_iterator = new ObjListIterator<ItemContainer>(mt_Containers);
 

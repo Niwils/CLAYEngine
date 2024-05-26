@@ -22,22 +22,22 @@
 class Item : public IToken
 {
 public:
-	Item(s_ItemTypeUUID _itemType, Recipe *_recipe);
+	Item(s_gameElementUUID _itemType, Recipe *_recipe);
 	~Item();
 
-	void upgradeItem(s_ProcessUID _processuid);
+	void upgradeItem(s_gameElementUUID _processuid);
 
-	s_ItemTypeUUID getItemType();
+	s_gameElementUUID getItemType();
 
-	s_ProcessUID getRequiredCurrentProcess();
+	s_gameElementUUID getRequiredCurrentProcess();
 
-	s_ItemTypeUUID getCurrentRawMaterial();
+	s_gameElementUUID getCurrentRawMaterial();
 
 	bool processCurrentDone(); // return if current recipe item list has reached the end
 
 private:
 	// TODO implement Sprite *m_Sprite;
-	s_ItemTypeUUID m_ItemType;
+	s_gameElementUUID m_ItemType;
 	// TODO: manage assembly states
 	RecipeFollower *m_Recipe;
 };

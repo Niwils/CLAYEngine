@@ -17,6 +17,8 @@
 PlayerDisplay::PlayerDisplay(IOsalSys *_pOsalSys, PlayerSettings *_pPlayerSettings)
 : m_pOsalSys(_pOsalSys)
 , m_pPlayerSettings(_pPlayerSettings)
+, m_displayMode()
+, m_pCamera(nullptr)
 {
 }
 
@@ -35,9 +37,31 @@ s_errorReturn PlayerDisplay::createWindow()
 	return l_ret;
 }
 
+void PlayerDisplay::setModel(IGameModel *_model)
+{
+	m_pPlayerCompany = _model;
+}
+
 void PlayerDisplay::update()
 {
+	switch(m_displayMode)
+	{
+		case ePlayerDisplayMode_MainMenu:
+		{
+			// TODO
+			break;
+		};
 
+		case ePlayerDisplayMode_InGame:
+		{
+			// TODO	
+			break;
+		};
+
+		default:
+			// TODO raise error
+			break;
+	};
 }
 
 void PlayerDisplay::parseEvent()
@@ -53,4 +77,17 @@ void PlayerDisplay::parseWindowEvent()
 void PlayerDisplay::changePlayerFOV()
 {
 
+}
+
+void PlayerDisplay::switchToMainMenu()
+{
+	m_displayMode = ePlayerDisplayMode_MainMenu;
+}
+
+void PlayerDisplay::switchToGameCamera()
+{
+	m_pCamera = new PlayerCamera(m_pOsalSys, m_pPlayerSettings, m_pPlayerCompany);
+	m_pOsalSys->setupBackgroundColor(0x000000FF);
+	m_pCamera->initializeCamera();
+	m_displayMode = ePlayerDisplayMode_InGame;
 }

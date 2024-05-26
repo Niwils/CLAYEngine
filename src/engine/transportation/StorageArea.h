@@ -37,11 +37,11 @@ public:
 
 	ItemContainer *loadEmptyContainer();
 
-	Item *pickRawMaterial(s_ItemTypeUUID _itemType);
+	Item *pickRawMaterial(s_gameElementUUID _itemType);
 
-	bool checkAvailability(s_ItemTypeUUID _itemType);
+	bool checkAvailability(s_gameElementUUID _itemType);
 
-	bool checkAndPickItem(s_ItemTypeUUID _itemType, Item *_pickedItem);
+	bool checkAndPickItem(s_gameElementUUID _itemType, Item *_pickedItem);
 
 	void lockAccess();
 

@@ -18,16 +18,16 @@
 class Recipe
 {
 public:
-	Recipe(s_RecipeUID _recipeID);
+	Recipe(s_gameElementUUID _recipeID);
 	~Recipe();
 
-	s_RecipeUID getRecipeID();
+	s_gameElementUUID getRecipeID();
 	void addProcessStep(ProcessStep *_processStep);
 
 	ObjList<ProcessStep> *getListOfProcesses();
 
 private:
-	s_RecipeUID m_RecipeID;
+	s_gameElementUUID m_RecipeID;
 	ObjList<ProcessStep> *m_ProcessList; // Warning, only Recipe is allowed to directly modify
 										// this ObjList
 };
@@ -40,11 +40,11 @@ public:
 
 	ProcessStep *getNextStep();
 	ProcessStep *getCurrentStep();
-	s_ItemTypeUUID getNextRawMaterial();
-	s_ItemTypeUUID getCurrentRawMaterial();
+	s_gameElementUUID getNextRawMaterial();
+	s_gameElementUUID getCurrentRawMaterial();
 
 private:
 	Recipe *m_Recipe;
 	ObjListIterator<ProcessStep> *m_CurrentStep;
-	ObjListIterator<s_ItemTypeUUID> *m_CurrentRawMaterial;
+	ObjListIterator<s_gameElementUUID> *m_CurrentRawMaterial;
 };

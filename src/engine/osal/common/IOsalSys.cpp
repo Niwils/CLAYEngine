@@ -26,9 +26,9 @@ s_errorReturn IOsalSys::init()
 	return 0;
 }
 
-s_errorReturn IOsalSys::stop()
+void IOsalSys::exit()
 {
-	return 0;
+
 }
 
 s_errorReturn IOsalSys::createNewWindow(s_playerWindowWidth _width, s_playerWindowHeight _height)
@@ -36,12 +36,27 @@ s_errorReturn IOsalSys::createNewWindow(s_playerWindowWidth _width, s_playerWind
 	return 0;
 }
 
+s_errorReturn IOsalSys::setupBackgroundColor(s_pixel _backgroundColor)
+{
+	return 0;
+}
+
+void IOsalSys::clearWindow()
+{
+	
+}
+
+void IOsalSys::updateWindow()
+{
+	
+}
+
 s_Tick IOsalSys::getTicksElapsed()
 {
 	return 0;
 }
 
-/*void IOsalSys::displaySprite(Sprite *_pSprite, s_coord2d _coords, s_pixelsPerTile _renderingSize)
+void IOsalSys::displaySprite(ISpriteWindow *_pSprite, s_coord2d _coords, s_zoomRatio _zoomRatio)
 {
- // shall be overloaded.
-}*/
+
+}
