@@ -16,6 +16,8 @@
 
 #include <Types.h>
 #include <ITile.h>
+#include <iostream>
+#include <vector>
 
 class IGameModel
 {
@@ -23,7 +25,7 @@ public:
 	IGameModel(s_MapWidth _width, s_MapHeight _height);
 	virtual ~IGameModel() = 0;
 
-	virtual ITile **getTiles() = 0;
+	std::vector<ITile*> *getTiles();
 
 	ITile *getTile(s_coord2d _coord2d);
 
@@ -34,7 +36,7 @@ public:
 	s_MapHeight getMapHeight();
 
 private:
-	ITile **m_vTiles;
+	std::vector<ITile*> *m_vTiles;
 
 	s_MapWidth m_mapWidth;
 	s_MapHeight m_mapHeight;

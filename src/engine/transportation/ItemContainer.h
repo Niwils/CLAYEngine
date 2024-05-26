@@ -29,10 +29,10 @@
 class ItemContainer
 {
 public:
-	ItemContainer(s_ItemTypeUUID _itemType, s_ItemQuantity _max_qty);
+	ItemContainer(s_gameElementUUID _itemType, s_ItemQuantity _max_qty);
 	~ItemContainer();
 
-	s_ItemTypeUUID getCarriedItemType();
+	s_gameElementUUID getCarriedItemType();
 
 	bool addItem(Item *_item);
 	Item *pickItem();
@@ -43,7 +43,7 @@ public:
 
 private:
 	ObjList<Item> *m_CarriedItems;
-	s_ItemTypeUUID m_CarriedItemType;
+	s_gameElementUUID m_CarriedItemType;
 	s_ItemQuantity m_MaxQty;
 	s_ItemQuantity m_CurrentQty;
 };

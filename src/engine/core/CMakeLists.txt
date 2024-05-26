@@ -3,6 +3,7 @@ target_sources(core
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/Core.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/IGameController.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/IGameModel.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/PlayerCamera.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/PlayerDisplay.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/PlayerSettings.cpp"
 )
