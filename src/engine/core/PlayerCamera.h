@@ -1,4 +1,4 @@
-/*
+/**
  * The <unnamed> factory builder project.
  *
  * \file src/engine/core/PlayerCamera.h
@@ -74,9 +74,13 @@ public:
 
 	void zoomCamera();
 
-	s_nbPixels getSpritesWidth();
+	s_nbPixels getCamSpritesWidth();
 
-	s_nbPixels getSpritesHeight();
+	s_nbPixels getCamSpritesHeight();
+
+	s_nbPixels getMapSpritesWidth();
+
+	s_nbPixels getMapSpritesHeight();
 
 	void initializeCamera();
 
@@ -84,7 +88,7 @@ protected:
 
 	s_coord2d transformFromWindowRefToModelRef(s_coord2d _windowCoordinates);
 
-	s_coord2d transformFromCameraRefToModelRef(s_coord2d _windowCoordinates);
+	s_coord2d transformFromCameraRefToModelRef(s_coord2d _cameraCoordinates);
 
 	s_coord2d transformFromModelRefToWindowRef(s_coord2d _gameCoordinates);
 
@@ -119,7 +123,7 @@ private:
 	// | [2] [3] |
 	const s_rotationCoeff ct_rotationCameraToGameCoeffs[eCameraOrientationDefinition_Max][4]  =
 	{
-			{0.866, -0.5, 0.5, 0.866}, // eCameraOrientationDefinition_NorthWest (+30)°
+			{0.707, 0.707, -0.707, 0.707}, // eCameraOrientationDefinition_NorthWest (+45)°
 			{0.866, 0.5, -0.5, 0.866}, // eCameraOrientationDefinition_NorthEast (-30°)
 			{-0.866, -0.5, 0.5, -0.866}, // eCameraOrientationDefinition_SouthWest (+150°)
 			{-0.866, 0.5, -0.5, -0.866} // eCameraOrientationDefinition_SouthEast (-150°)
