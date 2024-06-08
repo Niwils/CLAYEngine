@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 3.29.2)
 project (FactoryBuilder)
 
 option(BUILD_TESTS "-DBUILD_TESTS - Build test programs" OFF)
@@ -10,6 +10,14 @@ set(CMAKE_BUILD_TYPE Debug)
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
+message(STATUS "SDL2_INCLUDE_DIRS={${SDL2_INCLUDE_DIRS}}")
+
+
+#find_library(SDL2_IMAGE REQUIRED)
+#include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+
+#message(STATUS "SDL2_IMAGE_INCLUDE_DIRS={${SDL2_IMAGE_INCLUDE_DIRS}}")
+
 include_directories(src/engine/containers
 					src/engine/core
 					src/engine/graph
@@ -19,8 +27,8 @@ include_directories(src/engine/containers
 					src/engine/world
 					src/common
 					${SDL2_INCLUDE_DIRS})
+					# ${SDL2_IMAGE_INCLUDE_DIRS})
 
-add_executable(${PROJECT_NAME} src/game/FactoryBuilder.cpp)
 include(src/engine/CMakeLists.txt)
 
 if(BUILD_TESTS)
@@ -39,8 +47,12 @@ if(BUILD_TESTS)
 							src/engine/world
 							src/common
 							${SDL2_INCLUDE_DIRS})
+							#${SDL2_IMAGE_INCLUDE_DIRS})
 		include(test/CMakeLists.txt)
 	endif()
+else()
+	add_executable(${PROJECT_NAME} src/game/FactoryBuilder.cpp)
+	target_link_libraries(${PROJECT_NAME} engine)
 endif()
 
-target_link_libraries(${PROJECT_NAME} engine)
+

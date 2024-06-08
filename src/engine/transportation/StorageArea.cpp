@@ -16,7 +16,7 @@
 #include <StorageArea.h>
 #include <TransportationTile.h>
 
-StorageArea::StorageArea(s_GraphElementUUID _uuid)
+StorageArea::StorageArea(s_gameElementUUID _uuid)
 : ITransportationNode(_uuid)
 // , IFacilityTile()
 , m_ActiveContainers(nullptr)
@@ -43,7 +43,7 @@ ItemContainer *StorageArea::loadEmptyContainer()
 	return l_ret;
 }
 
-Item *StorageArea::pickRawMaterial(s_ItemTypeUUID _itemType)
+Item *StorageArea::pickRawMaterial(s_gameElementUUID _itemType)
 {
 	ObjListIterator<ItemContainer> *l_it = new ObjListIterator<ItemContainer>(m_ActiveContainers);
 
@@ -73,7 +73,7 @@ Item *StorageArea::pickRawMaterial(s_ItemTypeUUID _itemType)
 	return l_ret;
 }
 
-bool StorageArea::checkAvailability(s_ItemTypeUUID _itemType)
+bool StorageArea::checkAvailability(s_gameElementUUID _itemType)
 {
 	ObjListIterator<ItemContainer> *l_it = new ObjListIterator<ItemContainer>(m_ActiveContainers);
 
@@ -96,7 +96,7 @@ bool StorageArea::checkAvailability(s_ItemTypeUUID _itemType)
 	return l_ret;
 }
 
-bool StorageArea::checkAndPickItem(s_ItemTypeUUID _itemType, Item *_pickedItem)
+bool StorageArea::checkAndPickItem(s_gameElementUUID _itemType, Item *_pickedItem)
 {
 	ObjListIterator<ItemContainer> *l_it = new ObjListIterator<ItemContainer>(m_ActiveContainers);
 

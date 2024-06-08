@@ -13,7 +13,7 @@
 
 #include <Item.h>
 
-Item::Item(s_ItemTypeUUID _itemType, Recipe *_recipe)
+Item::Item(s_gameElementUUID _itemType, Recipe *_recipe)
 : IToken()
 {
 
@@ -23,22 +23,22 @@ Item::~Item()
     // Do nothing.
 }
 
-void Item::upgradeItem(s_ProcessUID _processuid)
+void Item::upgradeItem(s_gameElementUUID _processuid)
 {
 
 }
 
-s_ItemTypeUUID Item::getItemType()
+s_gameElementUUID Item::getItemType()
 {
     return m_ItemType;
 }
 
-s_ProcessUID Item::getRequiredCurrentProcess()
+s_gameElementUUID Item::getRequiredCurrentProcess()
 {
     return 0; // TODO
 }
 
-s_ItemTypeUUID Item::getCurrentRawMaterial()
+s_gameElementUUID Item::getCurrentRawMaterial()
 {
     return 0;
 }
