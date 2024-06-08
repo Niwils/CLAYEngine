@@ -22,6 +22,7 @@
 #include <PlayerSettings.h>
 #include <IGameModel.h>
 #include <IGameController.h>
+#include <PlayerCamera.h>
 
 class PlayerDisplay // : public IDisplay
 {
@@ -38,6 +39,10 @@ public:
 	void moveCamera();
 	void rotateCamera(eGeographyDefinition _cameraOrientation);
 	void update();
+
+	void switchToMainMenu();
+
+	void switchToGameCamera();
 
 
 private:
@@ -56,6 +61,17 @@ private:
 
 	// Controller: The game controller.
 	IGameController *m_pController;
+
+	enum ePlayerDisplayMode
+	{
+		ePlayerDisplayMode_MainMenu,
+		ePlayerDisplayMode_InGame,
+		ePlayerDisplayMode_Max
+	};
+
+	ePlayerDisplayMode m_displayMode;
+
+	PlayerCamera *m_pCamera;
 
 };
 

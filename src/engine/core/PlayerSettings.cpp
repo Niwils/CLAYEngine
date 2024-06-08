@@ -45,7 +45,7 @@ void PlayerSettings::setPlayerDisplayFullscreen(s_isFullscreen _isFullscreen)
 	m_playerDisplayIsFullscreen = _isFullscreen;
 }
 
-void PlayerSettings::setCameraTravellingSpeed(s_pixelsPerMove _travellingSpeed)
+void PlayerSettings::setCameraTravellingSpeed(s_nbPixels _travellingSpeed)
 {
 	m_cameraTravellingSpeed = _travellingSpeed;
 }
@@ -95,7 +95,7 @@ s_playerWindowWidth PlayerSettings::getDisplayHeight()
 }
 
 
-s_pixelsPerMove PlayerSettings::getCameraTravellingSpeed()
+s_nbPixels PlayerSettings::getCameraTravellingSpeed()
 {
 	return m_cameraTravellingSpeed;
 }

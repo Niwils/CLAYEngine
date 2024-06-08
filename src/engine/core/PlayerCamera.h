@@ -1,4 +1,4 @@
-/*
+/**
  * The <unnamed> factory builder project.
  *
  * \file src/engine/core/PlayerCamera.h
@@ -74,7 +74,13 @@ public:
 
 	void zoomCamera();
 
-	s_pixelsPerTile getSpritesSize();
+	s_nbPixels getCamSpritesWidth();
+
+	s_nbPixels getCamSpritesHeight();
+
+	s_nbPixels getMapSpritesWidth();
+
+	s_nbPixels getMapSpritesHeight();
 
 	void initializeCamera();
 
@@ -82,7 +88,7 @@ protected:
 
 	s_coord2d transformFromWindowRefToModelRef(s_coord2d _windowCoordinates);
 
-	s_coord2d transformFromCameraRefToModelRef(s_coord2d _windowCoordinates);
+	s_coord2d transformFromCameraRefToModelRef(s_coord2d _cameraCoordinates);
 
 	s_coord2d transformFromModelRefToWindowRef(s_coord2d _gameCoordinates);
 
@@ -93,13 +99,20 @@ private:
 
 	s_zoomRatio m_cameraZoom;
 
-	const s_zoomRatio c_zoomIncrement = 8; // Zoom increment
-	const s_zoomRatio c_zoomMax = 32; // 1:32 scale is max.
+	const s_zoomRatio c_zoomIncrement = 2; // Zoom increment
+	const s_zoomRatio c_zoomMax = 8; // 1:8 scale is max.
 
-	const s_pixelsPerTile c_pixelsPerTile = 256; // 256 pixels at full scale zoom?
+	const s_nbPixels c_pixelsWidePerTile = 424U; // 734 pixels at full scale zoom?
+	const s_nbPixels c_pixelsHighPerTile = 212U; // 424 pixels at full scale zoom?
 
 	// Coordinates within the "virtual" referential.
 	s_coord2d m_cameraCoords; // 2D coordinates of the tile at center location of the camera
+
+	s_coord2d m_virtualCenterCoords; // 2D coordinates of the virtual center (i.e., full map with 3D iso rotation)
+
+	s_nbPixels m_virtualMapWidth;
+
+	s_nbPixels m_virtualMapHeight;
 
 	const s_coord c_cameraTranslationStep = 16; // Camera translation step
 
@@ -110,7 +123,7 @@ private:
 	// | [2] [3] |
 	const s_rotationCoeff ct_rotationCameraToGameCoeffs[eCameraOrientationDefinition_Max][4]  =
 	{
-			{0.866, -0.5, 0.5, 0.866}, // eCameraOrientationDefinition_NorthWest (+30)°
+			{0.707, 0.707, -0.707, 0.707}, // eCameraOrientationDefinition_NorthWest (+45)°
 			{0.866, 0.5, -0.5, 0.866}, // eCameraOrientationDefinition_NorthEast (-30°)
 			{-0.866, -0.5, 0.5, -0.866}, // eCameraOrientationDefinition_SouthWest (+150°)
 			{-0.866, 0.5, -0.5, -0.866} // eCameraOrientationDefinition_SouthEast (-150°)

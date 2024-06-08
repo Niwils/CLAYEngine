@@ -1,15 +1,20 @@
 include_directories(
 	${CMAKE_CURRENT_LIST_DIR}/containers
+	${CMAKE_CURRENT_LIST_DIR}/definitions
+	${CMAKE_CURRENT_LIST_DIR}/osal/common/rendering
+	${CMAKE_CURRENT_LIST_DIR}/osal/sdl/rendering
 	${CMAKE_CURRENT_LIST_DIR}/world
 )
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/core)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/definitions)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/graph)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/osal)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/production)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/transportation)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/world)
 
 add_library(engine ${CMAKE_CURRENT_LIST_DIR})
-target_link_libraries(engine core osal graph production transportation)
+target_link_libraries(engine core definitions osal graph production transportation world)
 
 #add_library(engine)
 # target_include_directories(engine

@@ -30,20 +30,20 @@ public:
 
 	void setPlayerDisplayFullscreen(s_isFullscreen _isFullscreen);
 
-	void setCameraTravellingSpeed(s_pixelsPerMove _travellingSpeed);
+	void setCameraTravellingSpeed(s_nbPixels _travellingSpeed);
 
 	s_playerWindowWidth getDisplayWidth();
 
 	s_playerWindowHeight getDisplayHeight();
 
-	s_pixelsPerMove getCameraTravellingSpeed();
+	s_nbPixels getCameraTravellingSpeed();
 
 private:
 	ePlayerSettingsDisplayResolution m_playerDisplayResolution;
 
 	s_isFullscreen m_playerDisplayIsFullscreen;
 
-	s_pixelsPerMove m_cameraTravellingSpeed;
+	s_nbPixels m_cameraTravellingSpeed;
 
 };
 #endif /* End _ENGINE_CORE_PLAYERSETTINGS_H */
