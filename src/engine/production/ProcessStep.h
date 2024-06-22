@@ -19,13 +19,13 @@
 class ProcessStep
 {
 public:
-	ProcessStep(s_ProcessUID _processID);
+	ProcessStep(s_gameElementUUID _processID);
 	~ProcessStep();
 
-	void addRawItem(s_ItemTypeUUID _itemTypeID);
+	void addRawItem(s_gameElementUUID _itemTypeID);
 
-	ObjList<s_ItemTypeUUID> *getRawMaterialsList();
+	ObjList<s_gameElementUUID> *getRawMaterialsList();
 
 private:
-	ObjList<s_ItemTypeUUID> *m_RawMaterials;
+	ObjList<s_gameElementUUID> *m_RawMaterials;
 };
