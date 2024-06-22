@@ -20,7 +20,7 @@ ISprite::ISprite(s_nbPixels _height, s_nbPixels _width, s_nbPixels _length, s_nb
 	m_width = _width;
 	m_length = _length;
 	m_nbFrames = _nbFrames;
-	m_spriteDisplayCoord = _center;
+	m_spriteFrameCenter = _center;
 	// TODO check the number of frames expected vs the image size.
 }
 
@@ -29,9 +29,9 @@ ISprite::~ISprite()
 
 }
 
-s_coord2d ISprite::getDisplayOrigin()
+s_coord2d ISprite::getFrameCenter()
 {
-
+	return m_spriteFrameCenter;
 }
 
 s_nbPixels ISprite::getHeight()

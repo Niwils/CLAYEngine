@@ -18,10 +18,15 @@
 
 enum ePlayerActions
 {
+	ePlayerActions_DoNothing,
 	ePlayerActions_CameraTravellingLeft,
 	ePlayerActions_CameraTravellingUp,
 	ePlayerActions_CameraTravellingRight,
-	ePlayerActions_CameraTravellingDown
+	ePlayerActions_CameraTravellingDown,
+
+	ePlayerActions_Click,
+	ePlayerActions_Zoom,
+	ePlayerActions_Unzoom
 };
 
 #endif

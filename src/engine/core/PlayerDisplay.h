@@ -23,11 +23,18 @@
 #include <IGameModel.h>
 #include <IGameController.h>
 #include <PlayerCamera.h>
+#include <PlayerActions.h>
+#include <PlayerKeyboardRoute.h>
+#include <IPlayerDisplayInterface.h>
 
-class PlayerDisplay // : public IDisplay
+#include <IOverlayInterface.h>
+#include <ObjList.h>
+#include <MainGameBar.h>
+
+class PlayerDisplay : public IPlayerDisplayInterface
 {
 public:
-	PlayerDisplay(IOsalSys *_pOsalSys, PlayerSettings *_pPlayerSettings);
+	PlayerDisplay(IOsalSys *_pOsalSys, IRenderer *_pRenderer, PlayerSettings *_pPlayerSettings);
 	~PlayerDisplay();
 
 	s_errorReturn createWindow();
@@ -36,6 +43,7 @@ public:
 
 	void setController(IGameController *_controller);
 
+	void parseInputs();
 	void moveCamera();
 	void rotateCamera(eGeographyDefinition _cameraOrientation);
 	void update();
@@ -44,13 +52,28 @@ public:
 
 	void switchToGameCamera();
 
+	bool gameQuitRequested();
+
+	void createOverlay(IOverlayInterface *_pDisplay);
+
+    void removeOverlay(s_uuid _uuid);
+
 
 private:
 	void parseEvent();
 	void parseWindowEvent();
 	void changePlayerFOV();
+	
+	ePlayerActions parseKeyToAction(eKeyboardKeys _key);
+	ePlayerActions parseMouseKeyToAction(eMouseKeys _key);
+
+	void processPlayerAction(ePlayerActions _action);
+
+	void processClick();
+	
 
 	IOsalSys *m_pOsalSys;
+	IRenderer *m_pRenderer;
 	PlayerSettings *m_pPlayerSettings;
 
 	s_coord2d m_cameraCoords; // 2D coordinates of the tile at center location of the camera
@@ -72,6 +95,16 @@ private:
 	ePlayerDisplayMode m_displayMode;
 
 	PlayerCamera *m_pCamera;
+
+	bool m_gameQuitRequested;
+
+	ISprite *m_pOverlaySprite;
+	ISpriteWindow *m_pOverlaySpriteWindow;
+
+	s_uuid m_overlayUuidCounter;
+	std::vector<IOverlayInterface *> *m_pOverlayVector;
+
+	s_coord2d m_mouseCoordinates;
 
 };
 

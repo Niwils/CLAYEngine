@@ -54,7 +54,7 @@
 class PlayerCamera
 {
 public:
-	PlayerCamera(IOsalSys *_osalSys, PlayerSettings *_playerSettings, IGameModel *_model);
+	PlayerCamera(IOsalSys *_osalSys, PlayerSettings *_playerSettings, IGameModel *_model, ISpriteWindow *_mouseOverlay);
 
 	~PlayerCamera();
 
@@ -82,7 +82,11 @@ public:
 
 	s_nbPixels getMapSpritesHeight();
 
-	void initializeCamera();
+	void refreshCamera();
+
+	bool newCameraCoordsWithinMap(s_coord2d _newCoords);
+
+	void setMousePointerCoords(s_coord2d _mouseCoords);
 
 protected:
 
@@ -90,7 +94,11 @@ protected:
 
 	s_coord2d transformFromCameraRefToModelRef(s_coord2d _cameraCoordinates);
 
+	s_coord2d transformFromVirtualRefToModelRef(s_coord2d _virtualCoordinates);
+
 	s_coord2d transformFromModelRefToWindowRef(s_coord2d _gameCoordinates);
+
+	void placeOverlay(s_coord2d _mouseCoordinates);
 
 private:
 	IOsalSys *m_pOsalSys;
@@ -108,6 +116,9 @@ private:
 	// Coordinates within the "virtual" referential.
 	s_coord2d m_cameraCoords; // 2D coordinates of the tile at center location of the camera
 
+	s_coord2d m_overlayCoords; // 2D coordinates of the cursor tile overlay.
+	bool m_overlayIsShown;
+
 	s_coord2d m_virtualCenterCoords; // 2D coordinates of the virtual center (i.e., full map with 3D iso rotation)
 
 	s_nbPixels m_virtualMapWidth;
@@ -117,6 +128,8 @@ private:
 	const s_coord c_cameraTranslationStep = 16; // Camera translation step
 
 	eCameraOrientationDefinition m_cameraOrientation;
+
+	ISpriteWindow *m_pOverlaySprite;
 
 	// Coefficients for rotation matrix, repartited as below:
 	// | [0] [1] |

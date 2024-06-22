@@ -17,7 +17,7 @@
 
 OsalSys::OsalSys()
 : IOsalSys()
-, m_pRenderer(nullptr)
+, Renderer(nullptr)
 , m_pPlayerWindowSurface(nullptr)
 {
 }
@@ -87,10 +87,7 @@ s_errorReturn OsalSys::setupBackgroundColor(s_pixel _backgroundColor)
 	l_blue = (_backgroundColor>>8U)&0x000000FF;
 	l_alpha = _backgroundColor&0x000000FF;
 	SDL_SetRenderDrawColor(m_pRenderer, l_red, l_green, l_blue, l_alpha);
-
-	SDL_RenderClear(m_pRenderer);
-
-	SDL_RenderPresent(m_pRenderer);
+	
 	return 0;
 }
 
@@ -112,6 +109,26 @@ SDL_Window *OsalSys::getWindow()
 s_Tick OsalSys::getTicksElapsed()
 {
 	return SDL_GetTicks();
+}
+
+void OsalSys::getAndParseEvents()
+{
+	SDL_Event e;
+	while (SDL_PollEvent(&e)){
+		if (e.type == SDL_QUIT)
+		{
+			m_windowCloseRequested = true;
+		}
+		if (e.type == SDL_KEYDOWN)
+		{
+			this->processSDLKey(&e);
+		}
+		if ((e.type == SDL_MOUSEBUTTONDOWN)
+			|| (e.type == SDL_MOUSEMOTION)
+			|| (e.type == SDL_MOUSEWHEEL)){
+			this->processSDLMouse(&e);
+		}
+	}
 }
 
 ISprite *OsalSys::loadSprite(s_fileName _fileSprite, s_nbPixels _height, s_nbPixels _width, s_nbPixels _length, s_nbFrames _nbFrames, s_coord2d _center)
@@ -139,4 +156,95 @@ void OsalSys::displaySprite(ISpriteWindow *_pSprite, s_coord2d _coords, s_zoomRa
 	SDL_Rect l_dst = l_pSpriteWindow->getDisplayableArea(_coords, _zoomRatio);
 
 	SDL_RenderCopy(m_pRenderer, l_pTexture, &l_src, &l_dst);
+}
+
+void OsalSys::processSDLKey(SDL_Event *_event)
+{
+	switch (_event->key.keysym.sym)
+	{
+		case SDLK_UP:
+		{
+			KeyboardEvent *l_key = new KeyboardEvent(eKeyboardKeys_upkey);
+			m_keyboardEvents->push_back(l_key);
+			break;
+		}
+
+		case SDLK_DOWN:
+		{
+			KeyboardEvent *l_key = new KeyboardEvent(eKeyboardKeys_downkey);
+			m_keyboardEvents->push_back(l_key);
+			break;
+		}
+		case SDLK_LEFT:
+		{
+			KeyboardEvent *l_key = new KeyboardEvent(eKeyboardKeys_leftkey);
+			m_keyboardEvents->push_back(l_key);
+			break;
+		}
+
+		case SDLK_RIGHT:
+		{
+			KeyboardEvent *l_key = new KeyboardEvent(eKeyboardKeys_rightkey);
+			m_keyboardEvents->push_back(l_key);
+			break;
+		}
+
+		default:
+			// Returns nothing.
+			break;
+	};
+}
+
+void OsalSys::processSDLMouse(SDL_Event *_event)
+{
+	switch(_event->type)
+	{
+		case SDL_MOUSEMOTION:
+		{
+			s_coord2d l_coords;
+			l_coords.x = static_cast<s_coord>(_event->motion.x);
+			l_coords.y = static_cast<s_coord>(_event->motion.y);
+
+			MouseEvent *l_event = new MouseEvent(l_coords, eMouseKeys_None);
+			m_mouseEvents->push_back(l_event);
+			break;
+		}
+
+		// TODO handle all the mouse buttons
+		case SDL_MOUSEBUTTONDOWN:
+		{
+			s_coord2d l_coords;
+			l_coords.x = static_cast<s_coord>(_event->motion.x);
+			l_coords.y = static_cast<s_coord>(_event->motion.y);
+
+			MouseEvent *l_event = new MouseEvent(l_coords, eMouseKeys_LeftClick);
+			m_mouseEvents->push_back(l_event);
+			break;
+		}
+		case SDL_MOUSEWHEEL:
+		{	
+			s_coord2d l_coords;
+			l_coords.x = static_cast<s_coord>(_event->motion.x);
+			l_coords.y = static_cast<s_coord>(_event->motion.y);
+
+			eMouseKeys l_key;
+			if(0 < _event->wheel.y)
+			{
+				l_key = eMouseKeys_WheelUp;
+			}
+			else
+			{
+				l_key = eMouseKeys_WheelDown;
+			}
+
+			MouseEvent *l_event = new MouseEvent(l_coords, l_key);
+			m_mouseEvents->push_back(l_event);
+			break;
+		}
+	};	
+}
+
+SDL_Renderer *OsalSys::getRenderer()
+{
+	return m_pRenderer;
 }
