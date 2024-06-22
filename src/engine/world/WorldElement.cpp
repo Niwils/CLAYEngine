@@ -14,7 +14,7 @@
 
 #include <WorldElement.h>
 
-WorldElement::WorldElement(WorldElementDefinition *_def)
+WorldElement::WorldElement(WorldElementDefinition *_def, IRenderer *_pRenderer)
 : ITile()
 , m_pDef(nullptr)
 {
@@ -22,7 +22,8 @@ WorldElement::WorldElement(WorldElementDefinition *_def)
     s_coord2d l_coord = {0, 0};
 
     ISprite *l_pSprite = m_pDef->getSprite();
-    m_pSpriteWindow = new SpriteWindow(l_pSprite, l_coord,
+    m_pSpriteWindow = new SpriteWindow(l_pSprite, _pRenderer,
+                                        l_coord,
                                         l_pSprite->getWidth(),
                                         l_pSprite->getHeight()
                                     );

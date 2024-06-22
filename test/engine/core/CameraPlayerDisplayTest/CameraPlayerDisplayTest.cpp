@@ -29,7 +29,18 @@ CameraPlayerDisplayTest::CameraPlayerDisplayTest()
 	m_playerSettings.setPlayerDisplayResolution(ePlayerSettingsDisplayResolution_1024x768);
 	m_osal = new OsalSys();
 	m_pModel = new ConcreteGameModel(4U, 4U);
-	m_playerDisplay = new PlayerDisplay(m_osal, &m_playerSettings);
+
+	/*s_coord2d l_coord = {0, 0};
+
+    ISpriteWindow *l_SpriteWindow = new SpriteWindow(l_overlaySprite, m_osal,
+										l_coord,
+                                        l_overlaySprite->getWidth(),
+                                        l_overlaySprite->getHeight()
+                                    );*/
+
+	m_playerDisplay = new PlayerDisplay(m_osal, m_osal, &m_playerSettings);
+
+	
 }
 
 CameraPlayerDisplayTest::~CameraPlayerDisplayTest()
@@ -53,8 +64,8 @@ void CameraPlayerDisplayTest::testCameraPlayerDisplayTest()
 		}
 
 		s_coord2d l_centerSprite;
-		l_centerSprite.x = 184U;
-		l_centerSprite.y = 106U;
+		l_centerSprite.x = 212;
+		l_centerSprite.y = 106;
 
 		m_pSpriteRed = m_osal->loadSprite("../assets/basicTiles/basicTile_1_2_red.bmp",
 								212U, 424U, 0U, 1U, l_centerSprite);
@@ -66,8 +77,8 @@ void CameraPlayerDisplayTest::testCameraPlayerDisplayTest()
 		m_worldElementDefRed = new WorldElementDefinition(0, m_pSpriteRed, false);
 		m_worldElementDefBlue = new WorldElementDefinition(0, m_pSpriteBlue, false);
 
-		WorldElement *l_pTileRed = new WorldElement(m_worldElementDefRed);
-		WorldElement *l_pTileBlue = new WorldElement(m_worldElementDefBlue);
+		WorldElement *l_pTileRed = new WorldElement(m_worldElementDefRed, m_osal);
+		WorldElement *l_pTileBlue = new WorldElement(m_worldElementDefBlue, m_osal);
 		s_coord2d l_coord = {0U, 0U};
 		m_pModel->setTile(l_coord, l_pTileRed);
 		l_coord = {0U, 1U};
@@ -108,18 +119,19 @@ void CameraPlayerDisplayTest::testCameraPlayerDisplayTest()
 		
 		SDL_Event e;
 		bool quit = false;
+		s_Tick l_prevTicks = 0U;
+
 		while (!quit){
-		    while (SDL_PollEvent(&e)){
-		        if (e.type == SDL_QUIT){
-		            quit = true;
-		        }
-		        if (e.type == SDL_KEYDOWN){
-		            // m_playerDisplay->switchToGameCamera();
-		        }
-		        if (e.type == SDL_MOUSEBUTTONDOWN){
-		            //quit = true;
-		        }
-		    }
+
+			s_Tick l_elapsedTicks = m_osal->getTicksElapsed();
+
+			if((l_elapsedTicks - l_prevTicks) >= 33U)
+			{
+				m_playerDisplay->parseInputs();
+				m_playerDisplay->update();
+				quit = m_playerDisplay->gameQuitRequested();
+				l_prevTicks = l_elapsedTicks;
+			}
 		}
 	}
 	else

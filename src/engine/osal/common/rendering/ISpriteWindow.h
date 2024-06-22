@@ -17,16 +17,21 @@
 #include <Types.h>
 #include <ISprite.h>
 #include <ISpriteRenderer.h>
+#include <IRenderer.h>
 
 class ISpriteWindow
 {
 public:
-    ISpriteWindow(ISprite *_sprite, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height);
+    ISpriteWindow(ISprite *_sprite, IRenderer *_pRenderer, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height);
     virtual ~ISpriteWindow() = 0;
 
     virtual void changeFOV(s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height) = 0;
 
     ISprite *getSprite();
+
+    virtual void draw(s_coord2d _startCoords, s_zoomRatio _zoomRatio) = 0;
+
+    virtual void draw(s_coord2d _startCoords, s_nbPixels _width, s_nbPixels _height) = 0;
 
     void setupRendering(s_coord2d _textureLocation, s_zoomRatio _zoomRatio, s_nbPixels _screenWidth, s_nbPixels _screenHeight);
 
@@ -43,7 +48,7 @@ protected:
 
     ISprite *m_pSprite;
 
-    ISpriteRenderer *m_destination;
+    IRenderer *m_pRenderer;
 
 };
 

@@ -13,7 +13,7 @@
 
 #include <ISpriteWindow.h>
 
-ISpriteWindow::ISpriteWindow(ISprite *_sprite, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height)
+ISpriteWindow::ISpriteWindow(ISprite *_sprite, IRenderer *_pRenderer, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height)
 {
     m_pSprite = _sprite;
     m_fovStartingPoint = _fovStartingPoint;
@@ -25,6 +25,8 @@ ISpriteWindow::ISpriteWindow(ISprite *_sprite, s_coord2d _fovStartingPoint, s_nb
 
     m_renderingOffset.x = 0U;
     m_renderingOffset.y = 0U;
+
+    m_pRenderer = _pRenderer;
 }
 
 ISpriteWindow::~ISpriteWindow()
@@ -40,6 +42,16 @@ void ISpriteWindow::changeFOV(s_coord2d _fovStartingPoint, s_nbPixels _width, s_
 ISprite *ISpriteWindow::getSprite()
 {
     return m_pSprite;
+}
+
+void ISpriteWindow::draw(s_coord2d _startCoords, s_zoomRatio _zoomRatio)
+{
+
+}
+
+void ISpriteWindow::draw(s_coord2d _startCoords, s_nbPixels _width, s_nbPixels _height)
+{
+
 }
 
 void ISpriteWindow::setupRendering(s_coord2d _textureLocation, s_zoomRatio _zoomRatio, s_nbPixels _screenWidth, s_nbPixels _screenHeight)

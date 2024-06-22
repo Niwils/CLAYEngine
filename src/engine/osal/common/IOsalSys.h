@@ -16,6 +16,8 @@
 
 #include <Types.h>
 #include <ISpriteWindow.h>
+#include <KeyboardEvent.h>
+#include <MouseEvent.h>
 
 class IOsalSys
 {
@@ -37,10 +39,27 @@ public:
 
 	virtual s_Tick getTicksElapsed() = 0;
 
+	virtual ISprite *loadSprite(s_fileName _fileSprite, s_nbPixels _height, s_nbPixels _width, s_nbPixels _length, s_nbFrames _nbFrames, s_coord2d _center) = 0;
+
+	virtual void getAndParseEvents() = 0;
+
+	void flushEvents();
+
+	std::vector<KeyboardEvent *> *getKeyboardEvents();
+
+	std::vector<MouseEvent *> *getMouseEvents();
+
+	bool isWindowCloseRequested();
+
 	virtual void displaySprite(ISpriteWindow *_pSprite, s_coord2d _coords, s_zoomRatio _zoomRatio) = 0;
+
 protected:
 
-private:
+		std::vector<KeyboardEvent *> *m_keyboardEvents;
+
+		std::vector<MouseEvent *> *m_mouseEvents;
+
+		bool m_windowCloseRequested;
 
 };
 

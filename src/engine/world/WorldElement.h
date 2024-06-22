@@ -17,11 +17,12 @@
 #include <ITile.h>
 #include <WorldElementDefinition.h>
 #include <SpriteWindow.h>
+#include <IRenderer.h>
 
 class WorldElement : public ITile
 {
 public:
-	WorldElement(WorldElementDefinition *_def);
+	WorldElement(WorldElementDefinition *_def, IRenderer *_pRenderer);
 	~WorldElement();
 
 private:

@@ -50,7 +50,7 @@ typedef struct
 	s_coord y;
 } s_coord2d;
 
-typedef uint8_t s_zoomRatio;
+typedef float s_zoomRatio;
 
 typedef uint16_t s_nbPixels;
 typedef uint32_t s_pixel;
@@ -79,5 +79,7 @@ typedef bool s_isFullscreen;
 typedef float s_rotationCoeff;
 
 typedef std::string s_fileName;
+
+typedef uint32_t s_uuid;
 
 #endif /* End _COMMON_TYPES_H */
