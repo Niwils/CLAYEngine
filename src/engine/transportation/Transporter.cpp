@@ -62,7 +62,7 @@ bool Transporter::addItemContainer(ItemContainer *_container)
     return false;
 }
 
-ItemContainer *Transporter::getItemContainer(s_ItemTypeUUID _itemType)
+ItemContainer *Transporter::getItemContainer(s_gameElementUUID _itemType)
 {
     ItemContainer *l_return = nullptr;
 

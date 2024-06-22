@@ -44,7 +44,7 @@ public:
      * @param _itemType The specified ItemTypeUUID
      * @return An ItemContainer with the specified ItemTypeUUID if available, nullptr otherwise.
      */
-    ItemContainer *getItemContainer(s_ItemTypeUUID _itemType);
+    ItemContainer *getItemContainer(s_gameElementUUID _itemType);
 
     /**
      * @brief Get the first ItemContainer transported.

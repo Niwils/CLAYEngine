@@ -13,7 +13,7 @@
 
 #include <ItemContainer.h>
 
-ItemContainer::ItemContainer(s_ItemTypeUUID _itemType, s_ItemQuantity _max_qty)
+ItemContainer::ItemContainer(s_gameElementUUID _itemType, s_ItemQuantity _max_qty)
 : m_CarriedItems(nullptr)
 , m_CarriedItemType(_itemType)
 , m_MaxQty(_max_qty)
@@ -28,7 +28,7 @@ ItemContainer::~ItemContainer()
     delete m_CarriedItems;
 }
 
-s_ItemTypeUUID ItemContainer::getCarriedItemType()
+s_gameElementUUID ItemContainer::getCarriedItemType()
 {
 	return m_CarriedItemType;
 }

@@ -14,12 +14,19 @@
 
 #ifndef _ENGINE_WORLD_WORLD_H
 #define _ENGINE_WORLD_WORLD_H
+#include <ITile.h>
+#include <WorldElementDefinition.h>
+#include <SpriteWindow.h>
+#include <IRenderer.h>
 
-class World
+class WorldElement : public ITile
 {
 public:
-	World();
-	~World();
+	WorldElement(WorldElementDefinition *_def, IRenderer *_pRenderer);
+	~WorldElement();
+
+private:
+	WorldElementDefinition *m_pDef;
 };
 
 #endif /* End _ENGINE_WORLD_WORLD_H */

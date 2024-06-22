@@ -14,7 +14,8 @@
 #ifndef _ENGINE_WORLD_ITILE_H
 #define _ENGINE_WORLD_ITILE_H
 
-#include <Sprite.h>
+// #include <Sprite.h>
+#include <ISpriteWindow.h>
 
 class ITile
 {
@@ -22,10 +23,14 @@ public:
 	ITile();
 	virtual ~ITile() = 0;
 
-protected:
-	Sprite *m_Sprite;
+	ISpriteWindow *getSpriteWindow();
 
-	
+protected:
+	// Attributes setting the FOV over the complete sprite
+	ISpriteWindow *m_pSpriteWindow;
+
+	// Attributes used when animating the sprite
+	s_nbFrames m_currentFrame;
 
 };
 

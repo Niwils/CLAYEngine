@@ -13,7 +13,7 @@
 
 #include <Recipe.h>
 
-Recipe::Recipe(s_RecipeUID _recipeID)
+Recipe::Recipe(s_gameElementUUID _recipeID)
 : m_RecipeID(_recipeID)
 , m_ProcessList(nullptr)
 {
@@ -25,7 +25,7 @@ Recipe::~Recipe()
 	delete m_ProcessList;
 }
 
-s_RecipeUID Recipe::getRecipeID()
+s_gameElementUUID Recipe::getRecipeID()
 {
 	return m_RecipeID;
 }
@@ -48,8 +48,8 @@ RecipeFollower::RecipeFollower(Recipe *_recipe)
 	// TODO assert _recipe is not null
 	m_Recipe = _recipe;
 	m_CurrentStep = new ObjListIterator<ProcessStep>(_recipe->getListOfProcesses());
-	ObjList<s_ItemTypeUUID> *l_processStep = m_CurrentStep->getCurrent()->getRawMaterialsList();
-	m_CurrentRawMaterial = new ObjListIterator<s_ItemTypeUUID>(l_processStep);
+	ObjList<s_gameElementUUID> *l_processStep = m_CurrentStep->getCurrent()->getRawMaterialsList();
+	m_CurrentRawMaterial = new ObjListIterator<s_gameElementUUID>(l_processStep);
 }
 
 RecipeFollower::~RecipeFollower()
@@ -78,16 +78,16 @@ ProcessStep *RecipeFollower::getCurrentStep()
 	return l_ret;
 }
 
-s_ItemTypeUUID RecipeFollower::getNextRawMaterial()
+s_gameElementUUID RecipeFollower::getNextRawMaterial()
 {
-	s_ItemTypeUUID l_ret = *(m_CurrentRawMaterial->iterate());
+	s_gameElementUUID l_ret = *(m_CurrentRawMaterial->iterate());
 
 	return l_ret;
 }
 
-s_ItemTypeUUID RecipeFollower::getCurrentRawMaterial()
+s_gameElementUUID RecipeFollower::getCurrentRawMaterial()
 {
-	s_ItemTypeUUID l_ret = *(m_CurrentRawMaterial->getCurrent());
+	s_gameElementUUID l_ret = *(m_CurrentRawMaterial->getCurrent());
 
 	return l_ret;
 }
