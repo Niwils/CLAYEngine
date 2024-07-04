@@ -112,6 +112,7 @@ private:
 
 	const s_nbPixels c_pixelsWidePerTile = 424U; // 734 pixels at full scale zoom?
 	const s_nbPixels c_pixelsHighPerTile = 212U; // 424 pixels at full scale zoom?
+	const s_nbPixels c_pixelsWideInModelRef = 270; // 734 pixels at full scale zoom?
 
 	// Coordinates within the "virtual" referential.
 	s_coord2d m_cameraCoords; // 2D coordinates of the tile at center location of the camera
