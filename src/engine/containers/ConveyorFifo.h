@@ -3,7 +3,7 @@
  *
  * \file src/engine/containers/ConveyorFifo.h
  *
- * \brief A list container.
+ * \brief A FIFO container, with manual stepping.
  */
 
 /*
