@@ -84,7 +84,8 @@ ePlayerKeyboardRoute MainGameBar::processClick(s_coord2d _clickCoordinates)
         s_coord2d l_popCoords;
         l_popCoords.x = 512;
         l_popCoords.y = 100;
-        IPopup *l_pNewPopup = new PlayerSettingsMenu(0U, m_pRenderer, m_pClosePopupButton, 200, 200, l_popCoords, m_pDisplay);
+        s_uuid l_uuid = m_pDisplay->getNewOverlayUuid();
+        IPopup *l_pNewPopup = new PlayerSettingsMenu(l_uuid, m_pRenderer, m_pClosePopupButton, 200, 200, l_popCoords, m_pDisplay);
         m_pDisplay->createOverlay(l_pNewPopup);
     }
 

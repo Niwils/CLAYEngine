@@ -341,8 +341,6 @@ void PlayerDisplay::processClick()
 
 void PlayerDisplay::createOverlay(IOverlayInterface *_pDisplay)
 {
-	m_overlayUuidCounter++;
-	_pDisplay->setUuid(m_overlayUuidCounter);
 	m_pOverlayVector->push_back(_pDisplay);
 }
 
@@ -364,4 +362,11 @@ void PlayerDisplay::removeOverlay(s_uuid _uuid)
 		l_it++;
 	}
 
+}
+
+s_uuid PlayerDisplay::getNewOverlayUuid()
+{
+	m_overlayUuidCounter++;
+
+	return m_overlayUuidCounter;
 }

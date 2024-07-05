@@ -114,6 +114,7 @@ public:
 
     void removeOverlay(s_uuid _uuid);
 
+	s_uuid getNewOverlayUuid();
 
 private:
 	/*!
@@ -231,6 +232,9 @@ private:
 	*/
 	std::vector<IOverlayInterface *> *m_pOverlayVector;
 
+	/*!
+	* \brief The last known player mouse coordinates.
+	*/
 	s_coord2d m_mouseCoordinates;
 
 };
