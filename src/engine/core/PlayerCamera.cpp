@@ -13,7 +13,7 @@
 
 #include <PlayerCamera.h>
 
-PlayerCamera::PlayerCamera(IOsalSys *_osalSys, PlayerSettings *_playerSettings, IGameModel *_model, ISpriteWindow *_pMouseOverlay)
+PlayerCamera::PlayerCamera(IOsalSys *_pOsalSys, PlayerSettings *_pPlayerSettings, IGameModel *_pModel, ISpriteWindow *_pMouseOverlay)
 : m_pOsalSys(nullptr)
 , m_pPlayerSettings(nullptr)
 , m_pGameModel(nullptr)
@@ -22,18 +22,14 @@ PlayerCamera::PlayerCamera(IOsalSys *_osalSys, PlayerSettings *_playerSettings, 
 , m_overlayCoords()
 , m_overlayIsShown(false)
 , m_pOverlaySprite(nullptr)
-, m_virtualCenterCoords()
-, m_virtualMapWidth(_model->getMapWidth()*424U)
-, m_virtualMapHeight(_model->getMapHeight()*212U)
+, m_virtualMapWidth(_pModel->getMapWidth()*424U)
+, m_virtualMapHeight(_pModel->getMapHeight()*212U)
 , m_cameraOrientation(eCameraOrientationDefinition_NorthWest)
 {
 	// TODO assert non-null pointers
-	m_pOsalSys = _osalSys;
-	m_pPlayerSettings = _playerSettings;
-	m_pGameModel = _model;
-
-	m_virtualCenterCoords.x = m_virtualMapWidth/2U;
-	m_virtualCenterCoords.y = m_virtualMapHeight/2U;
+	m_pOsalSys = _pOsalSys;
+	m_pPlayerSettings = _pPlayerSettings;
+	m_pGameModel = _pModel;
 
 	m_pOverlaySprite = _pMouseOverlay;
 
