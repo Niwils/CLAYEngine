@@ -1,4 +1,4 @@
-/**
+/*!
  * The CLAYEngine project.
  *
  * @file /src/engine/graph/IGraph.h

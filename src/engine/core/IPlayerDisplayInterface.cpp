@@ -1,3 +1,10 @@
+/*!
+ * The <unnamed> factory builder project.
+ *
+ * \file src/engine/core/IPlayerDisplayInterface.cpp
+ *
+ * \brief The interface between an IOverlay and the PlayerDisplay.
+ */
 
 #include <IPlayerDisplayInterface.h>
 
@@ -23,5 +30,5 @@ void IPlayerDisplayInterface::removeOverlay(s_uuid _uuid)
 
 s_uuid IPlayerDisplayInterface::getNewOverlayUuid()
 {
-    
+
 }
