@@ -1,4 +1,4 @@
-/*
+/*!
  * The <unnamed> factory builder project.
  *
  * \file src/engine/core/PlayerCamera.cpp

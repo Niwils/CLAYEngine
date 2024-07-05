@@ -1,4 +1,4 @@
-/**
+/*!
  * The <unnamed> factory builder project.
  *
  * \file src/engine/core/IOverlay.cpp
@@ -16,7 +16,7 @@
 IPopup::IPopup(s_uuid _uuid, IRenderer *_pRenderer, ISprite *_pCloseWindowSprite, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay)
 : IOverlay(_uuid, _pRenderer, _overlayWidth, _overlayHeight, _overlayTopLeftPos, _pDisplay)
 , m_pTopBar(nullptr)
-, m_closeButton(nullptr)
+, m_pCloseButton(nullptr)
 {
     // TODO assert _pDisplay is not null.
 
@@ -27,7 +27,7 @@ IPopup::IPopup(s_uuid _uuid, IRenderer *_pRenderer, ISprite *_pCloseWindowSprite
     l_closeButtonPos.x = m_overlayTopLeftPos.x + m_overlayWidth - 10;
     l_closeButtonPos.y = m_overlayTopLeftPos.y;
 
-    m_closeButton = new SpriteButton(_pRenderer, _pCloseWindowSprite, 10, 10, l_closeButtonPos, 0x00FF00FF);
+    m_pCloseButton = new SpriteButton(_pRenderer, _pCloseWindowSprite, 10, 10, l_closeButtonPos, 0x00FF00FF);
 }
 
 IPopup::~IPopup()
@@ -51,5 +51,5 @@ void IPopup::draw()
 
     m_pTopBar->draw();
 
-    m_closeButton->draw();
+    m_pCloseButton->draw();
 }

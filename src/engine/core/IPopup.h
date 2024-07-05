@@ -1,7 +1,7 @@
-/**
+/*!
  * The <unnamed> factory builder project.
  *
- * \file src/engine/core/IOverlay.h
+ * \file src/engine/core/IPopup.h
  *
  * \brief An abstract class for menu and other overlays implementation.
  */
@@ -20,21 +20,59 @@
 #include <ObjList.h>
 #include <SpriteButton.h>
 
+/*!
+* \brief An IPopup is an (abstract) overlay that is opened next to a click. It can be closed by the user by pressing the upper right close button.
+*/
 class IPopup : public IOverlay
 {
 public:
+    /*!
+    * \brief IPopup constructor
+    *
+    * \param _uuid The overlay UUID
+    * \param _pRenderer Pointer to the graphical renderer.
+    * \param _pCloseWindowSprite Pointer to the close window sprite \todo add to a container.
+    * \param _overlayWidth The overlay width
+    * \param _overlayHeight The overlay height
+    * \param _overlayTopLeftPos The top left position of the overlay (window referential)
+    * \param _pDisplay Pointer to the IPlayerDisplayInterface
+    */
     IPopup(s_uuid _uuid, IRenderer *_pRenderer, ISprite *_pCloseWindowSprite, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay);
+    
+    /*!
+    * \brief Destructor for the IPopup
+    */
     ~IPopup();
 
+    /*!
+    * \brief Return true if the click is within the overlay coordinates.
+    * \param _clickCoordinates The click coordinates (Window referential)
+    * \return True if click coordinates are within the overlay coordinates, false otherwise.
+    */
     bool clickWithinOverlay(s_coord2d _clickCoordinates);
 
+    /*!
+    * \brief Proceed the click coordinates (Window referential) (implementation dependent).
+    *
+    * \param _clickCoordinates Player click coordinates
+    * \return The route the keyboard inputs shall follow, if the click has been done in a text area.
+    */
     virtual ePlayerKeyboardRoute processClick(s_coord2d _clickCoordinates) = 0;
 
+    /*!
+    * \brief When called, draw the overlay in the renderer.
+    */
     void draw();
 
 protected:
-    SpriteButton *m_closeButton;
+    /*!
+    * \brief Pointer to the popup close button.
+    */
+    SpriteButton *m_pCloseButton;
 
+    /*!
+    * \brief Pointer to the top bar rectangle.
+    */
     IRectangle *m_pTopBar;
 };
 
