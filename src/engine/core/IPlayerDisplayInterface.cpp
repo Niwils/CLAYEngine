@@ -20,3 +20,8 @@ void IPlayerDisplayInterface::removeOverlay(s_uuid _uuid)
 {
     
 }
+
+s_uuid IPlayerDisplayInterface::getNewOverlayUuid()
+{
+    
+}
