@@ -47,9 +47,9 @@ s_errorReturn PlayerDisplay::createWindow()
 	return l_ret;
 }
 
-void PlayerDisplay::setModel(IGameModel *_model)
+void PlayerDisplay::setModel(IGameModel *_pModel)
 {
-	m_pPlayerCompany = _model;
+	m_pPlayerCompany = _pModel;
 }
 
 void PlayerDisplay::parseInputs()
