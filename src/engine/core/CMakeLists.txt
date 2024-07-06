@@ -11,6 +11,7 @@ target_sources(core
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/IOverlay.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/IOverlayInterface.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/IPopup.cpp"
+	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/MenuSpritesContainer.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/PlayerCamera.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/PlayerDisplay.cpp"
 	PUBLIC "${CMAKE_CURRENT_LIST_DIR}/PlayerSettings.cpp"

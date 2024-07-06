@@ -1,4 +1,4 @@
-/*
+/*!
  * The <unnamed> factory builder project.
  *
  * \file src/engine/core/PlayerCamera.cpp
@@ -13,7 +13,7 @@
 
 #include <PlayerCamera.h>
 
-PlayerCamera::PlayerCamera(IOsalSys *_osalSys, PlayerSettings *_playerSettings, IGameModel *_model, ISpriteWindow *_pMouseOverlay)
+PlayerCamera::PlayerCamera(IOsalSys *_pOsalSys, PlayerSettings *_pPlayerSettings, IGameModel *_pModel, ISpriteWindow *_pMouseOverlay)
 : m_pOsalSys(nullptr)
 , m_pPlayerSettings(nullptr)
 , m_pGameModel(nullptr)
@@ -22,18 +22,14 @@ PlayerCamera::PlayerCamera(IOsalSys *_osalSys, PlayerSettings *_playerSettings, 
 , m_overlayCoords()
 , m_overlayIsShown(false)
 , m_pOverlaySprite(nullptr)
-, m_virtualCenterCoords()
-, m_virtualMapWidth(_model->getMapWidth()*424U)
-, m_virtualMapHeight(_model->getMapHeight()*212U)
+, m_virtualMapWidth(_pModel->getMapWidth()*424U)
+, m_virtualMapHeight(_pModel->getMapHeight()*212U)
 , m_cameraOrientation(eCameraOrientationDefinition_NorthWest)
 {
 	// TODO assert non-null pointers
-	m_pOsalSys = _osalSys;
-	m_pPlayerSettings = _playerSettings;
-	m_pGameModel = _model;
-
-	m_virtualCenterCoords.x = m_virtualMapWidth/2U;
-	m_virtualCenterCoords.y = m_virtualMapHeight/2U;
+	m_pOsalSys = _pOsalSys;
+	m_pPlayerSettings = _pPlayerSettings;
+	m_pGameModel = _pModel;
 
 	m_pOverlaySprite = _pMouseOverlay;
 
@@ -188,11 +184,11 @@ s_nbPixels PlayerCamera::getMapSpritesWidth()
 {
 	if(0<m_cameraZoom)
 	{
-		return (c_pixelsWidePerTile/m_cameraZoom)*0.707;
+		return (c_pixelsWideInModelRef/m_cameraZoom);
 	}
 	else
 	{
-		return c_pixelsWidePerTile*0.707;
+		return c_pixelsWideInModelRef;
 	}
 }
 
@@ -200,11 +196,11 @@ s_nbPixels PlayerCamera::getMapSpritesHeight()
 {
 	if(0<m_cameraZoom)
 	{
-		return (c_pixelsHighPerTile/m_cameraZoom)*0.707;
+		return (c_pixelsWideInModelRef/m_cameraZoom);
 	}
 	else
 	{
-		return c_pixelsHighPerTile*0.707;
+		return c_pixelsWideInModelRef;
 	}
 }
 
@@ -404,12 +400,13 @@ s_coord2d PlayerCamera::transformFromVirtualRefToModelRef(s_coord2d _virtualCoor
 	l_strenchingCoordinates.x = l_virtualCoordinates.x;
 	l_strenchingCoordinates.y = 2*l_virtualCoordinates.y;*/
 
-	s_coord2d l_mapCoordinates;
+	float l_mapCoordinates_x;
+	float l_mapCoordinates_y;
 
-	l_mapCoordinates.x = ct_rotationCameraToGameCoeffs[m_cameraOrientation][0]*_virtualCoordinates.x
+	l_mapCoordinates_x = ct_rotationCameraToGameCoeffs[m_cameraOrientation][0]*_virtualCoordinates.x
 							+ ct_rotationCameraToGameCoeffs[m_cameraOrientation][1]*_virtualCoordinates.y;
 
-	l_mapCoordinates.y = ct_rotationCameraToGameCoeffs[m_cameraOrientation][2]*_virtualCoordinates.x
+	l_mapCoordinates_y = ct_rotationCameraToGameCoeffs[m_cameraOrientation][2]*_virtualCoordinates.x
 							+ ct_rotationCameraToGameCoeffs[m_cameraOrientation][3]*_virtualCoordinates.y;
 
 	s_nbPixels l_nbMapWidth = m_virtualMapWidth/m_cameraZoom;
@@ -421,13 +418,13 @@ s_coord2d PlayerCamera::transformFromVirtualRefToModelRef(s_coord2d _virtualCoor
 	s_nbPixels l_mapOffsetWidth = 0.5*l_spriteWidth*m_pGameModel->getMapWidth();
 	s_nbPixels l_mapOffsetHeight = 0.5*l_spriteHeight*m_pGameModel->getMapHeight();
 
-	l_mapCoordinates.x += l_mapOffsetWidth;
-	l_mapCoordinates.y = l_mapOffsetHeight - l_mapCoordinates.y;
+	l_mapCoordinates_x += l_mapOffsetWidth;
+	l_mapCoordinates_y = l_mapOffsetHeight - l_mapCoordinates_y;
 
 	s_coord2d l_modelCoords;
 
-	l_modelCoords.x = l_mapCoordinates.x / l_spriteHeight;
-	l_modelCoords.y = l_mapCoordinates.y / l_spriteWidth;
+	l_modelCoords.x = l_mapCoordinates_x / l_spriteHeight;
+	l_modelCoords.y = l_mapCoordinates_y / l_spriteWidth;
 
 	return l_modelCoords;
 

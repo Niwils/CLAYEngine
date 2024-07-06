@@ -13,10 +13,10 @@
 
 #include <MainGameBar.h>
 
-MainGameBar::MainGameBar(s_uuid _uuid, IRenderer *_pRenderer, ObjList<ISprite> *_pSprite, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay)
+MainGameBar::MainGameBar(s_uuid _uuid, IRenderer *_pRenderer, MenuSpritesContainer *_pSprites, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay)
 : IOverlay(_uuid, _pRenderer, _overlayWidth, _overlayHeight, _overlayTopLeftPos, _pDisplay)
 , m_pSettingsButton(nullptr)
-, m_pClosePopupButton(nullptr)
+, m_pSprites(nullptr)
 , m_menuState(eMainGameBar_openRollingMenu_None)
 , m_nbTicksForCurrentAnimation(0U)
 , m_pRollingMenu(nullptr)
@@ -27,19 +27,19 @@ MainGameBar::MainGameBar(s_uuid _uuid, IRenderer *_pRenderer, ObjList<ISprite> *
     l_settingsButtonCoords.x = _overlayTopLeftPos.x;
     l_settingsButtonCoords.y = _overlayTopLeftPos.y;
 
-    ISprite *l_settingsSprite = _pSprite->removeFirst();
+    m_pSprites = _pSprites;
+
+    ISprite *l_settingsSprite = m_pSprites->getSprite(eMenuSpritesContainer_settings);
     m_pSettingsButton = new SpriteButton(_pRenderer, l_settingsSprite, m_overlayHeight, m_overlayHeight, l_settingsButtonCoords, 0xFFFFFFFF);
 
     l_settingsButtonCoords.x = _overlayTopLeftPos.x + m_overlayHeight;
 
-    ISprite *l_buildMenuSprite = _pSprite->removeFirst();
+    ISprite *l_buildMenuSprite = m_pSprites->getSprite(eMenuSpritesContainer_build);
     m_pBuildingMenuButton = new SpriteButton(_pRenderer, l_buildMenuSprite, m_overlayHeight, m_overlayHeight, l_settingsButtonCoords, 0xFFFFFFFF);
     
     l_settingsButtonCoords.y = _overlayTopLeftPos.y + m_overlayHeight;
-    ISprite *l_buildMenuBuildProcessor = _pSprite->removeFirst();
+    ISprite *l_buildMenuBuildProcessor = m_pSprites->getSprite(eMenuSpritesContainer_build_manufacturing);
     m_pBuildItemProcessor = new SpriteButton(_pRenderer, l_buildMenuBuildProcessor, m_overlayHeight, m_overlayHeight, l_settingsButtonCoords, 0xFFFFFFFF);
-
-    m_pClosePopupButton = _pSprite->removeFirst();
 }
 
 MainGameBar::~MainGameBar()
@@ -47,9 +47,6 @@ MainGameBar::~MainGameBar()
     delete m_pSettingsButton;
 
     delete m_pBuildingMenuButton;
-
-    delete m_pClosePopupButton;
-
 }
 
 bool MainGameBar::clickWithinOverlay(s_coord2d _clickCoordinates)
@@ -84,7 +81,8 @@ ePlayerKeyboardRoute MainGameBar::processClick(s_coord2d _clickCoordinates)
         s_coord2d l_popCoords;
         l_popCoords.x = 512;
         l_popCoords.y = 100;
-        IPopup *l_pNewPopup = new PlayerSettingsMenu(0U, m_pRenderer, m_pClosePopupButton, 200, 200, l_popCoords, m_pDisplay);
+        s_uuid l_uuid = m_pDisplay->getNewOverlayUuid();
+        IPopup *l_pNewPopup = new PlayerSettingsMenu(l_uuid, m_pRenderer, m_pSprites, 200, 200, l_popCoords, m_pDisplay);
         m_pDisplay->createOverlay(l_pNewPopup);
     }
 
