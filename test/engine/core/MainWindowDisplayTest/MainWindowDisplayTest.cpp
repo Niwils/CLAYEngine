@@ -20,7 +20,7 @@ MainWindowDisplayTest::MainWindowDisplayTest()
 , m_playerDisplay(nullptr)
 {
 	m_osal = new OsalSys();
-	m_playerDisplay = new PlayerDisplay(m_osal, &m_playerSettings);
+	m_playerDisplay = new PlayerDisplay(m_osal, m_osal, &m_playerSettings);
 }
 
 MainWindowDisplayTest::~MainWindowDisplayTest()

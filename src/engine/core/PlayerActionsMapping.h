@@ -1,7 +1,7 @@
 /**
  * The CLAYEngine project.
  *
- * @file /src/osal/sdl/OsalSys.h
+ * @file /src/engine/core/PlayerActionsMapping.h
  *
  * @brief The entry point for the system OSAL (init and termination)
  */
@@ -11,8 +11,8 @@
  * 17/03/2024: File creation (NG)
  */
 
-#ifndef _ENGINE_CORE_PLAYERKEYBOARDMAPPING_H
-#define _ENGINE_CORE_PLAYERKEYBOARDMAPPING_H
+#ifndef _ENGINE_CORE_PLAYERACTIONSMAPPING_H
+#define _ENGINE_CORE_PLAYERACTIONSMAPPING_H
 
 #include <Types.h>
 
@@ -38,4 +38,4 @@ private:
 
 };
 
-#endif /* End _ENGINE_CORE_PLAYERKEYBOARDMAPPING_H */
+#endif /* End _ENGINE_CORE_PLAYERACTIONSMAPPING_H */

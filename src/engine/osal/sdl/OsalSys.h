@@ -20,9 +20,11 @@
 #include <SDL2/SDL.h>
 // #include <SDL2_image/SDL_image.h>
 #include <SDL2/SDL_video.h>
+#include <KeyboardEvent.h>
+#include <Renderer.h>
 
 
-class OsalSys : public IOsalSys
+class OsalSys : public IOsalSys, public Renderer
 {
 public:
 	OsalSys();
@@ -44,14 +46,22 @@ public:
 
 	s_Tick getTicksElapsed();
 
+	void getAndParseEvents();
+
 	ISprite *loadSprite(s_fileName _fileSprite, s_nbPixels _height, s_nbPixels _width, s_nbPixels _length, s_nbFrames _nbFrames, s_coord2d _center);
 
 	void displaySprite(ISpriteWindow *_pSprite, s_coord2d _coords, s_zoomRatio _zoomRatio);
+
+	SDL_Renderer *getRenderer();
 protected:
+
+	void processSDLKey(SDL_Event *_event);
+
+	void processSDLMouse(SDL_Event *_event);
 
 private:
 	SDL_Window *m_pPlayerWindow;
-	SDL_Renderer *m_pRenderer;
+	// SDL_Renderer *m_pRenderer;
 
 	SDL_Surface *m_pPlayerWindowSurface;
 

@@ -23,7 +23,7 @@ public:
 	ISprite(s_nbPixels _height, s_nbPixels _width, s_nbPixels _length, s_nbFrames _nbFrames, s_coord2d _center);
 	~ISprite();
 
-	s_coord2d getDisplayOrigin();
+	s_coord2d getFrameCenter();
 	s_nbPixels getHeight();
 	s_nbPixels getWidth();
 	s_nbPixels getLength();
@@ -31,7 +31,7 @@ public:
 	s_nbFrames getNbFrames();
 
 protected:
-	s_coord2d m_spriteDisplayCoord; /*!< This attribute is used to allow the system to know where is the
+	s_coord2d m_spriteFrameCenter; /*!< This attribute is used to allow the system to know where is the
 								pixel representing the center/origin for positioning purposes. */
 	// TODO: do a better description of m_spriteDisplayCoord vs the PlayerCamera on the Wiki.
 	s_nbPixels m_height;

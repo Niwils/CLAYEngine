@@ -13,8 +13,8 @@
 
 #include <SpriteWindow.h>
 
-SpriteWindow::SpriteWindow(ISprite *_sprite, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height)
-: ISpriteWindow(_sprite, _fovStartingPoint, _width, _height)
+SpriteWindow::SpriteWindow(ISprite *_sprite, IRenderer *_pRenderer, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height)
+: ISpriteWindow(_sprite, _pRenderer, _fovStartingPoint, _width, _height)
 {
     
 }
@@ -29,16 +29,39 @@ void SpriteWindow::changeFOV(s_coord2d _fovStartingPoint, s_nbPixels _width, s_n
 
 }
 
-void SpriteWindow::draw(s_coord2d _startCoords, SDL_Surface *_dest)
+void SpriteWindow::draw(s_coord2d _centerCoords, s_zoomRatio _zoomRatio)
 {
-   // Sprite *l_pSprite = nullptr;
-    //l_pSprite = static_cast<Sprite *>(m_pSprite);
+    Renderer *l_pRenderer = static_cast<Renderer *>(m_pRenderer);
 
-    SDL_Rect l_displayFOV;
+    Sprite *l_pSprite = static_cast<Sprite *>(m_pSprite);
 
-    l_displayFOV.x = _startCoords.x;
-    l_displayFOV.y = _startCoords.y;
-	// SDL_BlitSurface(_dest, nullptr, l_pSprite->getSurface(), &l_displayFOV);
+    SDL_Texture *l_pTexture = l_pSprite->getTexture();
+
+	SDL_Rect l_src = this->getShownSpriteArea();
+	SDL_Rect l_dst = this->getDisplayableArea(_centerCoords, _zoomRatio);
+
+    SDL_Renderer *l_pSdlRenderer = l_pRenderer->getRenderer();
+	SDL_RenderCopy(l_pSdlRenderer, l_pTexture, &l_src, &l_dst);
+}
+
+void SpriteWindow::draw(s_coord2d _startCoords, s_nbPixels _width, s_nbPixels _height)
+{
+    Renderer *l_pRenderer = static_cast<Renderer *>(m_pRenderer);
+
+    Sprite *l_pSprite = static_cast<Sprite *>(m_pSprite);
+
+    SDL_Texture *l_pTexture = l_pSprite->getTexture();
+
+	SDL_Rect l_src = this->getShownSpriteArea();
+	SDL_Rect l_dst;
+
+    l_dst.x = _startCoords.x-(0.5*_width);
+    l_dst.y = _startCoords.y-(0.5*_height);
+    l_dst.h = _height;
+    l_dst.w = _width;
+
+    SDL_Renderer *l_pSdlRenderer = l_pRenderer->getRenderer();
+	SDL_RenderCopy(l_pSdlRenderer, l_pTexture, &l_src, &l_dst);
 }
 
 SDL_Rect SpriteWindow::getShownSpriteArea()

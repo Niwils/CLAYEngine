@@ -1,7 +1,7 @@
-/*
+/*!
  * The <unnamed> factory builder project.
  *
- * \file src/common/Types.h
+ * \file src/common/GeographyDefinitions.h
  *
  * \brief Common definitions for in-game geographics (maps, neighbours...)
  */
@@ -15,23 +15,28 @@
 
 #include <stdint.h>
 
+/*!
+* \brief Indexes giving the geographical definition of a tile.
+*/
 enum eGeographyDefinition : uint8_t
 {
-	eGeographyDefinition_North = 0,
-	eGeographyDefinition_East = 1,
-	eGeographyDefinition_South = 2,
-	eGeographyDefinition_West = 3,
-	eGeographyDefinition_Max = 4
+	eGeographyDefinition_North = 0, /*!< Index for the north */
+	eGeographyDefinition_East = 1, /*!< Index for the east */
+	eGeographyDefinition_South = 2, /*!< Index for the south */
+	eGeographyDefinition_West = 3, /*!< Index for the west */
+	eGeographyDefinition_Max = 4 /*!< Maximum enumeration value */
 };
 
-// Orientation indicates where the camera points to (top left of the Player display)
+/*!
+* \brief Indexes giving the geographical definition of the camera orientation.
+*/
 enum eCameraOrientationDefinition : uint8_t
 {
-	eCameraOrientationDefinition_NorthWest = 0,
-	eCameraOrientationDefinition_NorthEast = 1,
-	eCameraOrientationDefinition_SouthWest = 2,
-	eCameraOrientationDefinition_SouthEast = 3,
-	eCameraOrientationDefinition_Max = 4
+	eCameraOrientationDefinition_NorthWest = 0, /*!< Index for the north-west */
+	eCameraOrientationDefinition_NorthEast = 1, /*!< Index for the north-east */
+	eCameraOrientationDefinition_SouthWest = 2, /*!< Index for the south-west */
+	eCameraOrientationDefinition_SouthEast = 3, /*!< Index for the south-east */
+	eCameraOrientationDefinition_Max = 4 /*!< Maximum enumeration value */
 };
 
 #endif /* End _COMMON_GEOGRAPHYDEFINITIONS_H */

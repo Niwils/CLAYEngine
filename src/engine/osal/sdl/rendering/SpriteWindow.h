@@ -19,16 +19,19 @@
 #include <Sprite.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_video.h>
+#include <Renderer.h>
 
 class SpriteWindow : public ISpriteWindow
 {
 public:
-    SpriteWindow(ISprite *_sprite, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height);
+    SpriteWindow(ISprite *_sprite, IRenderer *_pRenderer, s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height);
     ~SpriteWindow();
 
     void changeFOV(s_coord2d _fovStartingPoint, s_nbPixels _width, s_nbPixels _height);
 
-	void draw(s_coord2d _startCoords, SDL_Surface *_dest);
+	void draw(s_coord2d _centerCoords, s_zoomRatio _zoomRatio);
+
+    void draw(s_coord2d _startCoords, s_nbPixels _width, s_nbPixels _height);
 
     SDL_Rect getShownSpriteArea();
 
