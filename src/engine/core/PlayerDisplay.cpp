@@ -25,15 +25,18 @@ PlayerDisplay::PlayerDisplay(IOsalSys *_pOsalSys, IRenderer *_pRenderer, PlayerS
 , m_pOverlaySpriteWindow(nullptr)
 , m_overlayUuidCounter(0U)
 , m_pOverlayVector(nullptr)
+, m_pSprites(nullptr)
 {
 	m_pRenderer = _pRenderer;
 	m_pOverlayVector = new std::vector<IOverlayInterface *>();
+	m_pSprites = new MenuSpritesContainer();
 }
 
 PlayerDisplay::~PlayerDisplay()
 {
 	delete m_pOverlaySprite;
 	delete m_pOverlayVector; // TODO clean the vector in a better way.
+	delete m_pSprites;
 }
 
 s_errorReturn PlayerDisplay::createWindow()
@@ -185,28 +188,25 @@ void PlayerDisplay::switchToGameCamera()
 	ISprite *l_settingsButtonSprite = m_pOsalSys->loadSprite("../assets/buttons/settings.bmp",
 							54U, 54U, 0U, 1U, l_centerSprite);
 
-	ObjList<ISprite> *l_menuSprites = new ObjList<ISprite>();
-
-	l_menuSprites->addObject(l_settingsButtonSprite);
+	m_pSprites->addSprite(eMenuSpritesContainer_settings, l_settingsButtonSprite);
 
 	ISprite *l_manufacturingEquipMenu = m_pOsalSys->loadSprite("../assets/buttons/build_processor.bmp",
 							54U, 54U, 0U, 1U, l_centerSprite);
 
-	l_menuSprites->addObject(l_manufacturingEquipMenu);
+	m_pSprites->addSprite(eMenuSpritesContainer_build, l_manufacturingEquipMenu);
 
 	ISprite *l_itemProcessorMenuSprite = m_pOsalSys->loadSprite("../assets/buttons/manufacturing.bmp",
 							54U, 54U, 0U, 1U, l_centerSprite);
 
-	l_menuSprites->addObject(l_itemProcessorMenuSprite);
+	m_pSprites->addSprite(eMenuSpritesContainer_build_manufacturing, l_itemProcessorMenuSprite);
 
 	ISprite *l_closingPopupButton = m_pOsalSys->loadSprite("../assets/buttons/close.bmp",
 							54U, 54U, 0U, 1U, l_centerSprite);
 
-	l_menuSprites->addObject(l_closingPopupButton);
+	m_pSprites->addSprite(eMenuSpritesContainer_closeButton, l_closingPopupButton);
 
-	MainGameBar *l_pTopBarOverlay = new MainGameBar(0U, m_pRenderer, l_menuSprites, l_overlayBarWidth, l_overlayBarHeight, l_overlayBarCoords, this);
+	MainGameBar *l_pTopBarOverlay = new MainGameBar(0U, m_pRenderer, m_pSprites, l_overlayBarWidth, l_overlayBarHeight, l_overlayBarCoords, this);
 
-	delete l_menuSprites;
 	m_pOverlayVector->push_back(l_pTopBarOverlay);
 	m_displayMode = ePlayerDisplayMode_InGame;
 }

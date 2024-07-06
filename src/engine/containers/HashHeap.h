@@ -108,7 +108,7 @@ public:
 		{
 			if (nullptr != m_pLeft)
 			{
-				l_left = m_pLeft->addObj(_hash, _obj)+1;
+				l_left = m_pLeft->addObj(_hash, _pObj)+1;
 
 				if(2 == l_left)
 				{
@@ -147,7 +147,7 @@ public:
 			}
 			else
 			{
-				m_pLeft = new HashHeapCell<J, K>(_hash, _obj);
+				m_pLeft = new HashHeapCell<J, K>(_hash, _pObj);
 				m_pLeft->setDepth(m_depth+1);
 			}
 		}
@@ -271,7 +271,7 @@ public:
 	{
 		if(m_hash == _hash)
 		{
-			return m_obj;
+			return m_pObj;
 		}
 		else
 		{
@@ -421,7 +421,7 @@ public:
 
 		if(m_top->getHash() == _hash)
 		{
-			return m_top;
+			return m_top->getObj();
 		}
 		else
 		{
@@ -431,7 +431,7 @@ public:
 			{
 				if(_hash == l_runner->getHash())
 				{
-					l_ret = l_runner;
+					l_ret = l_runner->getObj();
 				}
 				else
 				{

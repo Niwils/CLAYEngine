@@ -20,11 +20,12 @@
 #include <SpriteButton.h>
 #include <IPlayerDisplayInterface.h>
 #include <PlayerSettingsMenu.h>
+#include <MenuSpritesContainer.h>
 
 class MainGameBar : public IOverlay
 {
 public:
-    MainGameBar(s_uuid _uuid, IRenderer *_pRenderer, ObjList<ISprite> *_pSprite, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay);
+    MainGameBar(s_uuid _uuid, IRenderer *_pRenderer, MenuSpritesContainer *_pSprites, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay);
     ~MainGameBar();
 
     ePlayerKeyboardRoute processClick(s_coord2d _clickCoordinates);
@@ -40,7 +41,7 @@ protected:
     SpriteButton *m_pBuildingMenuButton;
     SpriteButton *m_pSettingsButton;
 
-    ISprite *m_pClosePopupButton;
+    MenuSpritesContainer *m_pSprites;
     
     enum eMainGameBar_openRollingMenu
     {

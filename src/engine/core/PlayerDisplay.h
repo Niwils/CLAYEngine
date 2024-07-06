@@ -30,6 +30,7 @@
 #include <IOverlayInterface.h>
 #include <ObjList.h>
 #include <MainGameBar.h>
+#include <MenuSpritesContainer.h>
 
 /*!
 * \class PlayerDisplay
@@ -236,6 +237,11 @@ private:
 	* \brief The last known player mouse coordinates.
 	*/
 	s_coord2d m_mouseCoordinates;
+
+	/*!
+	* \brief The menu icons container.
+	*/
+	MenuSpritesContainer *m_pSprites;
 
 };
 
