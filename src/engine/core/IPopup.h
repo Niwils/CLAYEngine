@@ -19,6 +19,7 @@
 #include <IOverlay.h>
 #include <ObjList.h>
 #include <SpriteButton.h>
+#include <MenuSpritesContainer.h>
 
 /*!
 * \brief An IPopup is an (abstract) overlay that is opened next to a click. It can be closed by the user by pressing the upper right close button.
@@ -31,13 +32,13 @@ public:
     *
     * \param _uuid The overlay UUID
     * \param _pRenderer Pointer to the graphical renderer.
-    * \param _pCloseWindowSprite Pointer to the close window sprite \todo add to a container.
+    * \param _pSprites Pointer to the menu sprites container.
     * \param _overlayWidth The overlay width
     * \param _overlayHeight The overlay height
     * \param _overlayTopLeftPos The top left position of the overlay (window referential)
     * \param _pDisplay Pointer to the IPlayerDisplayInterface
     */
-    IPopup(s_uuid _uuid, IRenderer *_pRenderer, ISprite *_pCloseWindowSprite, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay);
+    IPopup(s_uuid _uuid, IRenderer *_pRenderer, MenuSpritesContainer *_pSprites, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay);
     
     /*!
     * \brief Destructor for the IPopup
@@ -65,6 +66,11 @@ public:
     void draw();
 
 protected:
+    /*!
+    * \brief Pointer to the menu icons container.
+    */
+    MenuSpritesContainer *m_pSprites;
+
     /*!
     * \brief Pointer to the popup close button.
     */
