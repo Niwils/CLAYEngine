@@ -1,9 +1,9 @@
-/**
+/*!
  * The CLAYEngine project.
  *
- * @file /src/core/PlayerActions.h
+ * \file /src/core/PlayerActions.h
  *
- * @brief Actions from the player interface (once parsed)
+ * \brief Actions from the player interface (once parsed)
  */
 
 /*
@@ -16,6 +16,9 @@
 
 #include <Types.h>
 
+/*!
+* \brief Enumeration of the actions bindable with the player keyboard and/or mouse.
+*/
 enum ePlayerActions
 {
 	ePlayerActions_DoNothing,

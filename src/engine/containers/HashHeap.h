@@ -1,9 +1,9 @@
-/**
+/*!
  * The CLAYEngine project.
  *
- * @file /src/engine/graph/IGraph.h
+ * \file /src/engine/containers/HashHeap.h
  *
- * @brief A TransportationGraph contains all transportation nodes and edges for the item transportation.
+ * \brief A HashHeap is a hashmap container.
  */
 
 /*
@@ -15,24 +15,42 @@
 
 #include <Types.h>
 
+/*!
+* \brief A HashHeapCell is a node of the HashHeap.
+*/
 template <typename J, typename K> class HashHeapCell
 {
 public:
-	HashHeapCell(J _hash, K *_obj)
-	: m_left(nullptr)
-	, m_right(nullptr)
+	/*!
+	* \brief HashHeapCell constructor.
+	* \param _hash The cell hash. Note this must not be a pointer.
+	* \param _pObj Pointer to the object that must be carried by the HashMap.
+	*/
+	HashHeapCell(J _hash, K *_pObj)
+	: m_pLeft(nullptr)
+	, m_pRight(nullptr)
 	, m_depth(0U)
 	{
 		m_hash = _hash;
-		m_obj = _obj;
+		m_pObj = _pObj;
 	}
 
+	/*!
+	* \brief HashHeapCell destructor.
+	*/
 	~HashHeapCell()
 	{
 
 	}
 
-	s_HashHeapDepth addObj(J _hash, K *_obj)
+	/*!
+	* \brief Add the object to a leaf cell.
+	*
+	* \param _hash The object hash (no pointer allowed)
+	* \param _pObj Pointer to the object that must be put in the leaf cell.
+	* \return The hash heap depth of the current HashHeapCell.
+	*/
+	s_HashHeapDepth addObj(J _hash, K *_pObj)
 	{
 		s_HashHeapDepth l_left = 0U;
 		s_HashHeapDepth l_right = 0U;
@@ -40,112 +58,112 @@ public:
 		if(m_hash < _hash)
 		{
 
-			if (nullptr != m_right)
+			if (nullptr != m_pRight)
 			{
-				l_right = m_right->addObj(_hash, _obj);
+				l_right = m_pRight->addObj(_hash, _pObj);
 
 				if(2 == l_right)
 				{
-					if(1 == m_right->getRightCell()->getDeltaDepth())
+					if(1 == m_pRight->getRightCell()->getDeltaDepth())
 					{
-						m_right = rotateLeft(m_right);
+						m_pRight = rotateLeft(m_pRight);
 					}
-					else if(-1 == m_right->getRightCell()->getDeltaDepth())
+					else if(-1 == m_pRight->getRightCell()->getDeltaDepth())
 					{
-						HashHeapCell<J, K> *l_secondDegreeRightSon = m_right->getRightCell();
+						HashHeapCell<J, K> *l_secondDegreeRightSon = m_pRight->getRightCell();
 
 						l_secondDegreeRightSon = rotateRight(l_secondDegreeRightSon);
 
-						m_right->setRightCell(l_secondDegreeRightSon);
+						m_pRight->setRightCell(l_secondDegreeRightSon);
 
-						m_right = rotateLeft(m_right);
+						m_pRight = rotateLeft(m_pRight);
 					}
 				}
 				else if(-2 == l_right)
 				{
-					if(-1 == m_right->getLeftCell()->getDeltaDepth())
+					if(-1 == m_pRight->getLeftCell()->getDeltaDepth())
 					{
-						m_right = rotateRight(m_right);
+						m_pRight = rotateRight(m_pRight);
 					}
-					else if(1 == m_right->getLeftCell()->getDeltaDepth())
+					else if(1 == m_pRight->getLeftCell()->getDeltaDepth())
 					{
-						HashHeapCell<J, K> *l_secondDegreeLeftSon = m_right->getLeftCell();
+						HashHeapCell<J, K> *l_secondDegreeLeftSon = m_pRight->getLeftCell();
 
 						l_secondDegreeLeftSon = rotateLeft(l_secondDegreeLeftSon);
 
-						m_right->setLeftCell(l_secondDegreeLeftSon);
+						m_pRight->setLeftCell(l_secondDegreeLeftSon);
 
-						m_right = rotateRight(m_right);
+						m_pRight = rotateRight(m_pRight);
 					}
 				}
 			}
 			else
 			{
-				m_right = new HashHeapCell<J, K>(_hash, _obj);
-				m_right->setDepth(m_depth+1);
+				m_pRight = new HashHeapCell<J, K>(_hash, _pObj);
+				m_pRight->setDepth(m_depth+1);
 			}
 
 		}
 		else
 		{
-			if (nullptr != m_left)
+			if (nullptr != m_pLeft)
 			{
-				l_left = m_left->addObj(_hash, _obj)+1;
+				l_left = m_pLeft->addObj(_hash, _pObj)+1;
 
 				if(2 == l_left)
 				{
-					if(1 == m_left->getRightCell()->getDeltaDepth())
+					if(1 == m_pLeft->getRightCell()->getDeltaDepth())
 					{
-						m_left = rotateLeft(m_left);
+						m_pLeft = rotateLeft(m_pLeft);
 					}
-					else if(-1 == m_left->getRightCell()->getDeltaDepth())
+					else if(-1 == m_pLeft->getRightCell()->getDeltaDepth())
 					{
-						HashHeapCell<J, K> *l_secondDegreeRightSon = m_left->getRightCell();
+						HashHeapCell<J, K> *l_secondDegreeRightSon = m_pLeft->getRightCell();
 
 						l_secondDegreeRightSon = rotateRight(l_secondDegreeRightSon);
 
-						m_left->setRightCell(l_secondDegreeRightSon);
+						m_pLeft->setRightCell(l_secondDegreeRightSon);
 
-						m_left = rotateLeft(m_left);
+						m_pLeft = rotateLeft(m_pLeft);
 					}
 				}
 				else if(-2 == l_left)
 				{
-					if(-1 == m_left->getLeftCell()->getDeltaDepth())
+					if(-1 == m_pLeft->getLeftCell()->getDeltaDepth())
 					{
-						m_left = rotateRight(m_left);
+						m_pLeft = rotateRight(m_pLeft);
 					}
-					else if(1 == m_left->getLeftCell()->getDeltaDepth())
+					else if(1 == m_pLeft->getLeftCell()->getDeltaDepth())
 					{
-						HashHeapCell<J, K> *l_secondDegreeLeftSon = m_left->getLeftCell();
+						HashHeapCell<J, K> *l_secondDegreeLeftSon = m_pLeft->getLeftCell();
 
 						l_secondDegreeLeftSon = rotateLeft(l_secondDegreeLeftSon);
 
-						m_left->setLeftCell(l_secondDegreeLeftSon);
+						m_pLeft->setLeftCell(l_secondDegreeLeftSon);
 
-						m_left = rotateRight(m_left);
+						m_pLeft = rotateRight(m_pLeft);
 					}
 				}
 			}
 			else
 			{
-				m_left = new HashHeapCell<J, K>(_hash, _obj);
-				m_left->setDepth(m_depth+1);
+				m_pLeft = new HashHeapCell<J, K>(_hash, _pObj);
+				m_pLeft->setDepth(m_depth+1);
 			}
 		}
 
-		if(nullptr != m_left)
+		if(nullptr != m_pLeft)
 		{
-			l_left = m_left->getDepth();
+			l_left = m_pLeft->getDepth();
 		}
 		else
 		{
 			l_left = 0;
 		}
 
-		if(nullptr != m_right)
+		if(nullptr != m_pRight)
 		{
-			l_right = m_right->getDepth();
+			l_right = m_pRight->getDepth();
 		}
 		else
 		{
@@ -157,9 +175,13 @@ public:
 		return m_deltaDepth;
 	}
 
+	/*!
+	* \brief Returns the Object of the cell.
+	* \return The Cell object.
+	*/
 	K *getObj()
 	{
-		return m_obj;
+		return m_pObj;
 	}
 
 	J getHash()
@@ -169,32 +191,32 @@ public:
 
 	J getLeftHash()
 	{
-		return m_left->getHash();
+		return m_pLeft->getHash();
 	}
 
 	HashHeapCell *getLeftCell()
 	{
-		return m_left;
+		return m_pLeft;
 	}
 
 	void setLeftCell(HashHeapCell<J, K> *_cell)
 	{
-		m_left=_cell;
+		m_pLeft=_cell;
 	}
 
 	void setRightCell(HashHeapCell<J, K> *_cell)
 	{
-		m_right=_cell;
+		m_pRight=_cell;
 	}
 
 	HashHeapCell *getRightCell()
 	{
-		return m_right;
+		return m_pRight;
 	}
 
 	J getRightHash()
 	{
-		return m_left->getHash();
+		return m_pLeft->getHash();
 	}
 
 	void setDeltaDepth(s_HashHeapDepth _depth)
@@ -215,18 +237,18 @@ public:
 		s_HashHeapDepth l_left = 0U;
 		s_HashHeapDepth l_right = 0U;
 
-		if (nullptr != m_left)
+		if (nullptr != m_pLeft)
 		{
-			l_left = m_left->getDepth();
+			l_left = m_pLeft->getDepth();
 		}
 		else
 		{
 			l_left = 0;
 		}
 
-		if (nullptr != m_right)
+		if (nullptr != m_pRight)
 		{
-			l_right = m_right->getDepth();
+			l_right = m_pRight->getDepth();
 		}
 		else
 		{
@@ -249,11 +271,11 @@ public:
 	{
 		if(m_hash == _hash)
 		{
-			return m_obj;
+			return m_pObj;
 		}
 		else
 		{
-			if(m_left->getHash() >= _hash)
+			if(m_pLeft->getHash() >= _hash)
 			{
 
 			}
@@ -264,14 +286,14 @@ public:
 	{
 		m_depth = _depth;
 
-		if(nullptr != m_left)
+		if(nullptr != m_pLeft)
 		{
-			m_left->setDepth(m_depth + 1);
+			m_pLeft->setDepth(m_depth + 1);
 		}
 
-		if(nullptr != m_right)
+		if(nullptr != m_pRight)
 		{
-			m_right->setDepth(m_depth + 1);
+			m_pRight->setDepth(m_depth + 1);
 		}
 	}
 
@@ -318,9 +340,9 @@ public:
 
 private:
 	J m_hash;
-	K *m_obj;
-	HashHeapCell *m_left;
-	HashHeapCell *m_right;
+	K *m_pObj;
+	HashHeapCell *m_pLeft;
+	HashHeapCell *m_pRight;
 
 	s_HashHeapDepth m_depth;
 	s_HashHeapDepth m_deltaDepth;
@@ -399,7 +421,7 @@ public:
 
 		if(m_top->getHash() == _hash)
 		{
-			return m_top;
+			return m_top->getObj();
 		}
 		else
 		{
@@ -409,7 +431,7 @@ public:
 			{
 				if(_hash == l_runner->getHash())
 				{
-					l_ret = l_runner;
+					l_ret = l_runner->getObj();
 				}
 				else
 				{

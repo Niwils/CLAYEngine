@@ -18,11 +18,12 @@
 #include <IPopup.h>
 #include <SpriteButton.h>
 #include <IPlayerDisplayInterface.h>
+#include <MenuSpritesContainer.h>
 
 class PlayerSettingsMenu : public IPopup
 {
 public:
-    PlayerSettingsMenu(s_uuid _uuid, IRenderer *_pRenderer, ISprite *_pSprite, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay);
+    PlayerSettingsMenu(s_uuid _uuid, IRenderer *_pRenderer, MenuSpritesContainer *_pSprites, s_nbPixels _overlayWidth, s_nbPixels _overlayHeight, s_coord2d _overlayTopLeftPos, IPlayerDisplayInterface *_pDisplay);
     ~PlayerSettingsMenu();
 
     ePlayerKeyboardRoute processClick(s_coord2d _clickCoordinates);
